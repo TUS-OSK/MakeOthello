@@ -14,12 +14,12 @@ namespace MakeOthello.Model
      }
     public delegate void OthelloEndEventHandler(IOthello othello, int result);
 
-    public delegate void OthlloPassEventHandler(IOthello othello, int pass);
+    public delegate void OthelloPassEventHandler(IOthello othello, int pass);
 
     public interface IOthello
     {
-     int[][] Board { get; }
-        void GameStart();
+     int[,] Board { get; }
+        void Start();
         int Turn { get; }
         List<Point> GetPossiblePoint(int disc);
         bool Put(Point point);
