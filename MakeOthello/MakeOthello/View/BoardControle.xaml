@@ -30,69 +30,69 @@
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <local:Disc Grid.Row="0" Grid.Column="0" DataContext="{Binding DiscDataList[0]}" Command="{Binding DiscTapedCommand}" CommandParameter="0"></local:Disc>
-        <local:Disc Grid.Row="0" Grid.Column="1" DataContext="{Binding DiscDataList[1]}" Command="{Binding DiscTapedCommand}" CommandParameter="1"></local:Disc>
-        <local:Disc Grid.Row="0" Grid.Column="2" DataContext="{Binding DiscDataList[2]}" Command="{Binding DiscTapedCommand}" CommandParameter="2"></local:Disc>
-        <local:Disc Grid.Row="0" Grid.Column="3" DataContext="{Binding DiscDataList[3]}" Command="{Binding DiscTapedCommand}" CommandParameter="3"></local:Disc>
-        <local:Disc Grid.Row="0" Grid.Column="4" DataContext="{Binding DiscDataList[4]}" Command="{Binding DiscTapedCommand}" CommandParameter="4"></local:Disc>
-        <local:Disc Grid.Row="0" Grid.Column="5" DataContext="{Binding DiscDataList[5]}" Command="{Binding DiscTapedCommand}" CommandParameter="5"></local:Disc>
-        <local:Disc Grid.Row="0" Grid.Column="6" DataContext="{Binding DiscDataList[6]}" Command="{Binding DiscTapedCommand}" CommandParameter="6"></local:Disc>
-        <local:Disc Grid.Row="0" Grid.Column="7" DataContext="{Binding DiscDataList[7]}" Command="{Binding DiscTapedCommand}" CommandParameter="7"></local:Disc>
-        <local:Disc Grid.Row="1" Grid.Column="0" DataContext="{Binding DiscDataList[8]}" Command="{Binding DiscTapedCommand}" CommandParameter="8"></local:Disc>
-        <local:Disc Grid.Row="1" Grid.Column="1" DataContext="{Binding DiscDataList[9]}" Command="{Binding DiscTapedCommand}" CommandParameter="9"></local:Disc>
-        <local:Disc Grid.Row="1" Grid.Column="2" DataContext="{Binding DiscDataList[10]}" Command="{Binding DiscTapedCommand}" CommandParameter="10"></local:Disc>
-        <local:Disc Grid.Row="1" Grid.Column="3" DataContext="{Binding DiscDataList[11]}" Command="{Binding DiscTapedCommand}" CommandParameter="11"></local:Disc>
-        <local:Disc Grid.Row="1" Grid.Column="4" DataContext="{Binding DiscDataList[12]}" Command="{Binding DiscTapedCommand}" CommandParameter="12"></local:Disc>
-        <local:Disc Grid.Row="1" Grid.Column="5" DataContext="{Binding DiscDataList[13]}" Command="{Binding DiscTapedCommand}" CommandParameter="13"></local:Disc>
-        <local:Disc Grid.Row="1" Grid.Column="6" DataContext="{Binding DiscDataList[14]}" Command="{Binding DiscTapedCommand}" CommandParameter="14"></local:Disc>
-        <local:Disc Grid.Row="1" Grid.Column="7" DataContext="{Binding DiscDataList[15]}" Command="{Binding DiscTapedCommand}" CommandParameter="15"></local:Disc>
-        <local:Disc Grid.Row="2" Grid.Column="0" DataContext="{Binding DiscDataList[16]}" Command="{Binding DiscTapedCommand}" CommandParameter="16"></local:Disc>
-        <local:Disc Grid.Row="2" Grid.Column="1" DataContext="{Binding DiscDataList[17]}" Command="{Binding DiscTapedCommand}" CommandParameter="17"></local:Disc>
-        <local:Disc Grid.Row="2" Grid.Column="2" DataContext="{Binding DiscDataList[18]}" Command="{Binding DiscTapedCommand}" CommandParameter="18"></local:Disc>
-        <local:Disc Grid.Row="2" Grid.Column="3" DataContext="{Binding DiscDataList[19]}" Command="{Binding DiscTapedCommand}" CommandParameter="19"></local:Disc>
-        <local:Disc Grid.Row="2" Grid.Column="4" DataContext="{Binding DiscDataList[20]}" Command="{Binding DiscTapedCommand}" CommandParameter="20"></local:Disc>
-        <local:Disc Grid.Row="2" Grid.Column="5" DataContext="{Binding DiscDataList[21]}" Command="{Binding DiscTapedCommand}" CommandParameter="21"></local:Disc>
-        <local:Disc Grid.Row="2" Grid.Column="6" DataContext="{Binding DiscDataList[22]}" Command="{Binding DiscTapedCommand}" CommandParameter="22"></local:Disc>
-        <local:Disc Grid.Row="2" Grid.Column="7" DataContext="{Binding DiscDataList[23]}" Command="{Binding DiscTapedCommand}" CommandParameter="23"></local:Disc>
-        <local:Disc Grid.Row="3" Grid.Column="0" DataContext="{Binding DiscDataList[24]}" Command="{Binding DiscTapedCommand}" CommandParameter="24"></local:Disc>
-        <local:Disc Grid.Row="3" Grid.Column="1" DataContext="{Binding DiscDataList[25]}" Command="{Binding DiscTapedCommand}" CommandParameter="25"></local:Disc>
-        <local:Disc Grid.Row="3" Grid.Column="2" DataContext="{Binding DiscDataList[26]}" Command="{Binding DiscTapedCommand}" CommandParameter="26"></local:Disc>
-        <local:Disc Grid.Row="3" Grid.Column="3" DataContext="{Binding DiscDataList[27]}" Command="{Binding DiscTapedCommand}" CommandParameter="27"></local:Disc>
-        <local:Disc Grid.Row="3" Grid.Column="4" DataContext="{Binding DiscDataList[28]}" Command="{Binding DiscTapedCommand}" CommandParameter="28"></local:Disc>
-        <local:Disc Grid.Row="3" Grid.Column="5" DataContext="{Binding DiscDataList[29]}" Command="{Binding DiscTapedCommand}" CommandParameter="29"></local:Disc>
-        <local:Disc Grid.Row="3" Grid.Column="6" DataContext="{Binding DiscDataList[30]}" Command="{Binding DiscTapedCommand}" CommandParameter="30"></local:Disc>
-        <local:Disc Grid.Row="3" Grid.Column="7" DataContext="{Binding DiscDataList[31]}" Command="{Binding DiscTapedCommand}" CommandParameter="31"></local:Disc>
-        <local:Disc Grid.Row="4" Grid.Column="0" DataContext="{Binding DiscDataList[32]}" Command="{Binding DiscTapedCommand}" CommandParameter="32"></local:Disc>
-        <local:Disc Grid.Row="4" Grid.Column="1" DataContext="{Binding DiscDataList[33]}" Command="{Binding DiscTapedCommand}" CommandParameter="33"></local:Disc>
-        <local:Disc Grid.Row="4" Grid.Column="2" DataContext="{Binding DiscDataList[34]}" Command="{Binding DiscTapedCommand}" CommandParameter="34"></local:Disc>
-        <local:Disc Grid.Row="4" Grid.Column="3" DataContext="{Binding DiscDataList[35]}" Command="{Binding DiscTapedCommand}" CommandParameter="35"></local:Disc>
-        <local:Disc Grid.Row="4" Grid.Column="4" DataContext="{Binding DiscDataList[36]}" Command="{Binding DiscTapedCommand}" CommandParameter="36"></local:Disc>
-        <local:Disc Grid.Row="4" Grid.Column="5" DataContext="{Binding DiscDataList[37]}" Command="{Binding DiscTapedCommand}" CommandParameter="37"></local:Disc>
-        <local:Disc Grid.Row="4" Grid.Column="6" DataContext="{Binding DiscDataList[38]}" Command="{Binding DiscTapedCommand}" CommandParameter="38"></local:Disc>
-        <local:Disc Grid.Row="4" Grid.Column="7" DataContext="{Binding DiscDataList[39]}" Command="{Binding DiscTapedCommand}" CommandParameter="39"></local:Disc>
-        <local:Disc Grid.Row="5" Grid.Column="0" DataContext="{Binding DiscDataList[40]}" Command="{Binding DiscTapedCommand}" CommandParameter="40"></local:Disc>
-        <local:Disc Grid.Row="5" Grid.Column="1" DataContext="{Binding DiscDataList[41]}" Command="{Binding DiscTapedCommand}" CommandParameter="41"></local:Disc>
-        <local:Disc Grid.Row="5" Grid.Column="2" DataContext="{Binding DiscDataList[42]}" Command="{Binding DiscTapedCommand}" CommandParameter="42"></local:Disc>
-        <local:Disc Grid.Row="5" Grid.Column="3" DataContext="{Binding DiscDataList[43]}" Command="{Binding DiscTapedCommand}" CommandParameter="43"></local:Disc>
-        <local:Disc Grid.Row="5" Grid.Column="4" DataContext="{Binding DiscDataList[44]}" Command="{Binding DiscTapedCommand}" CommandParameter="44"></local:Disc>
-        <local:Disc Grid.Row="5" Grid.Column="5" DataContext="{Binding DiscDataList[45]}" Command="{Binding DiscTapedCommand}" CommandParameter="45"></local:Disc>
-        <local:Disc Grid.Row="5" Grid.Column="6" DataContext="{Binding DiscDataList[46]}" Command="{Binding DiscTapedCommand}" CommandParameter="46"></local:Disc>
-        <local:Disc Grid.Row="5" Grid.Column="7" DataContext="{Binding DiscDataList[47]}" Command="{Binding DiscTapedCommand}" CommandParameter="47"></local:Disc>
-        <local:Disc Grid.Row="6" Grid.Column="0" DataContext="{Binding DiscDataList[48]}" Command="{Binding DiscTapedCommand}" CommandParameter="48"></local:Disc>
-        <local:Disc Grid.Row="6" Grid.Column="1" DataContext="{Binding DiscDataList[49]}" Command="{Binding DiscTapedCommand}" CommandParameter="49"></local:Disc>
-        <local:Disc Grid.Row="6" Grid.Column="2" DataContext="{Binding DiscDataList[50]}" Command="{Binding DiscTapedCommand}" CommandParameter="50"></local:Disc>
-        <local:Disc Grid.Row="6" Grid.Column="3" DataContext="{Binding DiscDataList[51]}" Command="{Binding DiscTapedCommand}" CommandParameter="51"></local:Disc>
-        <local:Disc Grid.Row="6" Grid.Column="4" DataContext="{Binding DiscDataList[52]}" Command="{Binding DiscTapedCommand}" CommandParameter="52"></local:Disc>
-        <local:Disc Grid.Row="6" Grid.Column="5" DataContext="{Binding DiscDataList[53]}" Command="{Binding DiscTapedCommand}" CommandParameter="53"></local:Disc>
-        <local:Disc Grid.Row="6" Grid.Column="6" DataContext="{Binding DiscDataList[54]}" Command="{Binding DiscTapedCommand}" CommandParameter="54"></local:Disc>
-        <local:Disc Grid.Row="6" Grid.Column="7" DataContext="{Binding DiscDataList[55]}" Command="{Binding DiscTapedCommand}" CommandParameter="55"></local:Disc>
-        <local:Disc Grid.Row="7" Grid.Column="0" DataContext="{Binding DiscDataList[56]}" Command="{Binding DiscTapedCommand}" CommandParameter="56"></local:Disc>
-        <local:Disc Grid.Row="7" Grid.Column="1" DataContext="{Binding DiscDataList[57]}" Command="{Binding DiscTapedCommand}" CommandParameter="57"></local:Disc>
-        <local:Disc Grid.Row="7" Grid.Column="2" DataContext="{Binding DiscDataList[58]}" Command="{Binding DiscTapedCommand}" CommandParameter="58"></local:Disc>
-        <local:Disc Grid.Row="7" Grid.Column="3" DataContext="{Binding DiscDataList[59]}" Command="{Binding DiscTapedCommand}" CommandParameter="59"></local:Disc>
-        <local:Disc Grid.Row="7" Grid.Column="4" DataContext="{Binding DiscDataList[60]}" Command="{Binding DiscTapedCommand}" CommandParameter="60"></local:Disc>
-        <local:Disc Grid.Row="7" Grid.Column="5" DataContext="{Binding DiscDataList[61]}" Command="{Binding DiscTapedCommand}" CommandParameter="61"></local:Disc>
-        <local:Disc Grid.Row="7" Grid.Column="6" DataContext="{Binding DiscDataList[62]}" Command="{Binding DiscTapedCommand}" CommandParameter="62"></local:Disc>
-        <local:Disc Grid.Row="7" Grid.Column="7" DataContext="{Binding DiscDataList[63]}" Command="{Binding DiscTapedCommand}" CommandParameter="63"></local:Disc>
+        <local:DiscControle Grid.Row="0" Grid.Column="0" DataContext="{Binding DiscDataList[0]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="0" Grid.Column="1" DataContext="{Binding DiscDataList[1]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="0" Grid.Column="2" DataContext="{Binding DiscDataList[2]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="0" Grid.Column="3" DataContext="{Binding DiscDataList[3]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="0" Grid.Column="4" DataContext="{Binding DiscDataList[4]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="0" Grid.Column="5" DataContext="{Binding DiscDataList[5]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="0" Grid.Column="6" DataContext="{Binding DiscDataList[6]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="0" Grid.Column="7" DataContext="{Binding DiscDataList[7]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="1" Grid.Column="0" DataContext="{Binding DiscDataList[8]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="1" Grid.Column="1" DataContext="{Binding DiscDataList[9]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="1" Grid.Column="2" DataContext="{Binding DiscDataList[10]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="1" Grid.Column="3" DataContext="{Binding DiscDataList[11]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="1" Grid.Column="4" DataContext="{Binding DiscDataList[12]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="1" Grid.Column="5" DataContext="{Binding DiscDataList[13]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="1" Grid.Column="6" DataContext="{Binding DiscDataList[14]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="1" Grid.Column="7" DataContext="{Binding DiscDataList[15]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="2" Grid.Column="0" DataContext="{Binding DiscDataList[16]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="2" Grid.Column="1" DataContext="{Binding DiscDataList[17]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="2" Grid.Column="2" DataContext="{Binding DiscDataList[18]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="2" Grid.Column="3" DataContext="{Binding DiscDataList[19]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="2" Grid.Column="4" DataContext="{Binding DiscDataList[20]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="2" Grid.Column="5" DataContext="{Binding DiscDataList[21]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="2" Grid.Column="6" DataContext="{Binding DiscDataList[22]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="2" Grid.Column="7" DataContext="{Binding DiscDataList[23]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="3" Grid.Column="0" DataContext="{Binding DiscDataList[24]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="3" Grid.Column="1" DataContext="{Binding DiscDataList[25]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="3" Grid.Column="2" DataContext="{Binding DiscDataList[26]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="3" Grid.Column="3" DataContext="{Binding DiscDataList[27]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="3" Grid.Column="4" DataContext="{Binding DiscDataList[28]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="3" Grid.Column="5" DataContext="{Binding DiscDataList[29]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="3" Grid.Column="6" DataContext="{Binding DiscDataList[30]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="3" Grid.Column="7" DataContext="{Binding DiscDataList[31]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="4" Grid.Column="0" DataContext="{Binding DiscDataList[32]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="4" Grid.Column="1" DataContext="{Binding DiscDataList[33]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="4" Grid.Column="2" DataContext="{Binding DiscDataList[34]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="4" Grid.Column="3" DataContext="{Binding DiscDataList[35]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="4" Grid.Column="4" DataContext="{Binding DiscDataList[36]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="4" Grid.Column="5" DataContext="{Binding DiscDataList[37]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="4" Grid.Column="6" DataContext="{Binding DiscDataList[38]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="4" Grid.Column="7" DataContext="{Binding DiscDataList[39]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="5" Grid.Column="0" DataContext="{Binding DiscDataList[40]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="5" Grid.Column="1" DataContext="{Binding DiscDataList[41]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="5" Grid.Column="2" DataContext="{Binding DiscDataList[42]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="5" Grid.Column="3" DataContext="{Binding DiscDataList[43]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="5" Grid.Column="4" DataContext="{Binding DiscDataList[44]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="5" Grid.Column="5" DataContext="{Binding DiscDataList[45]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="5" Grid.Column="6" DataContext="{Binding DiscDataList[46]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="5" Grid.Column="7" DataContext="{Binding DiscDataList[47]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="6" Grid.Column="0" DataContext="{Binding DiscDataList[48]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="6" Grid.Column="1" DataContext="{Binding DiscDataList[49]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="6" Grid.Column="2" DataContext="{Binding DiscDataList[50]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="6" Grid.Column="3" DataContext="{Binding DiscDataList[51]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="6" Grid.Column="4" DataContext="{Binding DiscDataList[52]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="6" Grid.Column="5" DataContext="{Binding DiscDataList[53]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="6" Grid.Column="6" DataContext="{Binding DiscDataList[54]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="6" Grid.Column="7" DataContext="{Binding DiscDataList[55]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="7" Grid.Column="0" DataContext="{Binding DiscDataList[56]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="7" Grid.Column="1" DataContext="{Binding DiscDataList[57]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="7" Grid.Column="2" DataContext="{Binding DiscDataList[58]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="7" Grid.Column="3" DataContext="{Binding DiscDataList[59]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="7" Grid.Column="4" DataContext="{Binding DiscDataList[60]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="7" Grid.Column="5" DataContext="{Binding DiscDataList[61]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="7" Grid.Column="6" DataContext="{Binding DiscDataList[62]}"></local:DiscControle>
+        <local:DiscControle Grid.Row="7" Grid.Column="7" DataContext="{Binding DiscDataList[63]}"></local:DiscControle>
     </Grid>
 </UserControl>

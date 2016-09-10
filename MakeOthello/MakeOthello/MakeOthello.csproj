@@ -98,6 +98,7 @@
     <Compile Include="Model\AI.cs" />
     <Compile Include="Model\IOthello.cs" />
     <Compile Include="Model\Othello.cs" />
+    <Compile Include="Model\Point.cs" />
     <Compile Include="ViewModel\BoardViewModel.cs" />
     <Compile Include="ViewModel\DiscViewModel.cs" />
     <Compile Include="ViewModel\GameViewModel.cs" />
@@ -105,8 +106,8 @@
     <Compile Include="View\BoardControle.xaml.cs">
       <DependentUpon>BoardControle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Disc.xaml.cs">
-      <DependentUpon>Disc.xaml</DependentUpon>
+    <Compile Include="View\DiscControle.xaml.cs">
+      <DependentUpon>DiscControle.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
@@ -142,7 +143,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Disc.xaml">
+    <Page Include="View\DiscControle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

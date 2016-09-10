@@ -26,20 +26,11 @@ namespace MakeOthello.View
         AbleWhite
     }
 
-    public sealed partial class Disc : Button
+    public sealed partial class DiscControle : Button
     {
-        public Disc()
+        public DiscControle()
         {
             this.InitializeComponent();
-        }
-
-        public static readonly DependencyProperty DiscConditionProperty = DependencyProperty.Register(
-            "DiscCondition", typeof(DiscCondition), typeof(Disc), new PropertyMetadata(default(DiscCondition)));
-
-        public DiscCondition DiscCondition
-        {
-            get { return (DiscCondition) GetValue(DiscConditionProperty); }
-            set { SetValue(DiscConditionProperty, value); }
         }
     }
 }

@@ -16,6 +16,13 @@ namespace MakeOthello.ViewModel
         private SolidColorBrush _discColorBrush;
         private double _discOpacity;
         private DiscCondition _discCondition;
+        public int Number;
+
+        public DiscViewModel(int number)
+        {
+            Number = number;
+        }
+
         public ICommand DiscTapedCommand { get; set; }
 
         public DiscCondition DiscCondition

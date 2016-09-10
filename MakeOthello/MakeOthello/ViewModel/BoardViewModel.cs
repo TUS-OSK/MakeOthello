@@ -15,8 +15,6 @@ namespace MakeOthello.ViewModel
     {
         public IOthello Othello { get; set; }
 
-        
-
         public BoardViewModel()
         {
             Othello = new Othello();
@@ -25,8 +23,13 @@ namespace MakeOthello.ViewModel
             DiscDataList = new DiscViewModel[64];
             for (var i = 0; i < DiscDataList.Length; i++)
             {
-                DiscDataList[i] = new DiscViewModel();
-                DiscDataList[i].DiscTapedCommand = new SimpleCommand(DiscTaped);
+                var discdata = new DiscViewModel(i);
+                discdata.DiscTapedCommand = new SimpleCommand((o =>
+                {
+                    Othello.Put(ConvertPoint(discdata.Number));
+                    Update();
+                }));
+                DiscDataList[i] = discdata;
             }
             Update();
         }
@@ -69,12 +72,6 @@ namespace MakeOthello.ViewModel
 
         public DiscViewModel[] DiscDataList { get; private set; }
 
-        private void DiscTaped(object obj)
-        {
-            var number = int.Parse(obj.ToString());
-            Othello.Put(new Point(number / 8, number % 8));
-            Update();
-        }
 
         private static Point ConvertPoint(int i)
         {

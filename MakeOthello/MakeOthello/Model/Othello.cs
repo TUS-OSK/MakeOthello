@@ -14,7 +14,6 @@ namespace MakeOthello.Model
            new Vector2(0, -1), new Vector2(-1, -1), new Vector2(1, -1), new Vector2(-1, 1)
         };
 
-
         public Othello()
         {
             _boardList.Add(new int[8,8]);
