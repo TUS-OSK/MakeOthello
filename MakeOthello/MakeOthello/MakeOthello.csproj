@@ -99,6 +99,7 @@
     <Compile Include="Model\IOthello.cs" />
     <Compile Include="Model\Othello.cs" />
     <Compile Include="ViewModel\BoardViewModel.cs" />
+    <Compile Include="ViewModel\DiscViewModel.cs" />
     <Compile Include="ViewModel\GameViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
     <Compile Include="View\BoardControle.xaml.cs">
@@ -121,7 +122,6 @@
     <AppxManifest Include="Package.appxmanifest">
       <SubType>Designer</SubType>
     </AppxManifest>
-    <None Include="MakeOthello_TemporaryKey.pfx" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Properties\Default.rd.xml" />

@@ -7,9 +7,9 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="60"
-    d:DesignWidth="60">
-
+    d:DesignWidth="60"
+    Background="Transparent">
     <Grid>
-        <Ellipse Height="55" Width="55" Fill="Aqua"/>
+        <Ellipse Height="55" Width="55" Fill="{Binding DiscColorBrush}" Opacity="{Binding DiscOpacity}"/>
     </Grid>
 </Button>

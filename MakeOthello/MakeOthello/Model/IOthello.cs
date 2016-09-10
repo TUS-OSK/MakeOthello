@@ -21,7 +21,7 @@ namespace MakeOthello.Model
      int[,] Board { get; }
         void Start();
         int Turn { get; }
-        List<Point> GetPossiblePoint(int disc);
+        List<Point> GetPossiblePoints(int disc);
         bool Put(Point point);
         int GetDiscNumber(int disc);
         event OthelloEndEventHandler EndEvent;

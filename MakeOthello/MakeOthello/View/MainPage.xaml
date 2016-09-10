@@ -5,9 +5,10 @@
     xmlns:local="using:MakeOthello"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:view="using:MakeOthello.View"
     mc:Ignorable="d">
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-
+        <view:BoardControle Height="700" Width="700"></view:BoardControle>
     </Grid>
 </Page>

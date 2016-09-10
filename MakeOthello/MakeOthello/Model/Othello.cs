@@ -17,7 +17,7 @@ namespace MakeOthello.Model
 
         public Othello()
         {
-            Board = new int[8, 8];
+            _boardList.Add(new int[8,8]);
         }
 
         public event OthelloEndEventHandler EndEvent;
@@ -43,10 +43,10 @@ namespace MakeOthello.Model
             Turn = -1;
 
             //最初に置いてある石
-            Board[4, 5] = -1;
-            Board[5, 4] = -1;
+            Board[3, 4] = -1;
+            Board[4, 3] = -1;
+            Board[3, 3] = 1;
             Board[4, 4] = 1;
-            Board[5, 4] = 1;
         }
 
         public int Turn //今が黒の番か、白の番か
@@ -117,12 +117,12 @@ namespace MakeOthello.Model
         }
 
 
-        public List<Point> GetPossiblePoint(int disc) //置ける場所
+        public List<Point> GetPossiblePoints(int disc) //置ける場所
         {
             var res = new List<Point>();
 
             for (int i = 0; i < 8; i++)
-                for (int j = 0; j < 0; j++)
+                for (int j = 0; j < 8; j++)
                 {
                     if (IsPossiblePoint(new Point(i, j), disc))
                         res.Add(new Point(i, j));
