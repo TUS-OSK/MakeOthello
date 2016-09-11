@@ -33,7 +33,7 @@ namespace MakeOthello.ViewModel
 
                     // TODO ここでプレーヤーの入力を無効に
                     await Ai.PutAsync(Othello);
-                    // TODO ここでプレーヤーの入力を有効にに
+                    // TODO ここでプレーヤーの入力を有効に
                     Update();
                 }));
                 DiscDataList[i] = discdata;

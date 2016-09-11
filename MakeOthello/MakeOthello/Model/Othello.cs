@@ -16,21 +16,20 @@ namespace MakeOthello.Model
 
         public Othello()
         {
-            _boardList.Add(new int[8,8]);
+            _boardList.Add(new int[8, 8]);
         }
 
         public event OthelloEndEventHandler EndEvent;
         public event OthelloPassEventHandler PassEvent;
 
         private List<int[,]> _boardList = new List<int[,]>();  //いままでの譜面を記憶している
-        private int _count;
 
         public int[,] Board
         {
-            get { return _boardList[_count]; }
+            get { return _boardList[Count]; }
             private set
             {
-                _boardList[_count] = value;
+                _boardList[Count] = value;
             }
         }
 
@@ -38,7 +37,7 @@ namespace MakeOthello.Model
         {
             _boardList.Clear();
             _boardList.Add(new int[8, 8]);
-            _count = 0;
+            Count = 0;
             Turn = -1;
 
             //最初に置いてある石
@@ -53,12 +52,17 @@ namespace MakeOthello.Model
             get; private set;
         }
 
+        public int Count //今の番数
+        {
+            get; private set;
+        }
+
 
         public bool Put(Point point)  //石を置く
         {
             // TODO とりあえず
             _boardList.Add(CopyBoard(Board));
-            _count++;
+            Count++;
             Board[point.x, point.y] = Turn;
             Turn *= -1;
             return true;
@@ -124,29 +128,21 @@ namespace MakeOthello.Model
         public List<Point> GetPossiblePoints(int disc) //置ける場所
         {
             var res = new List<Point>();
-
             for (int i = 0; i < 8; i++)
                 for (int j = 0; j < 8; j++)
                 {
                     if (IsPossiblePoint(new Point(i, j), disc))
                         res.Add(new Point(i, j));
                 }
-            if (res.Count == 0)
-            {
-                //TODO
-            }
-            //res.Add(new Point(1,1)); //(1,1)が置けると判ったら、左のをすればよい（それを過不足なく）
-            //res.Add(new Point(x,y)
-
             return res;
         }
 
         public bool Back() //戻る
         {
-            if (_count > 0)
+            if (Count > 0)
             {
                 _boardList.Remove(_boardList.Last()); //Listの最後を除去した
-                _count--;
+                Count--;
                 Turn *= -1;
                 return true;
             }

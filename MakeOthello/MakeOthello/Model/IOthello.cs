@@ -10,6 +10,7 @@ namespace MakeOthello.Model
     {
         int[,] Board { get; }
         int Turn { get; }
+        int Count { get; }
         List<Point> GetPossiblePoints(int disc);
         int GetDiscNumber(int disc);
         void Start();
