@@ -14,19 +14,26 @@ namespace MakeOthello.ViewModel
     class BoardViewModel : ViewModelBase
     {
         public IOthello Othello { get; set; }
+        public OthelloAiBase Ai { get; private set; }
 
         public BoardViewModel()
         {
             Othello = new Othello();
             Othello.Start();
+            Ai = new SampleOthelloAi();
             
             DiscDataList = new DiscViewModel[64];
             for (var i = 0; i < DiscDataList.Length; i++)
             {
                 var discdata = new DiscViewModel(i);
-                discdata.DiscTapedCommand = new SimpleCommand((o =>
+                discdata.DiscTapedCommand = new SimpleCommand((async o =>
                 {
                     Othello.Put(ConvertPoint(discdata.Number));
+                    Update();
+
+                    // TODO ここでプレーヤーの入力を無効に
+                    await Ai.PutAsync(Othello);
+                    // TODO ここでプレーヤーの入力を有効にに
                     Update();
                 }));
                 DiscDataList[i] = discdata;

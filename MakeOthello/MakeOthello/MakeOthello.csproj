@@ -95,10 +95,12 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Model\AI.cs" />
+    <Compile Include="Model\MakeOthelloAi.cs" />
     <Compile Include="Model\IOthello.cs" />
     <Compile Include="Model\Othello.cs" />
+    <Compile Include="Model\OthelloAiBase.cs" />
     <Compile Include="Model\Point.cs" />
+    <Compile Include="Model\SampleOthelloAi.cs" />
     <Compile Include="ViewModel\BoardViewModel.cs" />
     <Compile Include="ViewModel\DiscViewModel.cs" />
     <Compile Include="ViewModel\GameViewModel.cs" />

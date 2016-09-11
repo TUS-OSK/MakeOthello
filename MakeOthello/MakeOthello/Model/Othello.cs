@@ -64,6 +64,11 @@ namespace MakeOthello.Model
             return true;
         }
 
+        public void Pass()
+        {
+            throw new NotImplementedException();
+        }
+
         public int GetDiscNumber(int disc) //石の数を取得(-1なら黒、1なら白、0なら空白の数を返す)
         {
             var count = 0;

@@ -14,6 +14,7 @@ namespace MakeOthello.Model
         int GetDiscNumber(int disc);
         void Start();
         bool Put(Point point);
+        void Pass();
         bool Back();       
         event OthelloEndEventHandler EndEvent;
         event OthelloPassEventHandler PassEvent;
