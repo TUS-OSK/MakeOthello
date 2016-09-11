@@ -1,29 +1,37 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Numerics;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace MakeOthello.Model
 {
     class Othello : IOthello
     {
-        private static Vector2[] dir =
-        { new Vector2(1, 0), new Vector2(1, 1), new Vector2(0, 1), new Vector2(-1, 0),
-           new Vector2(0, -1), new Vector2(-1, -1), new Vector2(1, -1), new Vector2(-1, 1)
-        };
+
+        // 前盤面を格納するリスト
+        private List<int[,]> _boardList = new List<int[,]>();
+
+        // 置ける場所を保管しておくリスト
+        private List<Point> _possiblePoints;
+
+                /// <summary>
+        /// ゲーム終了時に発生するイベント
+        /// </summary>
+        public event OthelloEndEventHandler EndEvent;
+
+        /// <summary>
+        /// 石が置けなくなった場合に発生するイベント
+        /// </summary>
+        public event OthelloPassEventHandler PassEvent;
+
 
         public Othello()
         {
             _boardList.Add(new int[8, 8]);
         }
 
-        public event OthelloEndEventHandler EndEvent;
-        public event OthelloPassEventHandler PassEvent;
-
-        private List<int[,]> _boardList = new List<int[,]>();  //いままでの譜面を記憶している
-
+        /// <summary>
+        /// 現在の盤面
+        /// </summary>
         public int[,] Board
         {
             get { return _boardList[Count]; }
@@ -33,7 +41,10 @@ namespace MakeOthello.Model
             }
         }
 
-        public void Start()  //スタート
+        /// <summary>
+        /// 盤面をクリアし、最初から始める
+        /// </summary>
+        public void Start()
         {
             _boardList.Clear();
             _boardList.Add(new int[8, 8]);
@@ -47,19 +58,26 @@ namespace MakeOthello.Model
             Board[4, 4] = 1;
         }
 
-        public int Turn //今が黒の番か、白の番か
-        {
-            get; private set;
-        }
+        /// <summary>
+        /// 黒番 -1 白番 1
+        /// </summary>
+        public int Turn { get; private set; }
 
-        public int Count //今の番数
-        {
-            get; private set;
-        }
+        /// <summary>
+        /// 0からはじまる番数
+        /// </summary>
+        public int Count { get; private set; }
 
-
-        public bool Put(Point point)  //石を置く
+        /// <summary>
+        /// 石を置く
+        /// </summary>
+        /// <param name="point"></param>
+        /// <returns></returns>
+        public bool Put(Point point)
         {
+            // 置ける場所を変更する
+            _possiblePoints = null;
+
             // TODO とりあえず
             _boardList.Add(CopyBoard(Board));
             Count++;
@@ -68,12 +86,23 @@ namespace MakeOthello.Model
             return true;
         }
 
+        /// <summary>
+        /// 置かずにパスする（置ける場合も実行可能）
+        /// </summary>
         public void Pass()
         {
+            // 置ける場所を変更する
+            _possiblePoints = null;
+
             throw new NotImplementedException();
         }
 
-        public int GetDiscNumber(int disc) //石の数を取得(-1なら黒、1なら白、0なら空白の数を返す)
+        /// <summary>
+        /// 石または空白の数を取得
+        /// </summary>
+        /// <param name="disc">石または空白（-1,0,1）</param>
+        /// <returns></returns>
+        public int GetDiscNumber(int disc)
         {
             var count = 0;
             for (int y = 0; y < 8; y++)
@@ -89,27 +118,79 @@ namespace MakeOthello.Model
             return count;
         }
 
-        private bool IsPossiblePoint(Point point, int turn)  //おける場所の判定
+        /// <summary>
+        /// 置けるPointのListを返す
+        /// </summary>
+        /// <param name="disc">置く石の色</param>
+        /// <returns></returns>
+        public List<Point> GetPossiblePoints(int disc)
         {
-            if (Board[point.x, point.y] != 0) return false;
+            if (_possiblePoints != null)
+                return _possiblePoints;
+
+            var res = new List<Point>();
             for (int i = 0; i < 8; i++)
+                for (int j = 0; j < 8; j++)
+                {
+                    if (IsPossiblePoint(new Point(i, j), disc))
+                        res.Add(new Point(i, j));
+                }
+            return _possiblePoints = res;
+        }
+
+        /// <summary>
+        /// 一手戻る
+        /// </summary>
+        /// <returns></returns>
+        public bool Back()
+        {
+            // 置ける場所を変更する
+            _possiblePoints = null;
+
+            if (Count > 0)
             {
-                if (point.x + dir[i].X < 0 || point.x + dir[i].X > 7 || point.y + dir[i].Y < 0 || point.y + dir[i].Y > 7)
+                // Listの最後を除去
+                _boardList.Remove(_boardList.Last());
+                Count--;
+                Turn *= -1;
+                return true;
+            }
+            else return false;
+        }
+
+        private static readonly Point[] Dir ={ new Point(1, 0), new Point(1, 1), new Point(0, 1), new Point(-1, 0),
+           new Point(0, -1), new Point(-1, -1), new Point(1, -1), new Point(-1, 1)};
+
+        // pointにturnが置けるかどうかを返す
+        private bool IsPossiblePoint(Point point, int turn)
+        {
+            if (Board[point.x, point.y] != 0)
+            {
+                return false;
+            }
+            for (var i = 0; i < 8; i++)
+            {
+                if (point.x + Dir[i].x < 0
+                    || point.x + Dir[i].x > 7
+                    || point.y + Dir[i].y < 0
+                    || point.y + Dir[i].y > 7)
                 {
                     continue;
                 }
-                if (Board[point.x + (int)dir[i].X, point.y + (int)dir[i].Y] == -turn)
+                if (Board[point.x + Dir[i].x, point.y + Dir[i].y] == -turn)
                 {
-                    int count = 1;
+                    var count = 1;
                     while (true)
                     {
                         count++;
-                        if (point.x + dir[i].X * count < 0 || point.x + dir[i].X * count > 7 || point.y + dir[i].Y * count < 0 ||
-                            point.y + dir[i].Y * count > 7)
+                        if (point.x + Dir[i].x * count < 0
+                            || point.x + Dir[i].x * count > 7
+                            || point.y + Dir[i].y * count < 0
+                            || point.y + Dir[i].y * count > 7)
                         {
                             break;
                         }
-                        int color = Board[point.x + (int)dir[i].X * count, point.y + (int)dir[i].Y * count];
+                        var color = Board[point.x + Dir[i].x * count, point.y + Dir[i].y * count];
                         if (color == 0)
                         {
                             break;
@@ -124,32 +205,8 @@ namespace MakeOthello.Model
             return false;
         }
 
-
-        public List<Point> GetPossiblePoints(int disc) //置ける場所
-        {
-            var res = new List<Point>();
-            for (int i = 0; i < 8; i++)
-                for (int j = 0; j < 8; j++)
-                {
-                    if (IsPossiblePoint(new Point(i, j), disc))
-                        res.Add(new Point(i, j));
-                }
-            return res;
-        }
-
-        public bool Back() //戻る
-        {
-            if (Count > 0)
-            {
-                _boardList.Remove(_boardList.Last()); //Listの最後を除去した
-                Count--;
-                Turn *= -1;
-                return true;
-            }
-            else return false;
-        }
-
-        private int[,] CopyBoard(int[,] board)
+        // 盤面の複製
+        private static int[,] CopyBoard(int[,] board)
         {
             var b = new int[8, 8];
             for (int y = 0; y < 8; y++)
@@ -160,6 +217,16 @@ namespace MakeOthello.Model
                 }
             }
             return b;
+        }
+
+        protected virtual void OnEndEvent(IOthello othello, int result)
+        {
+            EndEvent?.Invoke(othello, result);
+        }
+
+        protected virtual void OnPassEvent(IOthello othello, int pass)
+        {
+            PassEvent?.Invoke(othello, pass);
         }
     }
 }

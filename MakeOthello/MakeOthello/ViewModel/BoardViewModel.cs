@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Notifications;
 using MakeOthello.Model;
+using MakeOthello.Utility;
 using MakeOthello.View;
-using OseroSample.Utillity;
 
 namespace MakeOthello.ViewModel
 {
@@ -15,6 +15,7 @@ namespace MakeOthello.ViewModel
     {
         public IOthello Othello { get; set; }
         public OthelloAiBase Ai { get; private set; }
+        public DiscViewModel[] DiscDataList { get; private set; }
 
         public BoardViewModel()
         {
@@ -80,9 +81,6 @@ namespace MakeOthello.ViewModel
             }
             return points;
         }
-
-        public DiscViewModel[] DiscDataList { get; private set; }
-
 
         private static Point ConvertPoint(int i)
         {

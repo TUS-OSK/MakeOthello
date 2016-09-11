@@ -20,7 +20,7 @@ namespace MakeOthello.Model
             {
                 othello.Pass();
                 return;
-            };
+            }
             await Task.Run((() => Put(othello, ablePoints)));
         }
     }

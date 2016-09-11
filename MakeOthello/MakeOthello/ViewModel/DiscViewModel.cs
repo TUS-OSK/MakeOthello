@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI;
 using Windows.UI.Xaml.Media;
+using MakeOthello.Utility;
 using MakeOthello.View;
-using OseroSample.Utillity;
 
 namespace MakeOthello.ViewModel
 {
