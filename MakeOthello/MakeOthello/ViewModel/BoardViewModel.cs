@@ -20,21 +20,24 @@ namespace MakeOthello.ViewModel
         {
             Othello = new Othello();
             Othello.Start();
+
             Ai = new SampleOthelloAi();
-            
+
             DiscDataList = new DiscViewModel[64];
             for (var i = 0; i < DiscDataList.Length; i++)
             {
                 var discdata = new DiscViewModel(i);
                 discdata.DiscTapedCommand = new SimpleCommand((async o =>
                 {
-                    Othello.Put(ConvertPoint(discdata.Number));
+                    if (!Othello.Put(ConvertPoint(discdata.Number)))
+                        return;
                     Update();
 
                     // TODO ここでプレーヤーの入力を無効に
                     await Ai.PutAsync(Othello);
-                    // TODO ここでプレーヤーの入力を有効に
                     Update();
+
+                    // TODO ここでプレーヤーの入力を有効に
                 }));
                 DiscDataList[i] = discdata;
             }
@@ -89,6 +92,5 @@ namespace MakeOthello.ViewModel
         {
             return point.x * 8 + point.y;
         }
-
     }
 }
