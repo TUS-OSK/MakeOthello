@@ -31,10 +31,10 @@ namespace MakeOthello.ViewModel
                 {
                     if (!Othello.Put(ConvertPoint(discdata.Number)))
                         return;
-                    Update();
+                    var points = Update();
 
                     // TODO ここでプレーヤーの入力を無効に
-                    await Ai.PutAsync(Othello);
+                    await Ai.PutAsync(Othello, points);
                     Update();
 
                     // TODO ここでプレーヤーの入力を有効に
@@ -44,7 +44,7 @@ namespace MakeOthello.ViewModel
             Update();
         }
 
-        private void Update()
+        private List<Point> Update()
         {
             for (var i = 0; i < 64; i++)
             {
@@ -78,6 +78,7 @@ namespace MakeOthello.ViewModel
                     }
                     break;
             }
+            return points;
         }
 
         public DiscViewModel[] DiscDataList { get; private set; }
