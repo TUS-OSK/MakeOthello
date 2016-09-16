@@ -76,11 +76,11 @@ namespace MakeOthello.Model
         /// <returns></returns>
         public bool Put(Point point)
         {
-            // 置ける場所を変更する
-            _possiblePoints = null;
-
             if (Board[point.x, point.y] != 0)  //空じゃないなら
                 return false;                  //おけない
+            // 置ける場所を変更する
+            _possiblePoints = null;
+            
             bool putFlag = false;
             for (int i = 0; i < 8; i++)
             {
@@ -120,16 +120,16 @@ namespace MakeOthello.Model
                 Count++;
                 Board[point.x, point.y] = Turn;
                 Turn *= -1;
+                var points = GetPossiblePoints(Turn);
+                if (points.Count == 0)
+                {
+                    // TODO ちゃんと最後までやろう↓↓
+                    OnPassEvent(this, Turn);// Passの場合　(とりあえず、ここではイベントを呼べばよい)
+                    OnEndEvent(this, 1);//Endの場合
+                }
                 return true;
-            }
-
-            var points = GetPossiblePoints(Turn);
-            if (points.Count == 0)
-            {
-                OnPassEvent(this,Turn);// Passの場合　(とりあえず、ここではイベントを呼べばよい)
-                OnEndEvent(this,1);//Endの場合
-            }
-            return true;
+            }   
+            return false;
         }
 
         /// <summary>
@@ -139,8 +139,16 @@ namespace MakeOthello.Model
         {
             // 置ける場所を変更する
             _possiblePoints = null;
-
-            throw new NotImplementedException();
+            _boardList.Add(CopyBoard(Board));
+            Count++;
+            Turn *= -1;
+            var points = GetPossiblePoints(Turn);
+            if (points.Count == 0)
+            {
+                // TODO ちゃんと最後までやろう↓↓
+                OnPassEvent(this, Turn);// Passの場合　(とりあえず、ここではイベントを呼べばよい)
+                OnEndEvent(this, 1);//Endの場合
+            }
         }
 
         /// <summary>
