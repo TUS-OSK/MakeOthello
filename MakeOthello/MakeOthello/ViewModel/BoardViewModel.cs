@@ -21,9 +21,8 @@ namespace MakeOthello.ViewModel
         {
             Othello = new Othello();
             Othello.Start();
-
+           
             Ai = new SampleOthelloAi();
-
             DiscDataList = new DiscViewModel[64];
             for (var i = 0; i < DiscDataList.Length; i++)
             {

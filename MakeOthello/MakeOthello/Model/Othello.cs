@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using Windows.UI.Text.Core;
 
 namespace MakeOthello.Model
 {
@@ -78,11 +79,56 @@ namespace MakeOthello.Model
             // 置ける場所を変更する
             _possiblePoints = null;
 
-            // TODO とりあえず
-            _boardList.Add(CopyBoard(Board));
-            Count++;
-            Board[point.x, point.y] = Turn;
-            Turn *= -1;
+            if (Board[point.x, point.y] != 0)  //空じゃないなら
+                return false;                  //おけない
+            bool putFlag = false;
+            for (int i = 0; i < 8; i++)
+            {
+                if (point.x + Dir[i].x < 0
+                    || point.x + Dir[i].x > 7
+                    || point.y + Dir[i].y < 0
+                    || point.y + Dir[i].y > 7)
+                    continue;
+                if (Board[point.x + Dir[i].x, point.y + Dir[i].y] == -Turn)  //一つ隣が相手の色なら
+                {
+                    int k = 1; //ベクトルの係数
+                    while (true)
+                    {
+                        k++;
+                        if (point.x + k*Dir[i].x < 0
+                            || point.x + k*Dir[i].x > 7
+                            || point.y + k*Dir[i].y < 0
+                            || point.y + k*Dir[i].y > 7)
+                            break;
+                        if (Board[point.x + k*Dir[i].x, point.y + k*Dir[i].y] == 0)
+                            break;
+                        if (Board[point.x + k*Dir[i].x, point.y + k*Dir[i].y] == Turn)
+                        {
+                            putFlag = true;
+                            for (; k >= 1; k--)
+                            {
+                                Board[point.x + k*Dir[i].x, point.y + k*Dir[i].y] = Turn;
+                            }
+                            break;
+                        }
+                    }
+                }
+            }
+            if (putFlag)
+            {
+                _boardList.Add(CopyBoard(Board));
+                Count++;
+                Board[point.x, point.y] = Turn;
+                Turn *= -1;
+                return true;
+            }
+
+            var points = GetPossiblePoints(Turn);
+            if (points.Count == 0)
+            {
+                OnPassEvent(this,Turn);// Passの場合　(とりあえず、ここではイベントを呼べばよい)
+                OnEndEvent(this,1);//Endの場合
+            }
             return true;
         }
 
@@ -158,8 +204,8 @@ namespace MakeOthello.Model
             else return false;
         }
 
-        private static readonly Point[] Dir ={ new Point(1, 0), new Point(1, 1), new Point(0, 1), new Point(-1, 0),
-           new Point(0, -1), new Point(-1, -1), new Point(1, -1), new Point(-1, 1)};
+        private static readonly Point[] Dir ={ new Point(1, 0), new Point(1, 1), new Point(0, 1), new Point(-1, 1),
+           new Point(-1, 0), new Point(-1, -1), new Point(0, -1), new Point(1, -1)};
 
         // pointにturnが置けるかどうかを返す
         private bool IsPossiblePoint(Point point, int turn)
