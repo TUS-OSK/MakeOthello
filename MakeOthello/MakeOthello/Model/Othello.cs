@@ -14,7 +14,7 @@ namespace MakeOthello.Model
         // 置ける場所を保管しておくリスト
         private List<Point> _possiblePoints;
 
-                /// <summary>
+        /// <summary>
         /// ゲーム終了時に発生するイベント
         /// </summary>
         public event OthelloEndEventHandler EndEvent;
@@ -74,13 +74,14 @@ namespace MakeOthello.Model
         /// </summary>
         /// <param name="point"></param>
         /// <returns></returns>
+
         public bool Put(Point point)
         {
             if (Board[point.x, point.y] != 0)  //空じゃないなら
                 return false;                  //おけない
             // 置ける場所を変更する
             _possiblePoints = null;
-            
+
             bool putFlag = false;
             for (int i = 0; i < 8; i++)
             {
@@ -95,19 +96,19 @@ namespace MakeOthello.Model
                     while (true)
                     {
                         k++;
-                        if (point.x + k*Dir[i].x < 0
-                            || point.x + k*Dir[i].x > 7
-                            || point.y + k*Dir[i].y < 0
-                            || point.y + k*Dir[i].y > 7)
+                        if (point.x + k * Dir[i].x < 0
+                            || point.x + k * Dir[i].x > 7
+                            || point.y + k * Dir[i].y < 0
+                            || point.y + k * Dir[i].y > 7)
                             break;
-                        if (Board[point.x + k*Dir[i].x, point.y + k*Dir[i].y] == 0)
+                        if (Board[point.x + k * Dir[i].x, point.y + k * Dir[i].y] == 0)
                             break;
-                        if (Board[point.x + k*Dir[i].x, point.y + k*Dir[i].y] == Turn)
+                        if (Board[point.x + k * Dir[i].x, point.y + k * Dir[i].y] == Turn)
                         {
                             putFlag = true;
                             for (; k >= 1; k--)
                             {
-                                Board[point.x + k*Dir[i].x, point.y + k*Dir[i].y] = Turn;
+                                Board[point.x + k * Dir[i].x, point.y + k * Dir[i].y] = Turn;
                             }
                             break;
                         }
@@ -121,33 +122,54 @@ namespace MakeOthello.Model
                 Board[point.x, point.y] = Turn;
                 Turn *= -1;
                 var points = GetPossiblePoints(Turn);
+
                 if (points.Count == 0)
                 {
-                    // TODO ちゃんと最後までやろう↓↓
-                    OnPassEvent(this, Turn);// Passの場合　(とりあえず、ここではイベントを呼べばよい)
-                    OnEndEvent(this, 1);//Endの場合
+                    var bnum = GetDiscNumber(-1);
+                    var wnum = GetDiscNumber(1);
+                    if (bnum + wnum < 64)
+                    {
+                        OnPassEvent(this, Turn);
+                    }
+                    else 
+                    {
+                        if (bnum == wnum)
+                            OnEndEvent(this, 0);
+                        else
+                        {
+                            OnEndEvent(this, Math.Max(bnum, wnum));
+                        }
+                    }
                 }
                 return true;
-            }   
+            }
             return false;
         }
 
         /// <summary>
         /// 置かずにパスする（置ける場合も実行可能）
         /// </summary>
+
+        //フィールドにパスカウントやっといて、２回連続なら判定するように
+        //パスしなければ0に戻すようなかんじ
         public void Pass()
         {
             // 置ける場所を変更する
             _possiblePoints = null;
             _boardList.Add(CopyBoard(Board));
             Count++;
-            Turn *= -1;
+            Turn *= -1;             //次いって
             var points = GetPossiblePoints(Turn);
-            if (points.Count == 0)
+            if (points.Count == 0)  //また置ける場所が0だったら
             {
-                // TODO ちゃんと最後までやろう↓↓
-                OnPassEvent(this, Turn);// Passの場合　(とりあえず、ここではイベントを呼べばよい)
-                OnEndEvent(this, 1);//Endの場合
+                var bnum = GetDiscNumber(-1);
+                var wnum = GetDiscNumber(1);
+                if (bnum == wnum)
+                    OnEndEvent(this, 0);
+                else
+                {
+                    OnEndEvent(this, Math.Max(bnum, wnum));
+                }
             }
         }
 
@@ -156,7 +178,7 @@ namespace MakeOthello.Model
         /// </summary>
         /// <param name="disc">石または空白（-1,0,1）</param>
         /// <returns></returns>
-        public int GetDiscNumber(int disc)
+        public int GetDiscNumber(int disc)  //引数にいれた数字の個数　結果は、GetDiscNumber(-1)とGetDiscNumber(1)の大小比較
         {
             var count = 0;
             for (int y = 0; y < 8; y++)
