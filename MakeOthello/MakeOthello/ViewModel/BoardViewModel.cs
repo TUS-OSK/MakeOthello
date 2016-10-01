@@ -11,7 +11,7 @@ using MakeOthello.View;
 
 namespace MakeOthello.ViewModel
 {
-    class BoardViewModel : ViewModelBase
+    public class BoardViewModel : ViewModelBase
     {
         public IOthello Othello { get; set; }
         public OthelloAiBase Ai { get; private set; }

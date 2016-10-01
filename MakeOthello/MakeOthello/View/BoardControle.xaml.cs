@@ -23,7 +23,6 @@ namespace MakeOthello.View
         public BoardControle()
         {
             this.InitializeComponent();
-            DataContext = new BoardViewModel();
         }
     }
 }

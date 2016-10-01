@@ -1,5 +1,4 @@
-﻿using MakeOthello.ViewModel;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.IO;
 using System.Linq;
@@ -21,17 +20,11 @@ namespace MakeOthello.View
     /// <summary>
     /// An empty page that can be used on its own or navigated to within a Frame.
     /// </summary>
-    public sealed partial class GamePage : Page
+    public sealed partial class OptionPage : Page
     {
-        public GamePage()
+        public OptionPage()
         {
             this.InitializeComponent();
-        }
-
-        protected override void OnNavigatedTo(NavigationEventArgs e)
-        {
-            base.OnNavigatedTo(e);
-            DataContext = e.Parameter;
         }
     }
 }
