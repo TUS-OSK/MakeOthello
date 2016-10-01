@@ -28,6 +28,15 @@ namespace MakeOthello.Model
         public Othello()
         {
             _boardList.Add(new int[8, 8]);
+            Condition = OthelloCondition.Wait;
+            EndEvent += (sender, args) => 
+            {
+                Condition = OthelloCondition.End;
+            };
+            PassEvent += (sender, args) =>
+            {
+                Condition = OthelloCondition.Wait;
+            };
         }
 
         public Othello(Othello old)
@@ -42,6 +51,7 @@ namespace MakeOthello.Model
             Turn = old.Turn;
             Count = old.Count;
             _possiblePoints = old.GetPossiblePoints(Turn);
+            Condition = old.Condition;
         }
 
         /// <summary>
@@ -71,6 +81,7 @@ namespace MakeOthello.Model
             Board[4, 3] = -1;
             Board[3, 3] = 1;
             Board[4, 4] = 1;
+            Condition = OthelloCondition.Wait;
         }
 
         /// <summary>
@@ -82,6 +93,11 @@ namespace MakeOthello.Model
         /// 0からはじまる番数
         /// </summary>
         public int Count { get; private set; }
+
+        public OthelloCondition Condition
+        {
+            get; private set;
+        }
 
         /// <summary>
         /// 石を置く
@@ -155,6 +171,10 @@ namespace MakeOthello.Model
                         }
                     }
                 }
+                else
+                {
+                    Condition = OthelloCondition.Wait;
+                }
                 return true;
             }
             return false;
@@ -184,6 +204,10 @@ namespace MakeOthello.Model
                 {
                     OnEndEvent(this, Math.Max(bnum, wnum));
                 }
+            }
+            else
+            {
+                Condition = OthelloCondition.Wait;
             }
         }
 
@@ -243,6 +267,22 @@ namespace MakeOthello.Model
                 _boardList.Remove(_boardList.Last());
                 Count--;
                 Turn *= -1;
+                var points = GetPossiblePoints(Turn);
+                if (points.Count == 0)  //また置ける場所が0だったら
+                {
+                    var bnum = GetDiscNumber(-1);
+                    var wnum = GetDiscNumber(1);
+                    if (bnum == wnum)
+                        OnEndEvent(this, 0);
+                    else
+                    {
+                        OnEndEvent(this, Math.Max(bnum, wnum));
+                    }
+                }
+                else
+                {
+                    Condition = OthelloCondition.Wait;
+                }
                 return true;
             }
             else return false;
