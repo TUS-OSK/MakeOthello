@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace MakeOthello.Model
 {
-    abstract class OthelloAiBase
+    public abstract class OthelloAiBase
     {
         public abstract void Put(IOthello othello, List<Point> ablePoints);
 

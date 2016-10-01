@@ -26,5 +26,11 @@ namespace MakeOthello.Model
             }
             throw new NotImplementedException();
         }
+
+        private int algorithm(int alfa,int beta)
+        {
+
+        }
+
     }
 }

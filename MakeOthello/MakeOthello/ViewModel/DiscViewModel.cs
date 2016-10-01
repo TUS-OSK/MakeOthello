@@ -11,7 +11,7 @@ using MakeOthello.View;
 
 namespace MakeOthello.ViewModel
 {
-    class DiscViewModel:ViewModelBase
+    public class DiscViewModel:ViewModelBase
     {
         private SolidColorBrush _discColorBrush;
         private double _discOpacity;
