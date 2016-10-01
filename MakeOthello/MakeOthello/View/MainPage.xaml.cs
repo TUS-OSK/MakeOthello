@@ -30,7 +30,9 @@ namespace MakeOthello.View
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            this.Frame.Navigate(typeof(GamePage),new BoardViewModel());
+            var vm = new BoardViewModel();
+            vm.Dispatcher = Dispatcher;
+            this.Frame.Navigate(typeof(GamePage),vm);
         }
     }
 }

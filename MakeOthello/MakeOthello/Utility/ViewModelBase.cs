@@ -1,16 +1,29 @@
+using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
 
 namespace MakeOthello.Utility
 {
-    public class ViewModelBase:INotifyPropertyChanged
+    public class ViewModelBase : INotifyPropertyChanged
     {
+        public Windows.UI.Core.CoreDispatcher Dispatcher { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected virtual void OnPropertyChanged([CallerMemberName] string propertyName = null)
+        /// <summary>
+        /// プロパティの変更通知イベントを発生させる
+        /// </summary>
+        /// <param name="name"></param>
+        protected async virtual void OnPropertyChanged([CallerMemberName]string name = null)
         {
-            var handler = PropertyChanged;
-            if (handler != null) handler(this, new PropertyChangedEventArgs(propertyName));
+            if (Dispatcher != null)
+            {
+                await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
+                    () => PropertyChanged(this, new PropertyChangedEventArgs(name)));
+            }
+            else
+            {
+                PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+            }
         }
     }
 }

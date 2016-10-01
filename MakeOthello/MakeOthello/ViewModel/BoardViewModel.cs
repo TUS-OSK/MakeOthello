@@ -4,7 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.UI.Core;
 using Windows.UI.Notifications;
+using Windows.UI.Xaml;
 using MakeOthello.Model;
 using MakeOthello.Utility;
 using MakeOthello.View;
@@ -16,11 +18,35 @@ namespace MakeOthello.ViewModel
         public IOthello Othello { get; set; }
         public OthelloAiBase Ai { get; private set; }
         public DiscViewModel[] DiscDataList { get; private set; }
+        public PopUpControleViewModel PopUpData { get; private set; }
+
+        public new Windows.UI.Core.CoreDispatcher Dispatcher
+        {
+            get { return base.Dispatcher; }
+            set
+            {
+                base.Dispatcher = value;
+                PopUpData.Dispatcher = value;
+            }
+        }
 
         public BoardViewModel(int cpu = -1)
         {
             Othello = new Othello();
             Othello.Start();
+            Othello.PassEvent += (othello, pass) =>
+            {
+                PopUpData.Visibility = Visibility.Visible;
+            };
+            PopUpData = new PopUpControleViewModel();
+            PopUpData.OkCommand = new SimpleCommand(async o =>
+            {
+                PopUpData.Visibility = Visibility.Collapsed;
+                Othello.Pass();
+                var points = Update();
+                await AiPutAsync(points);
+               
+            });
 
             DiscDataList = new DiscViewModel[64];
             Initcpu(cpu);
@@ -85,16 +111,20 @@ namespace MakeOthello.ViewModel
                     if (!Othello.Put(ConvertPoint(discdata.Number)))
                         return;
                     var points = Update();
-
-                    // TODO ここでプレーヤーの入力を無効に
-                    await Ai.PutAsync(Othello, points);
-                    Update();
-
-                    // TODO ここでプレーヤーの入力を有効に
+                    await AiPutAsync(points);
                 }));
                 DiscDataList[i] = discdata;
             }
             Update();
-        }        
+        }
+
+        private async Task AiPutAsync(List<Point> points)
+        {
+            // TODO ここでプレーヤーの入力を無効に
+            await Ai.PutAsync(Othello, points);
+            Update();
+
+            // TODO ここでプレーヤーの入力を有効に
+        }
     }
 }

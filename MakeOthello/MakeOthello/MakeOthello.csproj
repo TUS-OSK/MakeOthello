@@ -112,6 +112,7 @@
     <Compile Include="ViewModel\DiscViewModel.cs" />
     <Compile Include="ViewModel\GameViewModel.cs" />
     <Compile Include="ViewModel\MainViewModel.cs" />
+    <Compile Include="ViewModel\PopUpControleViewModel.cs" />
     <Compile Include="View\BoardControle.xaml.cs">
       <DependentUpon>BoardControle.xaml</DependentUpon>
     </Compile>

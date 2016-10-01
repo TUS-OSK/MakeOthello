@@ -23,5 +23,7 @@ namespace MakeOthello.View
         {
             this.InitializeComponent();
         }
+
+        
     }
 }
