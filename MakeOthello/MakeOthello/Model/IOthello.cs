@@ -16,7 +16,8 @@ namespace MakeOthello.Model
         void Start();
         bool Put(Point point);
         void Pass();
-        bool Back();       
+        bool Back();
+        IOthello Clone();
         event OthelloEndEventHandler EndEvent;
         event OthelloPassEventHandler PassEvent;
     }

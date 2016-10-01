@@ -30,6 +30,20 @@ namespace MakeOthello.Model
             _boardList.Add(new int[8, 8]);
         }
 
+        public Othello(Othello old)
+        {
+            for(var i = 0; i < 8; i++)
+            {
+                for(var j = 0; j < 8; j++)
+                {
+                    _boardList[old.Count - 1][i, j] = old.Board[i, j];
+                }
+            }
+            Turn = old.Turn;
+            Count = old.Count;
+            _possiblePoints = old.GetPossiblePoints(Turn);
+        }
+
         /// <summary>
         /// 現在の盤面
         /// </summary>
@@ -293,6 +307,16 @@ namespace MakeOthello.Model
                 }
             }
             return b;
+        }
+
+        /// <summary>
+        /// このオブジェクトを複製したIOthelloを返します。
+        /// ただし、現在の盤面しか保持しません。
+        /// </summary>
+        /// <returns></returns>
+        public IOthello Clone()
+        {
+            return new Othello(this);
         }
 
         protected virtual void OnEndEvent(IOthello othello, int result)
