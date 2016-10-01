@@ -11,6 +11,8 @@
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
         <view:BoardControle DataContext="{Binding}" Height="700" Width="700"></view:BoardControle>
-        <local:PopUpControl Height="100" Width="500" DataContext="{Binding PopUpData}"></local:PopUpControl>
+        <local:PopUpControl Height="100" Width="500" DataContext="{Binding PopUpData}" d:IsHidden="True"></local:PopUpControl>
+        <local:WinSign DataContext="{Binding WinPopUpData}" d:IsHidden="True"></local:WinSign>
+        <local:LoseSign DataContext="{Binding LosePopUpData}" d:IsHidden="True"></local:LoseSign>
     </Grid>
 </Page>

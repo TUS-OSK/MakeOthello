@@ -18,7 +18,10 @@ namespace MakeOthello.Utility
             if (Dispatcher != null)
             {
                 await Dispatcher.RunAsync(Windows.UI.Core.CoreDispatcherPriority.Normal,
-                    () => PropertyChanged(this, new PropertyChangedEventArgs(name)));
+                    () =>
+                    {
+                        PropertyChanged?.Invoke(this, new PropertyChangedEventArgs(name));
+                    });
             }
             else
             {

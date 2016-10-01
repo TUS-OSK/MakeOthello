@@ -19,6 +19,8 @@ namespace MakeOthello.ViewModel
         public OthelloAiBase Ai { get; private set; }
         public DiscViewModel[] DiscDataList { get; private set; }
         public PopUpControleViewModel PopUpData { get; private set; }
+        public PopUpControleViewModel WinPopUpData { get; private set; }
+        public PopUpControleViewModel LosePopUpData { get; private set; }
 
         public new Windows.UI.Core.CoreDispatcher Dispatcher
         {
@@ -27,10 +29,12 @@ namespace MakeOthello.ViewModel
             {
                 base.Dispatcher = value;
                 PopUpData.Dispatcher = value;
+                LosePopUpData.Dispatcher = value;
+                WinPopUpData.Dispatcher = value;
             }
         }
 
-        public BoardViewModel(int cpu = -1)
+        public BoardViewModel(int playercolor = -1,int cpu = -1)
         {
             Othello = new Othello();
             Othello.Start();
@@ -38,18 +42,34 @@ namespace MakeOthello.ViewModel
             {
                 PopUpData.Visibility = Visibility.Visible;
             };
+            WinPopUpData=new PopUpControleViewModel();
+            LosePopUpData=new PopUpControleViewModel();
             PopUpData = new PopUpControleViewModel();
+
             PopUpData.OkCommand = new SimpleCommand(async o =>
             {
                 PopUpData.Visibility = Visibility.Collapsed;
                 Othello.Pass();
                 var points = Update();
                 await AiPutAsync(points);
-               
-            });
+
+            });            
 
             DiscDataList = new DiscViewModel[64];
             Initcpu(cpu);
+
+            Othello.EndEvent += (othello, resulut) =>
+            {
+                if (playercolor == resulut)
+                {
+                    WinPopUpData.Visibility=Visibility.Visible;
+                }
+                else
+                {
+                    LosePopUpData.Visibility=Visibility.Visible;
+                }
+            };
+
 
         }
 
