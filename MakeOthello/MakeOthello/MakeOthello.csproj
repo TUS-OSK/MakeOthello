@@ -99,6 +99,9 @@
     <Compile Include="App.xaml.cs">
       <DependentUpon>App.xaml</DependentUpon>
     </Compile>
+    <Compile Include="Model\FinalMakeLookAhead.cs" />
+    <Compile Include="Model\ILookAhead.cs" />
+    <Compile Include="Model\MakeLookAhead.cs" />
     <Compile Include="Model\MakeOthelloAi.cs" />
     <Compile Include="Model\IOthello.cs" />
     <Compile Include="Model\Othello.cs" />
