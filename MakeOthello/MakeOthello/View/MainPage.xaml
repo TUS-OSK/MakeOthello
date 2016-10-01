@@ -7,8 +7,25 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:view="using:MakeOthello.View"
     mc:Ignorable="d">
+    <Page.Resources>
+        
+    </Page.Resources>
 
     <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
-       <Button Height="100" Width="200" HorizontalAlignment="Center" Click="ButtonBase_OnClick">ゲームスタート</Button>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="7*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button Background="Aquamarine"  Grid.Row="0" Grid.Column="0" Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Right" Click="ButtonBase_OnClick">?</Button>
+        <Button Style="{StaticResource NormalButton}"  Grid.Row="1" Grid.Column="0" Click="ButtonBase_OnClick"
+                Background="Violet" Height="50" Width="250">
+            ひとりで遊ぶ
+        </Button>
+        <Button Style="{StaticResource NormalButton}" Background="DodgerBlue" 
+                Grid.Row="2" Grid.Column="0" Height="50" Width="250" Click="ButtonBase_OnClick">
+            ふたりで遊ぶ
+        </Button>
     </Grid>
 </Page>
