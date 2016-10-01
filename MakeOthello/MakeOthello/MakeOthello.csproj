@@ -89,6 +89,10 @@
   </PropertyGroup>
   <ItemGroup>
     <!-- A reference to the entire .Net Framework and Windows SDK are automatically included -->
+    <Content Include="Assets\font\TitilliumWeb-Light.ttf" />
+    <Content Include="Assets\font\TitilliumWeb-Regular.ttf" />
+    <Content Include="Assets\font\TitilliumWeb-SemiBold.ttf" />
+    <Content Include="Assets\font\TitilliumWeb-Italic.ttf" />
     <None Include="project.json" />
   </ItemGroup>
   <ItemGroup>
