@@ -17,31 +17,14 @@ namespace MakeOthello.ViewModel
         public OthelloAiBase Ai { get; private set; }
         public DiscViewModel[] DiscDataList { get; private set; }
 
-        public BoardViewModel()
+        public BoardViewModel(int cpu = -1)
         {
             Othello = new Othello();
             Othello.Start();
-           
-            Ai = new SampleOthelloAi();
+
             DiscDataList = new DiscViewModel[64];
-            for (var i = 0; i < DiscDataList.Length; i++)
-            {
-                var discdata = new DiscViewModel(i);
-                discdata.DiscTapedCommand = new SimpleCommand((async o =>
-                {
-                    if (!Othello.Put(ConvertPoint(discdata.Number)))
-                        return;
-                    var points = Update();
+            Initcpu(cpu);
 
-                    // TODO ここでプレーヤーの入力を無効に
-                    await Ai.PutAsync(Othello, points);
-                    Update();
-
-                    // TODO ここでプレーヤーの入力を有効に
-                }));
-                DiscDataList[i] = discdata;
-            }
-            Update();
         }
 
         private List<Point> Update()
@@ -90,5 +73,28 @@ namespace MakeOthello.ViewModel
         {
             return point.x * 8 + point.y;
         }
+
+        private void Initcpu(int cpu)
+        {
+            Ai = new SampleOthelloAi();
+            for (var i = 0; i < DiscDataList.Length; i++)
+            {
+                var discdata = new DiscViewModel(i);
+                discdata.DiscTapedCommand = new SimpleCommand((async o =>
+                {
+                    if (!Othello.Put(ConvertPoint(discdata.Number)))
+                        return;
+                    var points = Update();
+
+                    // TODO ここでプレーヤーの入力を無効に
+                    await Ai.PutAsync(Othello, points);
+                    Update();
+
+                    // TODO ここでプレーヤーの入力を有効に
+                }));
+                DiscDataList[i] = discdata;
+            }
+            Update();
+        }        
     }
 }
