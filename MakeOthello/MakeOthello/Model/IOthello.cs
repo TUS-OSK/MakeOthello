@@ -6,6 +6,8 @@ namespace MakeOthello.Model
 
     public delegate void OthelloPassEventHandler(IOthello othello, int pass);
 
+    public enum OthelloCondition {Wait, Pass ,End};
+
     public interface IOthello
     {
         int[,] Board { get; }
@@ -18,7 +20,9 @@ namespace MakeOthello.Model
         void Pass();
         bool Back();
         IOthello Clone();
+        OthelloCondition Condition { get; }
         event OthelloEndEventHandler EndEvent;
         event OthelloPassEventHandler PassEvent;
+        
     }
 }
