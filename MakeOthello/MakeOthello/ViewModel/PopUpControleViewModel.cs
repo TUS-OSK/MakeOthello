@@ -14,6 +14,7 @@ namespace MakeOthello.ViewModel
     {
         private Visibility _visibility;
         public ICommand OkCommand { get; set; }
+        public ICommand QuitCommand { get; set; }
 
         public Visibility Visibility
         {

@@ -7,6 +7,7 @@ using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
 using Windows.UI.Xaml;
+using Windows.UI.Xaml.Controls;
 using MakeOthello.Model;
 using MakeOthello.Utility;
 using MakeOthello.View;
@@ -34,7 +35,7 @@ namespace MakeOthello.ViewModel
             }
         }
 
-        public BoardViewModel(int playercolor = -1,int cpu = -1)
+        public BoardViewModel(Frame frame, int playercolor = -1, int cpu = -1):base(frame)
         {
             Othello = new Othello();
             Othello.Start();
@@ -42,8 +43,8 @@ namespace MakeOthello.ViewModel
             {
                 PopUpData.Visibility = Visibility.Visible;
             };
-            WinPopUpData=new PopUpControleViewModel();
-            LosePopUpData=new PopUpControleViewModel();
+            WinPopUpData = new PopUpControleViewModel();
+            LosePopUpData = new PopUpControleViewModel();
             PopUpData = new PopUpControleViewModel();
 
             PopUpData.OkCommand = new SimpleCommand(async o =>
@@ -53,21 +54,28 @@ namespace MakeOthello.ViewModel
                 var points = Update();
                 await AiPutAsync(points);
 
-            });            
-
+            });
+            LosePopUpData.QuitCommand=new SimpleCommand(o =>
+            {
+               Navigate(typeof(MainPage));
+            });
+            WinPopUpData.QuitCommand = new SimpleCommand(o =>
+            {
+                Navigate(typeof(MainPage));
+            });
             DiscDataList = new DiscViewModel[64];
             Initcpu(cpu);
 
             Othello.EndEvent += (othello, resulut) =>
             {
-                
+
                 if (playercolor == resulut)
                 {
-                    WinPopUpData.Visibility=Visibility.Visible;
+                    WinPopUpData.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    LosePopUpData.Visibility=Visibility.Visible;
+                    LosePopUpData.Visibility = Visibility.Visible;
                 }
             };
 
