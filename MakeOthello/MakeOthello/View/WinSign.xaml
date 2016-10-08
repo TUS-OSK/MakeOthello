@@ -10,7 +10,18 @@
     d:DesignWidth="400"
     Visibility="{Binding Visibility}">
 
-    <Grid Background="Black">
-
+    <Grid Background="white">
+        <Border CornerRadius="50" Background="Red"></Border>
+        <StackPanel VerticalAlignment="Center">
+            <TextBlock Margin="0,0,0,30" Foreground="White" FontSize="35" Height="50" Width="120" Text="Success" HorizontalAlignment="Center"/>
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Style="{StaticResource NormalButton}" Background="White" Margin="0,0,50,0" Height="50" Width="100" Foreground="Red">
+                    Replay
+                </Button>
+                <Button Style="{StaticResource NormalButton}" Background="White" Height="50" Width="100" Foreground="Red">
+                    Quit
+                </Button>
+            </StackPanel>
+        </StackPanel>
     </Grid>
 </UserControl>
