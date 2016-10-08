@@ -29,7 +29,7 @@ namespace MakeOthello.Model
         {
             _boardList.Add(new int[8, 8]);
             Condition = OthelloCondition.Wait;
-            EndEvent += (sender, args) => 
+            EndEvent += (sender, args) =>
             {
                 Condition = OthelloCondition.End;
             };
@@ -41,9 +41,9 @@ namespace MakeOthello.Model
 
         public Othello(Othello old)
         {
-            for(var i = 0; i < 8; i++)
+            for (var i = 0; i < 8; i++)
             {
-                for(var j = 0; j < 8; j++)
+                for (var j = 0; j < 8; j++)
                 {
                     _boardList[old.Count - 1][i, j] = old.Board[i, j];
                 }
@@ -161,14 +161,13 @@ namespace MakeOthello.Model
                     {
                         OnPassEvent(this, Turn);
                     }
-                    else 
+                    else
                     {
                         if (bnum == wnum)
                             OnEndEvent(this, 0);
-                        else
-                        {
-                            OnEndEvent(this, Math.Max(bnum, wnum));
-                        }
+                        else if (wnum < bnum)
+                            OnEndEvent(this, -1);
+                        else OnEndEvent(this, 1);
                     }
                 }
                 else
@@ -200,10 +199,10 @@ namespace MakeOthello.Model
                 var wnum = GetDiscNumber(1);
                 if (bnum == wnum)
                     OnEndEvent(this, 0);
-                else
-                {
-                    OnEndEvent(this, Math.Max(bnum, wnum));
-                }
+                else if (wnum < bnum)
+                    OnEndEvent(this, -1);
+                else OnEndEvent(this, 1);
+
             }
             else
             {
@@ -270,14 +269,7 @@ namespace MakeOthello.Model
                 var points = GetPossiblePoints(Turn);
                 if (points.Count == 0)  //また置ける場所が0だったら
                 {
-                    var bnum = GetDiscNumber(-1);
-                    var wnum = GetDiscNumber(1);
-                    if (bnum == wnum)
-                        OnEndEvent(this, 0);
-                    else
-                    {
-                        OnEndEvent(this, Math.Max(bnum, wnum));
-                    }
+                    Back();
                 }
                 else
                 {

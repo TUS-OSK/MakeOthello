@@ -60,6 +60,7 @@ namespace MakeOthello.ViewModel
 
             Othello.EndEvent += (othello, resulut) =>
             {
+                
                 if (playercolor == resulut)
                 {
                     WinPopUpData.Visibility=Visibility.Visible;
