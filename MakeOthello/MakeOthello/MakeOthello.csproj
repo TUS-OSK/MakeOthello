@@ -107,7 +107,7 @@
     <Compile Include="Model\Othello.cs" />
     <Compile Include="Model\OthelloAiBase.cs" />
     <Compile Include="Model\Point.cs" />
-    <Compile Include="Utility\SampleOthelloAi.cs" />
+    <Compile Include="Model\SampleOthelloAi.cs" />
     <Compile Include="ViewModel\BoardViewModel.cs" />
     <Compile Include="ViewModel\DiscViewModel.cs" />
     <Compile Include="ViewModel\GameViewModel.cs" />
