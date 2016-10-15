@@ -19,11 +19,11 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Button Style="{StaticResource NormalButton}"  Grid.Row="1" Grid.Column="0" Click="ButtonBase_OnClick"
-                Background="Violet" Height="50" Width="250">
+                Background="Violet" Height="60" Width="250">
             ひとりで遊ぶ
         </Button>
         <Button Style="{StaticResource NormalButton}" Background="DodgerBlue" 
-                Grid.Row="2" Grid.Column="0" Height="50" Width="250" Click="ButtonBase_OnClick">
+                Grid.Row="2" Grid.Column="0" Height="60" Width="250" Click="ButtonBase_OnClick">
             ふたりで遊ぶ
         </Button>
     </Grid>

@@ -23,6 +23,7 @@ namespace MakeOthello.ViewModel
         public PopUpControleViewModel WinPopUpData { get; private set; }
         public PopUpControleViewModel LosePopUpData { get; private set; }
 
+
         public new Windows.UI.Core.CoreDispatcher Dispatcher
         {
             get { return base.Dispatcher; }
