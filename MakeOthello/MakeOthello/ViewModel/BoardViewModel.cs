@@ -19,6 +19,8 @@ namespace MakeOthello.ViewModel
         private string _DiscNumberLeft;
         private string _DiscNumberRight;
         private int cpuLevel;
+        private ICommand _BackCommand;
+
         public IOthello Othello { get; set; }
         public OthelloAiBase Ai { get; private set; }
         public DiscViewModel[] DiscDataList { get; private set; }
@@ -27,6 +29,15 @@ namespace MakeOthello.ViewModel
         public PopUpControleViewModel LosePopUpData { get; private set; }
         public string PlayerRight { get; private set; }
         public string PlayerLeft { get; private set; }
+        public ICommand BackCommand
+        {
+            get { return _BackCommand; }
+            set
+            {
+                _BackCommand = value;
+                OnPropertyChanged();
+            }
+        }
 
         public string DiscNumberLeft
         {
@@ -43,7 +54,7 @@ namespace MakeOthello.ViewModel
             get { return _DiscNumberRight; }
             set
             {
-                _DiscNumberRight = value; 
+                _DiscNumberRight = value;
                 OnPropertyChanged();
             }
         }
@@ -61,7 +72,7 @@ namespace MakeOthello.ViewModel
             }
         }
 
-        public BoardViewModel(Frame frame, int playercolor = -1, int cpu = -1):base(frame)
+        public BoardViewModel(Frame frame, int playercolor = -1, int cpu = -1) : base(frame)
         {
             cpuLevel = cpu;
             Othello = new Othello();
@@ -74,7 +85,7 @@ namespace MakeOthello.ViewModel
             LosePopUpData = new PopUpControleViewModel();
             PopUpData = new PopUpControleViewModel();
 
-            if (cpu==-1)
+            if (cpu == -1)
             {
                 PlayerLeft = ":1P";
                 PlayerRight = ":2P";
@@ -88,14 +99,20 @@ namespace MakeOthello.ViewModel
             if (cpu == -1)
             {
                 DiscNumberLeft = Othello.GetDiscNumber(playercolor).ToString();
-                DiscNumberRight = Othello.GetDiscNumber(-1*playercolor).ToString();
+                DiscNumberRight = Othello.GetDiscNumber(-1 * playercolor).ToString();
             }
             else
             {
                 DiscNumberLeft = Othello.GetDiscNumber(-1).ToString();
                 DiscNumberRight = Othello.GetDiscNumber(1).ToString();
             }
-            
+
+            BackCommand = new SimpleCommand(o =>
+              {
+                  Othello.Back();
+                  Othello.Back();
+                  Update();
+              });
 
             PopUpData.OkCommand = new SimpleCommand(async o =>
             {
@@ -105,10 +122,10 @@ namespace MakeOthello.ViewModel
                 await AiPutAsync(points);
 
             });
-            LosePopUpData.QuitCommand=new SimpleCommand(o =>
-            {
-               Navigate(typeof(MainPage));
-            });
+            LosePopUpData.QuitCommand = new SimpleCommand(o =>
+              {
+                  Navigate(typeof(MainPage));
+              });
             WinPopUpData.QuitCommand = new SimpleCommand(o =>
             {
                 Navigate(typeof(MainPage));
@@ -177,7 +194,7 @@ namespace MakeOthello.ViewModel
                 DiscNumberLeft = Othello.GetDiscNumber(-1).ToString();
                 DiscNumberRight = Othello.GetDiscNumber(1).ToString();
             }
-            return points;            
+            return points;
         }
 
         private static Point ConvertPoint(int i)
