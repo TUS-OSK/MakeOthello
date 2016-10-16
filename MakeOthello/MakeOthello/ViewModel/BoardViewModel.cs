@@ -138,15 +138,14 @@ namespace MakeOthello.ViewModel
 
                 if (playercolor == resulut)
                 {
-                    WinPopUpData.Visibility = Visibility.Visible;
+                    LosePopUpData.Visibility = Visibility.Visible;
                 }
                 else
                 {
-                    LosePopUpData.Visibility = Visibility.Visible;
+                    WinPopUpData.Visibility = Visibility.Visible;
+
                 }
             };
-
-
         }
 
         private List<Point> Update()
