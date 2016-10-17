@@ -18,13 +18,12 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
-        <Button Background="Aquamarine"  Grid.Row="0" Grid.Column="0" Height="30" Width="30" VerticalAlignment="Top" HorizontalAlignment="Right" Click="ButtonBase_OnClick">?</Button>
         <Button Style="{StaticResource NormalButton}"  Grid.Row="1" Grid.Column="0" Click="ButtonBase_OnClick"
-                Background="Violet" Height="50" Width="250">
+                Background="Violet" Height="60" Width="250">
             ひとりで遊ぶ
         </Button>
         <Button Style="{StaticResource NormalButton}" Background="DodgerBlue" 
-                Grid.Row="2" Grid.Column="0" Height="50" Width="250" Click="ButtonBase_OnClick">
+                Grid.Row="2" Grid.Column="0" Height="60" Width="250" Click="ButtonBase_OnClick">
             ふたりで遊ぶ
         </Button>
     </Grid>

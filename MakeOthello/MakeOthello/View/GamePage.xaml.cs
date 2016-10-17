@@ -33,5 +33,10 @@ namespace MakeOthello.View
             base.OnNavigatedTo(e);
             DataContext = e.Parameter;
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            this.Frame.Navigate(typeof(MainPage));
+        }
     }
 }
