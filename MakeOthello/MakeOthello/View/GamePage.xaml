@@ -9,7 +9,7 @@
     mc:Ignorable="d" >
 
 <ScrollViewer Height="600">
-        <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+        <Grid Background="Black">
             <Grid.RowDefinitions>
                 <RowDefinition Height="10*"></RowDefinition>
                 <RowDefinition Height="17*"></RowDefinition>

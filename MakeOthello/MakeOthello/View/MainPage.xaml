@@ -11,7 +11,7 @@
         
     </Page.Resources>
 
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="Green">
         <Grid.RowDefinitions>
             <RowDefinition Height="7*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
@@ -19,12 +19,12 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Button Style="{StaticResource NormalButton}"  Grid.Row="1" Grid.Column="0" Click="ButtonBase_OnClick"
-                Background="Violet" Height="60" Width="250">
-            ひとりで遊ぶ
+                Background="White" Height="60" Width="250" Foreground="DarkGreen">
+            VS CPU
         </Button>
-        <Button Style="{StaticResource NormalButton}" Background="DodgerBlue" 
+        <Button Style="{StaticResource NormalButton}" Background="White" Foreground="DarkGreen"
                 Grid.Row="2" Grid.Column="0" Height="60" Width="250" Click="ButtonBase_OnClick">
-            ふたりで遊ぶ
+            VS Friends
         </Button>
     </Grid>
 </Page>
