@@ -10,7 +10,7 @@
     Width="600"
     Visibility="{Binding Visibility}">
 
-    <Grid Background="white">
+    <Grid>
         <Border CornerRadius="50" Background="BlueViolet"></Border>
         <StackPanel VerticalAlignment="Center">
             <TextBlock Margin="0,0,0,30" Foreground="White" FontSize="35" Height="50" Width="100" Text="Failure" HorizontalAlignment="Center"/>
