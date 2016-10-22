@@ -6,11 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="300"
-    d:DesignWidth="400"
+    Height="400"
+    Width="600"
     Visibility="{Binding Visibility}">
 
-    <Grid Background="white">
+    <Grid>
         <Border CornerRadius="50" Background="Red"></Border>
         <StackPanel VerticalAlignment="Center">
             <TextBlock Margin="0,0,0,30" Foreground="White" FontSize="35" Height="50" Width="120" Text="Success" HorizontalAlignment="Center"/>
