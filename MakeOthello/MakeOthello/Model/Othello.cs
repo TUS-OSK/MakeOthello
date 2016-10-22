@@ -111,6 +111,8 @@ namespace MakeOthello.Model
                 return false;                  //おけない
             // 置ける場所を変更する
             _possiblePoints = null;
+            _boardList.Add(CopyBoard(Board));
+            Count++;
 
             bool putFlag = false;
             for (int i = 0; i < 8; i++)
@@ -147,8 +149,6 @@ namespace MakeOthello.Model
             }
             if (putFlag)
             {
-                _boardList.Add(CopyBoard(Board));
-                Count++;
                 Board[point.x, point.y] = Turn;
                 Turn *= -1;
                 var points = GetPossiblePoints(Turn);
@@ -176,7 +176,12 @@ namespace MakeOthello.Model
                 }
                 return true;
             }
-            return false;
+            else
+            {
+                _boardList.RemoveAt(_boardList.Count - 1);
+                Count--;
+                return false;
+            }
         }
 
         /// <summary>

@@ -10,7 +10,7 @@
     d:DesignWidth="60"
     Background="Transparent"
     Command="{Binding DiscTapedCommand}">
-    <Ellipse Height="55" Width="55" 
+    <Ellipse Height="{Binding Height}" Width="{Binding Width}" 
                  Fill="{Binding DiscColorBrush}" 
                  Opacity="{Binding DiscOpacity}"/>
 </Button>

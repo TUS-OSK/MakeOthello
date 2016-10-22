@@ -18,8 +18,13 @@ namespace MakeOthello.ViewModel
         private DiscCondition _discCondition;
         public int Number;
 
-        public DiscViewModel(int number)
+        public double Height { get; set; }
+        public double Width { get; set; }
+
+        public DiscViewModel(int number, double size)
         {
+            Height = size;
+            Width = size;
             Number = number;
         }
 

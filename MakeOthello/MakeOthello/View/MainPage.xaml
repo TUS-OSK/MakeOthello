@@ -8,10 +8,8 @@
     xmlns:view="using:MakeOthello.View"
     mc:Ignorable="d">
     <Page.Resources>
-        
     </Page.Resources>
-
-    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+    <Grid Background="{ThemeResource ApplicationPageBackgroundThemeBrush}" MaxWidth="720">
         <Grid.RowDefinitions>
             <RowDefinition Height="7*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>

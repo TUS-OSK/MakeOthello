@@ -5,40 +5,43 @@
     xmlns:local="using:MakeOthello.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    mc:Ignorable="d"
-    Height="1280"
-    Width="720">
-<ScrollViewer Height="600" VerticalAlignment="Top">
-        <Grid Background="Green">
-            <StackPanel VerticalAlignment="Top">
-                <Button HorizontalAlignment="Left" Background="White" Style="{StaticResource NormalButton}" Margin="90,90,0,300" Height="100" Width="100">
-                </Button>
-                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                    <Button FontSize="40" Style="{StaticResource NormalButton}" 
+    mc:Ignorable="d">
+    <Grid Background="Green" MaxWidth="720">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Button HorizontalAlignment="Left" Background="White" 
+                Margin="50"
+                Style="{StaticResource NormalButton}" Height="80" Width="80">
+        </Button>
+        <Grid HorizontalAlignment="Stretch" MaxWidth="600" Grid.Row="1">
+
+            <Button FontSize="40" Style="{StaticResource NormalButton}" 
+                    
+                        HorizontalAlignment="Left"
                         Command="{Binding SetLevelCommand}" CommandParameter="1"
-                        Background="White" Margin="0,0,40,0" Height="100" Width="150" Foreground="DarkGreen" >
-                        Lv 1
-                    </Button>
-                    <Button FontSize="40" Style="{StaticResource NormalButton}" 
+                        Background="White" Height="100" Width="150" Foreground="DarkGreen" >
+                Lv 1
+            </Button>
+            <Button FontSize="40" Style="{StaticResource NormalButton}" 
                         Command="{Binding SetLevelCommand}" CommandParameter="2"
-                        Background="White" Margin="0,0,40,0" Height="100" Width="150" Foreground="DarkGreen" >
-                        Lv 2
-                    </Button>
-                    <Button FontSize="40" Style="{StaticResource NormalButton}" 
+                        Background="White" Height="100" Width="150" Foreground="DarkGreen" >
+                Lv 2
+            </Button>
+            <Button FontSize="40" Style="{StaticResource NormalButton}" 
                         Command="{Binding SetLevelCommand}" CommandParameter="3"
+                        HorizontalAlignment="Right"
                         Background="White" Height="100" Width="150" Foreground="DarkGreen">
-                        Lv 3
-                    </Button>
-                </StackPanel>
-                <StackPanel>
-                    <Button FontSize="50" Style="{StaticResource NormalButton}" 
-                            Command="{Binding GoNextCommand}" 
-                            Background="White" Margin="0,200,0,0" Height="100" Width="350" Foreground="DarkGreen">
-                        Start
-                    </Button>
-                </StackPanel>
-            </StackPanel>
+                Lv 3
+            </Button>
         </Grid>
-    </ScrollViewer>
-   
+        <Button FontSize="50" Style="{StaticResource NormalButton}" 
+                Command="{Binding GoNextCommand}" 
+                Grid.Row="2"
+                Background="White" Height="100" Width="350" Foreground="DarkGreen">
+            Start
+        </Button>
+    </Grid>
 </Page>

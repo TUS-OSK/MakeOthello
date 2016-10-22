@@ -7,7 +7,8 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
     d:DesignHeight="700"
-    d:DesignWidth="700">
+    d:DesignWidth="700"
+    Height="{Binding Height}" Width="{Binding Width}">
 
     <Grid Background="Green">
         <Grid.RowDefinitions>
