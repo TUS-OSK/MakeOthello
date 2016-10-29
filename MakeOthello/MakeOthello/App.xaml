@@ -7,7 +7,6 @@
     RequestedTheme="Light">
     <Application.Resources>
         <Style x:Key="NormalButton" TargetType="Button">
-            <Setter Property="Background" Value="{ThemeResource SystemControlBackgroundBaseLowBrush}" />
             <Setter Property="Foreground" Value="White"/>
             <Setter Property="BorderBrush" Value="{ThemeResource SystemControlForegroundTransparentBrush}" />
             <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}" />
