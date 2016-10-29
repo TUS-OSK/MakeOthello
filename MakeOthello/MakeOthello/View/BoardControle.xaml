@@ -12,8 +12,10 @@
 
     <UserControl.Resources>
         <Style TargetType="local:DiscControle">
-            <Setter Property="Grid.RowSpan" Value="2"></Setter>
-            <Setter Property="Grid.ColumnSpan" Value="2"></Setter>
+            <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="Grid.RowSpan" Value="1"></Setter>
+            <Setter Property="Grid.ColumnSpan" Value="1"></Setter>
         </Style>
     </UserControl.Resources>
     <Grid Background="Green">

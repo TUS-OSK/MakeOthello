@@ -26,7 +26,7 @@ namespace MakeOthello.View
         AbleWhite
     }
 
-    public sealed partial class DiscControle : Button
+    public sealed partial class DiscControle : UserControl
     {
         public DiscControle()
         {

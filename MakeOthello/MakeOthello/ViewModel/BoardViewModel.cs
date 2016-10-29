@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MakeOthello.Model;
 using MakeOthello.Utility;
 using MakeOthello.View;
+
 
 namespace MakeOthello.ViewModel
 {
