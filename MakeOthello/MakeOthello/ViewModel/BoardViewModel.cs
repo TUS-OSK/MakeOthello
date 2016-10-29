@@ -102,8 +102,8 @@ namespace MakeOthello.ViewModel
 
             if (cpu == -1)
             {
-                PlayerLeft = ":1P";
-                PlayerRight = ":2P";
+                PlayerLeft = "1P: ";
+                PlayerRight = "2P: ";
             }
             else
             {
