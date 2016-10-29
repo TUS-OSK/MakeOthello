@@ -6,8 +6,8 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    Height="400"
-    Width="600"
+    d:DesignHeight ="180"
+    d:DesignWidth ="360"
     Visibility="{Binding Visibility}">
 
     <Grid>
@@ -15,10 +15,10 @@
         <StackPanel VerticalAlignment="Center">
             <TextBlock Margin="0,0,0,30" Foreground="White" FontSize="35" Height="50" Width="100" Text="Failure" HorizontalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Style="{StaticResource NormalButton}" Background="White" Margin="0,0,50,0" Height="50" Width="150" Foreground="BlueViolet" >
+                <Button Style="{StaticResource NormalButton}" Background="White" Margin="7.5,0,35,0" Height="50" Width="150" Foreground="BlueViolet" >
                     Play Again
                 </Button>
-                <Button Style="{StaticResource NormalButton}" Background="White" Height="50" Width="150" Foreground="BlueViolet"
+                <Button Style="{StaticResource NormalButton}" Background="White" Margin="0,0,7.5,0" Height="50" Width="150" Foreground="BlueViolet"
                         Command="{Binding QuitCommand}">
                     Quit
                 </Button>
