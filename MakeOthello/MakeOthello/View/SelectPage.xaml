@@ -12,28 +12,28 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button HorizontalAlignment="Left" Background="White" 
-                Margin="50"
+        <Button HorizontalAlignment="Left" Command="{Binding ChangeColorCommand}"
+                Background="{Binding DiskBackground}"
+                Margin="30,0,0,40" CommandParameter="0"
                 Style="{StaticResource NormalButton}" Height="80" Width="80">
         </Button>
-        <Grid HorizontalAlignment="Stretch" MaxWidth="600" Grid.Row="1" Margin="10">
+        <Grid HorizontalAlignment="Stretch" MaxWidth="600" Grid.Row="1" Margin="15">
 
             <Button FontSize="35" Style="{StaticResource NormalButton}" 
-                    
                         HorizontalAlignment="Left"
                         Command="{Binding SetLevelCommand}" CommandParameter="1"
-                        Background="White" Height="80" Width="100" Foreground="DarkGreen">
+                        Background="{Binding Level1Background}" Height="80" Width="100" Foreground="DarkGreen">
                 Lv 1
             </Button>
             <Button FontSize="35" Style="{StaticResource NormalButton}" 
                         Command="{Binding SetLevelCommand}" CommandParameter="2"
-                        Background="White" Height="80" Width="100" Foreground="DarkGreen" >
+                       Background="{Binding Level2Background}"  Height="80" Width="100" Foreground="DarkGreen" >
                 Lv 2
             </Button>
             <Button FontSize="35" Style="{StaticResource NormalButton}" 
                         Command="{Binding SetLevelCommand}" CommandParameter="3"
                         HorizontalAlignment="Right"
-                        Background="White" Height="80" Width="100" Foreground="DarkGreen">
+                        Background="{Binding Level3Background}"  Height="80" Width="100" Foreground="DarkGreen">
                 Lv 3
             </Button>
         </Grid>
