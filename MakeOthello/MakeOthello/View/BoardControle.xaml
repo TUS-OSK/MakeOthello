@@ -10,6 +10,12 @@
     d:DesignWidth="700"
     Height="{Binding Height}" Width="{Binding Width}">
 
+    <UserControl.Resources>
+        <Style TargetType="local:DiscControle">
+            <Setter Property="Grid.RowSpan" Value="2"></Setter>
+            <Setter Property="Grid.ColumnSpan" Value="2"></Setter>
+        </Style>
+    </UserControl.Resources>
     <Grid Background="Green">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>

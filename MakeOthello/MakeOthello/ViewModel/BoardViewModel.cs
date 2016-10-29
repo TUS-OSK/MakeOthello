@@ -76,7 +76,7 @@ namespace MakeOthello.ViewModel
 
         public BoardViewModel(Frame frame, int playercolor = -1, int cpu = -1) : base(frame)
         {
-            double min = Math.Min(frame.Width, frame.Height);
+            double min = Math.Min(frame.ActualHeight, frame.ActualWidth);
             if (min < 720)
             {
                 Height = min * 600 / 720;
