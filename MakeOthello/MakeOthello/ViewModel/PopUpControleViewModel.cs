@@ -33,7 +33,6 @@ namespace MakeOthello.ViewModel
             Visibility = Visibility.Collapsed;
             Width = width;
             Height = width/2;
-
         }
 
 
