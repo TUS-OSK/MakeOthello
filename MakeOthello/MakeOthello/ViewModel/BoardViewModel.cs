@@ -96,9 +96,9 @@ namespace MakeOthello.ViewModel
             {
                 PopUpData.Visibility = Visibility.Visible;
             };
-            WinPopUpData = new PopUpControleViewModel();
-            LosePopUpData = new PopUpControleViewModel();
-            PopUpData = new PopUpControleViewModel();
+            WinPopUpData = new PopUpControleViewModel(frame.ActualWidth);
+            LosePopUpData = new PopUpControleViewModel(frame.ActualWidth);
+            PopUpData = new PopUpControleViewModel(frame.ActualWidth);
 
             if (cpu == -1)
             {

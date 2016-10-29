@@ -15,6 +15,8 @@ namespace MakeOthello.ViewModel
         private Visibility _visibility;
         public ICommand OkCommand { get; set; }
         public ICommand QuitCommand { get; set; }
+        public double Width { get; set; }
+        public double Height { get; set; }
 
         public Visibility Visibility
         {
@@ -26,9 +28,14 @@ namespace MakeOthello.ViewModel
             }
         }
 
-        public PopUpControleViewModel()
+        public PopUpControleViewModel(double width)
         {
             Visibility = Visibility.Collapsed;
+            Width = width;
+            Height = width/2;
+
         }
+
+
     }
 }
