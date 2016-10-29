@@ -16,6 +16,7 @@ namespace MakeOthello.ViewModel
         private SolidColorBrush _discColorBrush;
         private double _discOpacity;
         private DiscCondition _discCondition;
+        
         public int Number;
 
         public double Height { get; set; }
@@ -39,10 +40,11 @@ namespace MakeOthello.ViewModel
                 switch (value)
                 {
                     case DiscCondition.Black:
-                        DiscColorBrush = new SolidColorBrush(Colors.Black);
+                        DiscColorBrush = new SolidColorBrush(Colors.Green);
                         DiscOpacity = 1;
                         break;
                     case DiscCondition.White:
+                        
                         DiscColorBrush = new SolidColorBrush(Colors.White);
                         DiscOpacity = 1;
                         break;

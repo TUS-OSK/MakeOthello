@@ -10,7 +10,8 @@
     d:DesignWidth="60"
     Background="Transparent">
     <Grid>
-        <Ellipse  Height="{Binding Height}" Width="{Binding Width}"             
+        <Border CornerRadius="7" Background="Green" Margin="1"></Border>
+            <Ellipse  Height="{Binding Height}" Width="{Binding Width}"             
                  Fill="{Binding DiscColorBrush}" 
                  Opacity="{Binding DiscOpacity}"/>
         <Button Background="Transparent" Command="{Binding DiscTapedCommand}"
