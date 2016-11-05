@@ -63,29 +63,19 @@ namespace MakeOthello.Model
             return ableList[0];
         }
 
-
-
         private int algorithm(int depth, int alfa, int beta)
-
         {
-
             if (depth == 0)
-
             {
-
                 return judge();
-
             }
 
             if (game.Turn == 1)
-
             {
                 var list = game.GetPossiblePoints(1);
                 for (int i = 0; i < list.Count; i++)
-
                 {
                     game.Put(list[i]);
-
                     switch (game.Condition)
                     {
                         case OthelloCondition.Wait:

@@ -9,6 +9,7 @@ namespace MakeOthello.Model
     class FinalMakeLookAhead : ILookAhead
     {
         private IOthello othello;
+        private bool _nameplay = false; // trueにするとナメプで処理が早くなります
 
         public Point LookAhead(IOthello Othello, int turn)
         {
@@ -34,10 +35,10 @@ namespace MakeOthello.Model
                         break;
                 }
                 othello.Back();
-                //if (scoreList[i] > 0 && othello.Turn == 1 || scoreList[i] < 0 && othello.Turn == -1)
-                //{
-                //    break;
-                //}
+                if ((scoreList[i] > 0 && othello.Turn == 1 || scoreList[i] < 0 && othello.Turn == -1) && _nameplay)
+                {
+                    break;
+                }
             }
             if (othello.Turn == 1)
             {
@@ -90,10 +91,10 @@ namespace MakeOthello.Model
                     {
                         return beta;
                     }
-                    //if (alfa > 0)
-                    //{
-                    //    return alfa;
-                    //}
+                    if (alfa > 0 && _nameplay)
+                    {
+                        return alfa;
+                    }
                 }
                 return alfa;
             }
@@ -122,10 +123,10 @@ namespace MakeOthello.Model
                     {
                         return alfa;
                     }
-                    //if (beta < 0)
-                    //{
-                    //    return beta;
-                    //}
+                    if (beta < 0 && _nameplay)
+                    {
+                        return beta;
+                    }
                 }
                 return beta;
             }
