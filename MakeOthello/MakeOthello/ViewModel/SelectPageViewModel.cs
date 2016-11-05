@@ -60,7 +60,7 @@ namespace MakeOthello.ViewModel
         }
 
 
-        private Color _buttonColor = Colors.ForestGreen;
+        private Color _buttonColor = Colors.DarkSeaGreen;
         public SelectPageViewModel(Frame frame)
         {
             
