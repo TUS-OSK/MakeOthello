@@ -8,8 +8,6 @@ namespace MakeOthello.Model
 {
     class FinalMakeLookAhead : ILookAhead
     {
-        public FinalMakeLookAhead()
-        { }
         private IOthello othello;
 
         public Point LookAhead(IOthello Othello, int turn)
@@ -32,7 +30,7 @@ namespace MakeOthello.Model
                         othello.Back();
                         break;
                     case OthelloCondition.End:
-                        scoreList[i] = (othello.GetDiscNumber(-1) - othello.GetDiscNumber(1)) * 100;
+                        scoreList[i] = -(othello.GetDiscNumber(1) - othello.GetDiscNumber(-1)) * 100;
                         break;
                 }
                 othello.Back();
@@ -43,45 +41,25 @@ namespace MakeOthello.Model
             }
             if (othello.Turn == 1)
             {
-
                 for (int i = 0; i < scoreList.Count; i++)
-
                 {
-
                     if (scoreList[i] == scoreList.Max())
-
                     {
-
                         return possiblePoints[i];
-
                     }
-
                 }
-
             }
-
             else
-
             {
-
                 for (int i = 0; i < scoreList.Count; i++)
-
                 {
-
                     if (scoreList[i] == scoreList.Min())
-
                     {
-
                         return possiblePoints[i];
-
                     }
-
                 }
-
             }
-
             return possiblePoints[0];
-
         }
 
         private int algorithm(int alfa, int beta)

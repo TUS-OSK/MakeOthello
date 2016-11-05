@@ -20,7 +20,7 @@ namespace MakeOthello.Model
 
         public override void Put(IOthello othello, List<Point> ablePoints)
         {
-            if (othello.Turn > finalLookTurn)
+            if (othello.Count > finalLookTurn)
             {
                 var look = new FinalMakeLookAhead();
                 othello.Put(look.LookAhead(othello.Clone(),0));
