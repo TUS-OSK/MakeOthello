@@ -28,11 +28,13 @@ namespace MakeOthello.ViewModel
         public IOthello Othello { get; set; }
         public OthelloAiBase Ai { get; private set; }
         public DiscViewModel[] DiscDataList { get; private set; }
+        public PopUpControleViewModel EndPopUpData { get; private set; }
         public PopUpControleViewModel PopUpData { get; private set; }
         public PopUpControleViewModel WinPopUpData { get; private set; }
         public PopUpControleViewModel LosePopUpData { get; private set; }
         public string PlayerRight { get; private set; }
         public string PlayerLeft { get; private set; }
+        public string EndText { get; private set; }
         public ICommand BackCommand
         {
             get { return _BackCommand; }
@@ -70,6 +72,7 @@ namespace MakeOthello.ViewModel
             set
             {
                 base.Dispatcher = value;
+                
                 PopUpData.Dispatcher = value;
                 LosePopUpData.Dispatcher = value;
                 WinPopUpData.Dispatcher = value;
@@ -99,6 +102,7 @@ namespace MakeOthello.ViewModel
             WinPopUpData = new PopUpControleViewModel(frame.ActualWidth);
             LosePopUpData = new PopUpControleViewModel(frame.ActualWidth);
             PopUpData = new PopUpControleViewModel(frame.ActualWidth);
+            EndPopUpData=new PopUpControleViewModel(frame.ActualWidth);
 
             if (cpu == -1)
             {
@@ -145,20 +149,39 @@ namespace MakeOthello.ViewModel
             {
                 Navigate(typeof(MainPage));
             });
+            EndPopUpData.QuitCommand = new SimpleCommand(o =>
+            {
+                Navigate(typeof(MainPage));
+            });
             DiscDataList = new DiscViewModel[64];
             Initcpu(cpu);
 
             Othello.EndEvent += (othello, resulut) =>
             {
-
-                if (playercolor == resulut)
+                if (cpu != 0)
                 {
-                    LosePopUpData.Visibility = Visibility.Visible;
+                    if (playercolor == resulut)
+                    {
+                        LosePopUpData.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        WinPopUpData.Visibility = Visibility.Visible;
+
+                    }
                 }
                 else
                 {
-                    WinPopUpData.Visibility = Visibility.Visible;
-
+                    if (playercolor==resulut)
+                    {
+                        EndText = "2P Success";
+                        EndPopUpData.Visibility=Visibility.Visible;
+                    }
+                    else
+                    {
+                        EndText = "1P Success";
+                        EndPopUpData.Visibility=Visibility.Visible;
+                    }
                 }
             };
         }

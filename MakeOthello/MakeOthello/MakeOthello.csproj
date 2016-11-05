@@ -120,6 +120,9 @@
     <Compile Include="View\DiscControle.xaml.cs">
       <DependentUpon>DiscControle.xaml</DependentUpon>
     </Compile>
+    <Compile Include="View\EndSign.xaml.cs">
+      <DependentUpon>EndSign.xaml</DependentUpon>
+    </Compile>
     <Compile Include="View\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
     </Compile>
@@ -167,6 +170,10 @@
       <Generator>MSBuild:Compile</Generator>
     </Page>
     <Page Include="View\DiscControle.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\EndSign.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
