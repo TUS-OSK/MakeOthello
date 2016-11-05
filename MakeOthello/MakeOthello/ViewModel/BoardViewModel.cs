@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.Graphics.Printing.OptionDetails;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
 using Windows.UI.ViewManagement;
@@ -33,6 +34,7 @@ namespace MakeOthello.ViewModel
         public PopUpControleViewModel LosePopUpData { get; private set; }
         public string PlayerRight { get; private set; }
         public string PlayerLeft { get; private set; }
+        public Visibility impossible;
         public ICommand BackCommand
         {
             get { return _BackCommand; }
@@ -107,8 +109,8 @@ namespace MakeOthello.ViewModel
             }
             else
             {
-                PlayerRight = ":CPU Lv." + cpu;
-                PlayerLeft = ":You";
+                PlayerRight = "CPU Lv." + cpu+":";
+                PlayerLeft = "You:";
             }
 
             if (cpu == 0)
