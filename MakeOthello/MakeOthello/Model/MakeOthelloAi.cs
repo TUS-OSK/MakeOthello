@@ -11,7 +11,7 @@ namespace MakeOthello.Model
         public int finalLookTurn { get; set; }
         public int lookNum { get; set; }
 
-        public MakeOthelloAi()
+        public MakeOthelloAi(int cpulevel)
         {  
             lookNum = 4;
 

@@ -231,7 +231,7 @@ namespace MakeOthello.ViewModel
 
         private void Initcpu(int cpu)
         {
-            Ai = new MakeOthelloAi();
+            Ai = new MakeOthelloAi(cpu);
             for (var i = 0; i < DiscDataList.Length; i++)
             {
                 var discdata = new DiscViewModel(i, Height * 0.08);
@@ -257,7 +257,6 @@ namespace MakeOthello.ViewModel
                     if (!Othello.Put(ConvertPoint(discdata.Number)))
                         return;
                     var points = Update();
-                    //await AiPutAsync(points);
                 }));
                 DiscDataList[i] = discdata;
             }
