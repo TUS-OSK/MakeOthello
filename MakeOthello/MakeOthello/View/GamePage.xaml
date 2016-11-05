@@ -9,7 +9,7 @@
     d:DesignHeight="640"
     d:DesignWidth="360"
     mc:Ignorable="d" >
-    <Grid Background="ForestGreen" MaxWidth="720">
+    <Grid Background="#32b16c" MaxWidth="720">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"></RowDefinition>
             <RowDefinition Height="17*"></RowDefinition>
@@ -50,5 +50,6 @@
         <local:PopUpControl Grid.Row="1" Height="100" Width="500" DataContext="{Binding PopUpData}" d:IsHidden="True"></local:PopUpControl>
         <local:WinSign Grid.Row="1" DataContext="{Binding WinPopUpData}" d:IsHidden="True"></local:WinSign>
         <local:LoseSign Grid.Row="1" DataContext="{Binding LosePopUpData}" d:IsHidden="True"></local:LoseSign>
+        <local:EndSign Grid.Row="1" DataContext="{Binding EndPopUpData}" d:IsHidden="True"></local:EndSign>
     </Grid>
 </Page>
