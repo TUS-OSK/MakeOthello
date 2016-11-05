@@ -6,11 +6,13 @@ using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using MakeOthello.Model;
 using MakeOthello.Utility;
 using MakeOthello.View;
+
 
 namespace MakeOthello.ViewModel
 {
@@ -21,6 +23,8 @@ namespace MakeOthello.ViewModel
         private int cpuLevel;
         private ICommand _BackCommand;
 
+        public double Height { get; set; }
+        public double Width { get; set; }
         public IOthello Othello { get; set; }
         public OthelloAiBase Ai { get; private set; }
         public DiscViewModel[] DiscDataList { get; private set; }
@@ -74,6 +78,17 @@ namespace MakeOthello.ViewModel
 
         public BoardViewModel(Frame frame, int playercolor = -1, int cpu = -1) : base(frame)
         {
+            double min = Math.Min(frame.ActualHeight, frame.ActualWidth);
+            if (min < 720)
+            {
+                Height = min * 600 / 720;
+                Width = min * 600 / 720;
+            }
+            else
+            {
+                Height = 600;
+                Width = 600;
+            }
             cpuLevel = cpu;
             Othello = new Othello();
             Othello.Start();
@@ -81,14 +96,14 @@ namespace MakeOthello.ViewModel
             {
                 PopUpData.Visibility = Visibility.Visible;
             };
-            WinPopUpData = new PopUpControleViewModel();
-            LosePopUpData = new PopUpControleViewModel();
-            PopUpData = new PopUpControleViewModel();
+            WinPopUpData = new PopUpControleViewModel(frame.ActualWidth);
+            LosePopUpData = new PopUpControleViewModel(frame.ActualWidth);
+            PopUpData = new PopUpControleViewModel(frame.ActualWidth);
 
             if (cpu == -1)
             {
-                PlayerLeft = ":1P";
-                PlayerRight = ":2P";
+                PlayerLeft = "1P: ";
+                PlayerRight = "2P: ";
             }
             else
             {
@@ -208,10 +223,10 @@ namespace MakeOthello.ViewModel
 
         private void Initcpu(int cpu)
         {
-            Ai = new SampleOthelloAi();
+            Ai = new MakeOthelloAi();
             for (var i = 0; i < DiscDataList.Length; i++)
             {
-                var discdata = new DiscViewModel(i);
+                var discdata = new DiscViewModel(i, Height * 0.08);
                 discdata.DiscTapedCommand = new SimpleCommand((async o =>
                 {
                     if (!Othello.Put(ConvertPoint(discdata.Number)))

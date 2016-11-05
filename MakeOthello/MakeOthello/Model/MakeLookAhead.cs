@@ -3,148 +3,280 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Windows.ApplicationModel.Store;
+using Windows.Gaming.UI;
 
 namespace MakeOthello.Model
 {
     class MakeLookAhead : ILookAhead
     {
-        
-
-        private List<Point> _possiblePoints;
-        private Othello othello;
-
-        
-
-        public int AheadNumber { get; set; } 
-        public MakeLookAhead(int aheadnum)
-        {
-            AheadNumber = aheadnum;
-        }
+        private IOthello game;
+        private int[,] board = new int[8,8];
+        public int AheadNumber { get; set; }
         public Point LookAhead(IOthello Othello, int turn)
         {
-            var blackScore = othello.GetDiscNumber(1);
-            var whiteScore = othello.GetDiscNumber(-1);
-
-            this.othello = othello;
-            //this.bosrd=new Board();
+            game = Othello;
+            AheadNumber = turn;
             List<int> scoreList = new List<int>();
-            for(int i=0; i < _possiblePoints.Count; i++)
-            {
+            var ableList = game.GetPossiblePoints(game.Turn);
+            for (int i = 0; i < ableList.Count; i++)
+            { 
                 scoreList.Add(0);
-                Othello.Put(_possiblePoints[i]);
-                switch (othello.Condition)
+                game.Put(ableList[i]);
+                switch (game.Condition)
                 {
-                    case OthelloCondition.Wait:
+                   case OthelloCondition.Wait:
+                        scoreList[i] = algorithm(AheadNumber - 1, -10000, 10000);
                         break;
                     case OthelloCondition.Pass:
+
+                        game.Pass();
+
+                        scoreList[i] = algorithm(AheadNumber - 1, -10000, 10000);
+
+                        game.Back();
+
                         break;
+
                     case OthelloCondition.End:
+
+                        scoreList[i] = game.GetDiscNumber(-1) - game.GetDiscNumber(1) * 100;//
+
                         break;
+
                 }
+
+                game.Back();
+
             }
 
+            if (game.Turn == 1)
 
-            throw new NotImplementedException();
-        }
-        private int algorithm(int depth, int alfa, int beta)
-        {
-            var blackScore = othello.GetDiscNumber(1);
-            var whiteScore = othello.GetDiscNumber(-1);
+            {
 
-            if (depth == 0)
-            {
-                return judge();
-            }
-            if (othello.Turn == 1)
-            {
-                for(int i = 0; i < _possiblePoints.Count; i++)
+                for (int i = 0; i < scoreList.Count; i++)
                 {
-                    othello.Put(_possiblePoints[i]);
-                    switch (othello.Condition)
+                    if (scoreList[i] == scoreList.Max())
                     {
-                        case OthelloCondition.Wait:
-                            alfa = Math.Max(alfa, algorithm(depth - 1, alfa, beta));
-                            break;
-                        case OthelloCondition.Pass:
-                            othello.Pass();
-                            //player -1のターン
-                            alfa = Math.Max(alfa, algorithm(depth - 1, alfa, beta));
-                            othello.Back();
-                            break;
-                        case OthelloCondition.End:
-                            alfa = (blackScore - whiteScore) * 100;
-                            break;
-                    }
-                    othello.Back();
-                    if (alfa >= beta)
-                    {
-                        return beta;
+                        return ableList[i];
                     }
                 }
-                return alfa;
             }
+
             else
             {
-                for(int i = 0; i < _possiblePoints.Count; i++)
+                for (int i = 0; i < scoreList.Count; i++)
                 {
-                    othello.Put(_possiblePoints[i]);
-                    switch (othello.Condition)
+                    if (scoreList[i] == scoreList.Min())
+
                     {
-                        case OthelloCondition.Wait:
-                            beta = Math.Min(beta, algorithm(depth - 1, alfa, beta));
-                            break;
-                        case OthelloCondition.Pass:
-                            othello.Pass();
-                            beta = Math.Min(beta, algorithm(depth - 1, alfa, beta));
-                            othello.Back();
-                            break;
-                        case OthelloCondition.End:
-                            beta = (blackScore - whiteScore) * 100;
-                            break;
+
+                        return ableList[i];
+
                     }
-                    othello.Back();
+
+                }
+
+            }
+
+            return ableList[0];
+        }
+
+
+
+        private int algorithm(int depth, int alfa, int beta)
+
+        {
+
+            if (depth == 0)
+
+            {
+
+                return judge();
+
+            }
+
+            if (game.Turn == 1)
+
+            {
+                var list = game.GetPossiblePoints(1);
+                for (int i = 0; i < list.Count; i++)
+
+                {
+                    game.Put(list[i]);
+
+                    switch (game.Condition)
+
+                    {
+
+                        case OthelloCondition.Wait:
+
+                            alfa = Math.Max(alfa, algorithm(depth - 1, alfa, beta));
+
+                            break;
+
+                        case OthelloCondition.Pass:
+
+                            game.Pass();
+
+                            // player -1のターン
+
+                            alfa = Math.Max(alfa, algorithm(depth - 1, alfa, beta));
+
+                            game.Back();
+
+                            break;
+
+                        case OthelloCondition.End:
+
+                            alfa = game.GetDiscNumber(-1) - game.GetDiscNumber(1) * 100;//
+
+                            break;
+
+                    }
+
+                    game.Back();
+
+                    if (alfa >= beta)
+
+                    {
+
+                        return beta;
+
+                    }
+
+                }
+
+                return alfa;
+
+            }
+
+            else
+
+            {
+                var list = game.GetPossiblePoints(-1);
+                for (int i = 0; i < list.Count; i++)
+
+                {
+
+                    game.Put(list[i]);
+
+                    switch (game.Condition)
+
+                    {
+
+                        case OthelloCondition.Wait:
+
+                            beta = Math.Min(beta, algorithm(depth - 1, alfa, beta));
+
+                            break;
+
+                        case OthelloCondition.Pass:
+
+                            game.Pass();
+
+                            beta = Math.Min(beta, algorithm(depth - 1, alfa, beta));
+
+                            game.Back();
+
+                            break;
+
+                        case OthelloCondition.End:
+
+                            beta = game.GetDiscNumber(-1) - game.GetDiscNumber(1) * 100;//
+
+                            break;
+
+                    }
+
+                    game.Back();
+
                     if (alfa >= beta)
                     {
                         return alfa;
                     }
                 }
+
                 return beta;
+
             }
+
         }
+
         private int judge()
         {
-            var blackScore = othello.GetDiscNumber(1);
-            var whiteScore = othello.GetDiscNumber(-1);
 
             int score;
-            //score = judgeQ(othello.Board);
-            for(int i = 0; i < 8; i++)
-                for(int j = 0; j < 8; j++)
-                    {
 
-                    }
-            //score += judgeQ(board);
+            score = judgeQ(game.Board);
+
             for (int i = 0; i < 8; i++)
-                for (int j = 0; j < 8; j++)
-                    {
 
-                    }
-            //score += judgeQ(board);
+                for (int j = 0; j < 8; j++)
+                {
+                    board[i, 7 - j] = game.Board[i, j];
+                }
+
+            score += judgeQ(board);
+
             for (int i = 0; i < 8; i++)
+
                 for (int j = 0; j < 8; j++)
-                    {
 
-                    }
-            //score += judgeQ(board);
+                {
 
+                    board[7 - i, j] = game.Board[i, j];
 
-            //score -= blackScore / 2;
-            //score += whiteScore / 2;
+                }
+
+            score += judgeQ(board);
+
+            for (int i = 0; i < 8; i++)
+
+                for (int j = 0; j < 8; j++)
+
+                {
+
+                    board[7 - i, 7 - j] = game.Board[i, j];
+
+                }
+
+            score += judgeQ(board);
+
+            score += game.GetPossiblePoints(1).Count;
+
+            score -= game.GetPossiblePoints(-1).Count;
+
+            score -= game.GetDiscNumber(1) / 2;
+
+            score += game.GetDiscNumber(-1) / 2;
+
+            return score;
+
+        }
+        private int judgeQ(int[,] board)
+        {
+            int score = 0;
+
+            if (board[0, 0] == 1)
+            {
+                score -= 100;
+            }
+
+            else if (board[0, 0] == -1)
+            {
+                score += 100;
+            }
+
+            else if (board[1, 1] == -1 && board[1, 0] == -1 && board[0, 1] == -1)
+            {
+                score -= 100;
+            }
+            else if (board[1, 1] == 1 && board[1, 0] == 1 && board[0, 1] == 1)
+            {
+                score += 100;
+            }
             return score;
         }
-        //private int judgeQ(Board board)
-        //{
-
-        //}
     }
 }

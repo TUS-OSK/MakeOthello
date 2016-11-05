@@ -6,41 +6,49 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:view="using:MakeOthello.View"
+    d:DesignHeight="640"
+    d:DesignWidth="360"
     mc:Ignorable="d" >
-
-<ScrollViewer Height="600">
-        <Grid Background="Black">
+    <Grid Background="ForestGreen" MaxWidth="720">
+        <Grid.RowDefinitions>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition Height="17*"></RowDefinition>
+            <RowDefinition Height="5*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0" >
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="5*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="10*"></RowDefinition>
-                <RowDefinition Height="17*"></RowDefinition>
-                <RowDefinition Height="5*"></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
+                <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="5*"></ColumnDefinition>
-                    <ColumnDefinition Width="2*"></ColumnDefinition>
-                    <ColumnDefinition Width="5*"></ColumnDefinition>
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                    <RowDefinition></RowDefinition>
-                </Grid.RowDefinitions>
-
-                <Button Height="100" Width="200" Style="{StaticResource NormalButton}" Grid.Column="0" Grid.Row="0" Command="{Binding BackCommand}">back</Button>
-                <Button Height="100" Width="200" Style="{StaticResource NormalButton}" Grid.Column="2" Grid.Row="0" Click="Button_Click">quit</Button>
-                <TextBlock Height="100" Width="200" Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Text="{Binding DiscNumberLeft}"></TextBlock>
-                <TextBlock Height="100" Width="200" Grid.Column="2" Grid.Row="2" HorizontalAlignment="Left" Text="{Binding DiscNumberRight}"></TextBlock>
-                <TextBlock Height="100" Width="200" Grid.Column="0" Grid.Row="1" HorizontalAlignment="Right" Text="{Binding PlayerLeft}"></TextBlock>
-                <TextBlock Height="100" Width="200" Grid.Column="2" Grid.Row="1" HorizontalAlignment="Right" Text="{Binding PlayerRight}"></TextBlock>
-            </Grid>
-
-
-            <view:BoardControle Grid.Row="1" DataContext="{Binding}" Height="700" Width="700"></view:BoardControle>
-            <local:PopUpControl Grid.Row="1" Height="100" Width="500" DataContext="{Binding PopUpData}" d:IsHidden="True"></local:PopUpControl>
-            <local:WinSign Grid.Row="1" DataContext="{Binding WinPopUpData}" d:IsHidden="True"></local:WinSign>
-            <local:LoseSign Grid.Row="1" DataContext="{Binding LosePopUpData}" d:IsHidden="True"></local:LoseSign>
+            <Button Height="60" Width="150" Style="{StaticResource NormalButton}"
+                     BorderThickness="2"
+                    Grid.Column="0" Grid.Row="1" Command="{Binding BackCommand}" Margin="0,3,0,0" VerticalAlignment="Top">back</Button>
+            <Button Height="60" Width="150" Style="{StaticResource NormalButton}"
+                    Grid.Column="2" Grid.Row="1" Click="Button_Click">quit</Button>
+            <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="80,0,0,0" 
+                       Foreground="White" FontSize="30"
+                       Text="{Binding DiscNumberLeft}"></TextBlock>
+            <TextBlock Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,30,0"
+                       Foreground="White" FontSize="30"
+                       Text="{Binding DiscNumberRight}"></TextBlock>
+            <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="30,0,0,0"
+                       Foreground="White" FontSize="30"
+                       Text="{Binding PlayerLeft}"></TextBlock>
+            <TextBlock Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" Margin="0,0,60,0"
+                       Foreground="White" FontSize="30"
+                       Text="{Binding PlayerRight}"></TextBlock>
         </Grid>
-    </ScrollViewer>
-    
+        <view:BoardControle x:Name="BoardControle" Grid.Row="1" Grid.RowSpan="2"
+                            MaxWidth="700" MaxHeight="700"                          
+                            DataContext="{Binding}"/>
+        <local:PopUpControl Grid.Row="1" Height="100" Width="500" DataContext="{Binding PopUpData}" d:IsHidden="True"></local:PopUpControl>
+        <local:WinSign Grid.Row="1" DataContext="{Binding WinPopUpData}" d:IsHidden="True"></local:WinSign>
+        <local:LoseSign Grid.Row="1" DataContext="{Binding LosePopUpData}" d:IsHidden="True"></local:LoseSign>
+    </Grid>
 </Page>

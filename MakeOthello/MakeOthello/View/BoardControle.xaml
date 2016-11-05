@@ -6,10 +6,19 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d"
-    d:DesignHeight="700"
-    d:DesignWidth="700">
+    d:DesignHeight="350"
+    d:DesignWidth="350"
+    Height="{Binding Height}" Width="{Binding Width}">
 
-    <Grid Background="Green">
+    <UserControl.Resources>
+        <Style TargetType="local:DiscControle">
+            <Setter Property="VerticalAlignment" Value="Stretch"></Setter>
+            <Setter Property="HorizontalAlignment" Value="Stretch"></Setter>
+            <Setter Property="Grid.RowSpan" Value="1"></Setter>
+            <Setter Property="Grid.ColumnSpan" Value="1"></Setter>
+        </Style>
+    </UserControl.Resources>
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
