@@ -40,7 +40,11 @@ namespace MakeOthello.ViewModel
                 switch (value)
                 {
                     case DiscCondition.Black:
+<<<<<<< HEAD
                         DiscColorBrush = new SolidColorBrush(Color.FromArgb(255,0,50,0));
+=======
+                        DiscColorBrush = new SolidColorBrush(Colors.Black);
+>>>>>>> dfbbd407bd28ccdb1949a7c8faacaf95f69e8142
                         DiscOpacity = 1;
                         break;
                     case DiscCondition.White:
