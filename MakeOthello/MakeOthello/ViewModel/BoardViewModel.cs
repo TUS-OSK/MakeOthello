@@ -76,7 +76,7 @@ namespace MakeOthello.ViewModel
             }
         }
 
-        public BoardViewModel(Frame frame, int playercolor = -1, int cpu = -1) : base(frame)
+        public BoardViewModel(Frame frame, int playercolor = -1, int cpu = 0) : base(frame)
         {
             double min = Math.Min(frame.ActualHeight, frame.ActualWidth);
             if (min < 720)
@@ -100,7 +100,7 @@ namespace MakeOthello.ViewModel
             LosePopUpData = new PopUpControleViewModel(frame.ActualWidth);
             PopUpData = new PopUpControleViewModel(frame.ActualWidth);
 
-            if (cpu == -1)
+            if (cpu == 0)
             {
                 PlayerLeft = "1P: ";
                 PlayerRight = "2P: ";
@@ -111,7 +111,7 @@ namespace MakeOthello.ViewModel
                 PlayerLeft = ":You";
             }
 
-            if (cpu == -1)
+            if (cpu == 0)
             {
                 DiscNumberLeft = Othello.GetDiscNumber(playercolor).ToString();
                 DiscNumberRight = Othello.GetDiscNumber(-1 * playercolor).ToString();
@@ -146,7 +146,15 @@ namespace MakeOthello.ViewModel
                 Navigate(typeof(MainPage));
             });
             DiscDataList = new DiscViewModel[64];
-            Initcpu(cpu);
+            if (cpu!=0)
+            {
+                Initcpu(cpu,playercolor);
+            }
+            else
+            {
+                Initplayer();
+            }
+            
 
             Othello.EndEvent += (othello, resulut) =>
             {
@@ -198,7 +206,7 @@ namespace MakeOthello.ViewModel
                     break;
             }
 
-            if (cpuLevel == -1)
+            if (cpuLevel == 0)
             {
                 DiscNumberLeft = Othello.GetDiscNumber(Othello.Turn).ToString();
                 DiscNumberRight = Othello.GetDiscNumber(-1 * Othello.Turn).ToString();
@@ -221,9 +229,10 @@ namespace MakeOthello.ViewModel
             return point.x * 8 + point.y;
         }
 
-        private void Initcpu(int cpu)
+        private async void Initcpu(int cpu,int playercolor)
         {
-            Ai = new SampleOthelloAi();
+            Ai = new MakeOthelloAi(cpu);
+
             for (var i = 0; i < DiscDataList.Length; i++)
             {
                 var discdata = new DiscViewModel(i, Height * 0.08);
@@ -233,6 +242,31 @@ namespace MakeOthello.ViewModel
                         return;
                     var points = Update();
                     await AiPutAsync(points);
+                }));
+                DiscDataList[i] = discdata;
+            }
+           
+            if (playercolor == 1)
+            {
+                var points = Update();
+                await AiPutAsync(points);
+            }
+            else
+            {
+                Update();
+            }
+        }
+        private void Initplayer()
+        {
+ 
+            for (var i = 0; i < DiscDataList.Length; i++)
+            {
+                var discdata = new DiscViewModel(i, Height * 0.08);
+                discdata.DiscTapedCommand = new SimpleCommand((o =>
+                {
+                    if (!Othello.Put(ConvertPoint(discdata.Number)))
+                        return;
+                    var points = Update();
                 }));
                 DiscDataList[i] = discdata;
             }
