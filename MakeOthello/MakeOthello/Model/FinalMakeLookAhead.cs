@@ -11,18 +11,16 @@ namespace MakeOthello.Model
         public FinalMakeLookAhead()
         { }
         private IOthello othello;
-        private List<Point> _possiblePoints;
 
         public Point LookAhead(IOthello Othello, int turn)
         {
-            var blackScore = othello.GetDiscNumber(1);
-            var whiteScore = othello.GetDiscNumber(-1);
-            this.othello = Othello;
+            othello = Othello;
             List<int> scoreList = new List<int>();
-            for(int i = 0; i < _possiblePoints.Count; i++)
+            var possiblePoints = othello.GetPossiblePoints(othello.Turn);
+            for (int i = 0; i < possiblePoints.Count; i++)
             {
                 scoreList.Add(0);
-                Othello.Put(_possiblePoints[i]);
+                Othello.Put(possiblePoints[i]);
                 switch (Othello.Condition)
                 {
                     case OthelloCondition.Wait:
@@ -34,7 +32,7 @@ namespace MakeOthello.Model
                         othello.Back();
                         break;
                     case OthelloCondition.End:
-                        scoreList[i] = (blackScore-whiteScore) * 100;
+                        scoreList[i] = (othello.GetDiscNumber(-1) - othello.GetDiscNumber(1)) * 100;
                         break;
                 }
                 othello.Back();
@@ -43,53 +41,92 @@ namespace MakeOthello.Model
                     break;
                 }
             }
-            throw new NotImplementedException();
+            if (othello.Turn == 1)
+            {
+
+                for (int i = 0; i < scoreList.Count; i++)
+
+                {
+
+                    if (scoreList[i] == scoreList.Max())
+
+                    {
+
+                        return possiblePoints[i];
+
+                    }
+
+                }
+
+            }
+
+            else
+
+            {
+
+                for (int i = 0; i < scoreList.Count; i++)
+
+                {
+
+                    if (scoreList[i] == scoreList.Min())
+
+                    {
+
+                        return possiblePoints[i];
+
+                    }
+
+                }
+
+            }
+
+            return possiblePoints[0];
+
         }
 
         private int algorithm(int alfa, int beta)
         {
-            var blackScore = othello.GetDiscNumber(1);
-            var whiteScore = othello.GetDiscNumber(-1);
-
-            if (othello.Turn == 1)
+            if (othello.Turn == 1) //白
             {
-                for(int i = 0; i < _possiblePoints.Count; i++)
-                {
-                    othello.Put(_possiblePoints[i]);
-                    switch (othello.Condition)
-                    {
-                        case OthelloCondition.Wait:
-                            alfa = Math.Max(alfa, algorithm(alfa, beta));
-                            break;
-                        case OthelloCondition.Pass:
-                            othello.Pass();
-                            alfa = Math.Max(alfa, algorithm(alfa, beta));
-                            othello.Back();
-                            break;
-                        case OthelloCondition.End:
-                            alfa = blackScore - whiteScore;
-                            break;
-                    }
-                    othello.Back();
-                    if(alfa >= beta)
-                    {
-                        return beta;
-                    }
-                    if(alfa > 0)
-                    {
-                        return alfa;
-                    }
-                }
-                return alfa;
-            }
-            else
-            {
+                var _possiblePoints = othello.GetPossiblePoints(1);
                 for (int i = 0; i < _possiblePoints.Count; i++)
                 {
                     othello.Put(_possiblePoints[i]);
                     switch (othello.Condition)
                     {
                         case OthelloCondition.Wait:
+                            alfa = Math.Max(alfa, algorithm(alfa, beta));
+                            break;
+                        case OthelloCondition.Pass:
+                            othello.Pass();
+                            alfa = Math.Max(alfa, algorithm(alfa, beta));
+                            othello.Back();
+                            break;
+                        case OthelloCondition.End:
+                            alfa = othello.GetDiscNumber(-1) - othello.GetDiscNumber(1);
+                            break;
+                    }
+                    othello.Back();
+                    if (alfa >= beta)
+                    {
+                        return beta;
+                    }
+                    if (alfa > 0)
+                    {
+                        return alfa;
+                    }
+                }
+                return alfa;
+            }
+            else //黒
+            {
+                var possiblePoints = othello.GetPossiblePoints(-1);
+                for (int i = 0; i < possiblePoints.Count; i++)
+                {
+                    othello.Put(possiblePoints[i]);
+                    switch (othello.Condition)
+                    {
+                        case OthelloCondition.Wait:
                             beta = Math.Min(beta, algorithm(alfa, beta));
                             break;
                         case OthelloCondition.Pass:
@@ -98,7 +135,7 @@ namespace MakeOthello.Model
                             othello.Back();
                             break;
                         case OthelloCondition.End:
-                            beta = blackScore - whiteScore;
+                            beta = othello.GetDiscNumber(-1) - othello.GetDiscNumber(1);
                             break;
                     }
                     othello.Back();

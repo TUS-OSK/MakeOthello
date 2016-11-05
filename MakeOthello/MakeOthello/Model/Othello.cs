@@ -12,7 +12,35 @@ namespace MakeOthello.Model
         private List<int[,]> _boardList = new List<int[,]>();
 
         // 置ける場所を保管しておくリスト
-        private List<Point> _possiblePoints;
+        private List<Point> _possiblePoints1;
+        private List<Point> _possiblePoints2;
+
+        private List<Point> _getPossiblePoints(int turn)
+        {
+            if (turn == 1)
+            {
+                return _possiblePoints1;
+            }
+            else if (turn == -1)
+            {
+                return _possiblePoints2;
+            }
+            else
+            {
+                return null;
+            }
+        }
+        private void _setPossiblePoints(int turn, List<Point> value)
+        {
+            if (turn == 1)
+            {
+                _possiblePoints1 = value;
+            }
+            else if (turn == -1)
+            {
+                _possiblePoints2 = value;
+            }
+        }
 
         /// <summary>
         /// ゲーム終了時に発生するイベント
@@ -39,19 +67,31 @@ namespace MakeOthello.Model
             };
         }
 
-        public Othello(Othello old)
+        public Othello(IOthello old)
         {
+            for (int i = 0; i <= old.Count; i++)
+            {
+                _boardList.Add(new int[8,8]);
+            }
             for (var i = 0; i < 8; i++)
             {
                 for (var j = 0; j < 8; j++)
                 {
-                    _boardList[old.Count - 1][i, j] = old.Board[i, j];
+                    _boardList[old.Count][i, j] = old.Board[i, j];
                 }
             }
             Turn = old.Turn;
             Count = old.Count;
-            _possiblePoints = old.GetPossiblePoints(Turn);
+            _setPossiblePoints(Turn, old.GetPossiblePoints(Turn));
             Condition = old.Condition;
+            EndEvent += (sender, args) =>
+            {
+                Condition = OthelloCondition.End;
+            };
+            PassEvent += (sender, args) =>
+            {
+                Condition = OthelloCondition.Wait;
+            };
         }
 
         /// <summary>
@@ -110,7 +150,8 @@ namespace MakeOthello.Model
             if (Board[point.x, point.y] != 0)  //空じゃないなら
                 return false;                  //おけない
             // 置ける場所を変更する
-            _possiblePoints = null;
+            _possiblePoints1 = null;
+            _possiblePoints2 = null;
             _boardList.Add(CopyBoard(Board));
             Count++;
 
@@ -157,18 +198,10 @@ namespace MakeOthello.Model
                 {
                     var bnum = GetDiscNumber(-1);
                     var wnum = GetDiscNumber(1);
-                    if (bnum + wnum < 64)
-                    {
-                        OnPassEvent(this, Turn);
-                    }
-                    else
-                    {
-                        if (bnum == wnum)
-                            OnEndEvent(this, 0);
-                        else if (wnum < bnum)
-                            OnEndEvent(this, -1);
-                        else OnEndEvent(this, 1);
-                    }
+
+
+                    OnPassEvent(this, Turn);
+                    
                 }
                 else
                 {
@@ -193,7 +226,8 @@ namespace MakeOthello.Model
         public void Pass()
         {
             // 置ける場所を変更する
-            _possiblePoints = null;
+            _possiblePoints1 = null;
+            _possiblePoints2 = null;
             _boardList.Add(CopyBoard(Board));
             Count++;
             Turn *= -1;             //次いって
@@ -243,8 +277,9 @@ namespace MakeOthello.Model
         /// <returns></returns>
         public List<Point> GetPossiblePoints(int disc)
         {
-            if (_possiblePoints != null)
-                return _possiblePoints;
+            var points = _getPossiblePoints(disc);
+            if (points != null)
+                return points;
 
             var res = new List<Point>();
             for (int i = 0; i < 8; i++)
@@ -253,7 +288,8 @@ namespace MakeOthello.Model
                     if (IsPossiblePoint(new Point(i, j), disc))
                         res.Add(new Point(i, j));
                 }
-            return _possiblePoints = res;
+            _setPossiblePoints(disc,res);
+            return res;
         }
 
         /// <summary>
@@ -263,8 +299,8 @@ namespace MakeOthello.Model
         public bool Back()
         {
             // 置ける場所を変更する
-            _possiblePoints = null;
-
+            _possiblePoints1 = null;
+            _possiblePoints2 = null;
             if (Count > 0)
             {
                 // Listの最後を除去
