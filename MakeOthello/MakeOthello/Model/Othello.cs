@@ -63,7 +63,7 @@ namespace MakeOthello.Model
             };
             PassEvent += (sender, args) =>
             {
-                Condition = OthelloCondition.Wait;
+                Condition = OthelloCondition.Pass;
             };
         }
 
@@ -71,7 +71,7 @@ namespace MakeOthello.Model
         {
             for (int i = 0; i <= old.Count; i++)
             {
-                _boardList.Add(new int[8,8]);
+                _boardList.Add(new int[8, 8]);
             }
             for (var i = 0; i < 8; i++)
             {
@@ -90,7 +90,7 @@ namespace MakeOthello.Model
             };
             PassEvent += (sender, args) =>
             {
-                Condition = OthelloCondition.Wait;
+                Condition = OthelloCondition.Pass;
             };
         }
 
@@ -152,7 +152,7 @@ namespace MakeOthello.Model
             // 置ける場所を変更する
             _possiblePoints1 = null;
             _possiblePoints2 = null;
-            _boardList.Add(CopyBoard(Board));
+            _boardList.Add(Board.Clone() as int[,]);
             Count++;
 
             bool putFlag = false;
@@ -192,16 +192,23 @@ namespace MakeOthello.Model
             {
                 Board[point.x, point.y] = Turn;
                 Turn *= -1;
-                var points = GetPossiblePoints(Turn);
 
-                if (points.Count == 0)
+                if (GetPossiblePoints(Turn).Count == 0)
                 {
-                    var bnum = GetDiscNumber(-1);
-                    var wnum = GetDiscNumber(1);
-
-
-                    OnPassEvent(this, Turn);
-                    
+                    if (GetPossiblePoints(-Turn).Count() == 0)
+                    {
+                        var bnum = GetDiscNumber(-1);
+                        var wnum = GetDiscNumber(1);
+                        if (bnum == wnum)
+                            OnEndEvent(this, 0);
+                        else if (wnum < bnum)
+                            OnEndEvent(this, -1);
+                        else OnEndEvent(this, 1);
+                    }
+                    else
+                    {
+                        OnPassEvent(this, Turn);
+                    }         
                 }
                 else
                 {
@@ -228,25 +235,10 @@ namespace MakeOthello.Model
             // 置ける場所を変更する
             _possiblePoints1 = null;
             _possiblePoints2 = null;
-            _boardList.Add(CopyBoard(Board));
+            _boardList.Add(Board.Clone() as int[,]);
             Count++;
-            Turn *= -1;             //次いって
-            var points = GetPossiblePoints(Turn);
-            if (points.Count == 0)  //また置ける場所が0だったら
-            {
-                var bnum = GetDiscNumber(-1);
-                var wnum = GetDiscNumber(1);
-                if (bnum == wnum)
-                    OnEndEvent(this, 0);
-                else if (wnum < bnum)
-                    OnEndEvent(this, -1);
-                else OnEndEvent(this, 1);
-
-            }
-            else
-            {
-                Condition = OthelloCondition.Wait;
-            }
+            Turn *= -1;             
+            Condition = OthelloCondition.Wait;
         }
 
         /// <summary>
@@ -288,7 +280,7 @@ namespace MakeOthello.Model
                     if (IsPossiblePoint(new Point(i, j), disc))
                         res.Add(new Point(i, j));
                 }
-            _setPossiblePoints(disc,res);
+            _setPossiblePoints(disc, res);
             return res;
         }
 
@@ -307,16 +299,18 @@ namespace MakeOthello.Model
                 _boardList.Remove(_boardList.Last());
                 Count--;
                 Turn *= -1;
+
                 var points = GetPossiblePoints(Turn);
                 if (points.Count == 0)  //また置ける場所が0だったら
                 {
-                    Back();
+                    OnPassEvent(this,Turn);
                 }
                 else
                 {
                     Condition = OthelloCondition.Wait;
                 }
                 return true;
+
             }
             else return false;
         }
@@ -366,20 +360,6 @@ namespace MakeOthello.Model
                 }
             }
             return false;
-        }
-
-        // 盤面の複製
-        private static int[,] CopyBoard(int[,] board)
-        {
-            var b = new int[8, 8];
-            for (int y = 0; y < 8; y++)
-            {
-                for (int x = 0; x < 8; x++)
-                {
-                    b[x, y] = board[x, y];
-                }
-            }
-            return b;
         }
 
         /// <summary>

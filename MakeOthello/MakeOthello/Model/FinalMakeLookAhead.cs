@@ -30,14 +30,14 @@ namespace MakeOthello.Model
                         othello.Back();
                         break;
                     case OthelloCondition.End:
-                        scoreList[i] = -(othello.GetDiscNumber(1) - othello.GetDiscNumber(-1)) * 100;
+                        scoreList[i] = -(othello.GetDiscNumber(1) - othello.GetDiscNumber(-1));
                         break;
                 }
                 othello.Back();
-                if (scoreList[i] > 0 && othello.Turn == 1 || scoreList[i] < 0 && othello.Turn == -1)
-                {
-                    break;
-                }
+                //if (scoreList[i] > 0 && othello.Turn == 1 || scoreList[i] < 0 && othello.Turn == -1)
+                //{
+                //    break;
+                //}
             }
             if (othello.Turn == 1)
             {
@@ -67,6 +67,7 @@ namespace MakeOthello.Model
             if (othello.Turn == 1) //白
             {
                 var _possiblePoints = othello.GetPossiblePoints(1);
+
                 for (int i = 0; i < _possiblePoints.Count; i++)
                 {
                     othello.Put(_possiblePoints[i]);
@@ -89,10 +90,10 @@ namespace MakeOthello.Model
                     {
                         return beta;
                     }
-                    if (alfa > 0)
-                    {
-                        return alfa;
-                    }
+                    //if (alfa > 0)
+                    //{
+                    //    return alfa;
+                    //}
                 }
                 return alfa;
             }
@@ -121,10 +122,10 @@ namespace MakeOthello.Model
                     {
                         return alfa;
                     }
-                    if (beta < 0)
-                    {
-                        return beta;
-                    }
+                    //if (beta < 0)
+                    //{
+                    //    return beta;
+                    //}
                 }
                 return beta;
             }

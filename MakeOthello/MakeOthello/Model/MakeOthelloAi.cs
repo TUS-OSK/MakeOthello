@@ -15,7 +15,7 @@ namespace MakeOthello.Model
         {  
             lookNum = 4;
 
-            finalLookTurn = 46;
+            finalLookTurn = 63 - 12;
         }
 
         public override void Put(IOthello othello, List<Point> ablePoints)
