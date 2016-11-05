@@ -148,7 +148,7 @@ namespace MakeOthello.ViewModel
             DiscDataList = new DiscViewModel[64];
             if (cpu!=0)
             {
-                Initcpu(cpu);
+                Initcpu(cpu,playercolor);
             }
             else
             {
@@ -229,9 +229,10 @@ namespace MakeOthello.ViewModel
             return point.x * 8 + point.y;
         }
 
-        private void Initcpu(int cpu)
+        private async void Initcpu(int cpu,int playercolor)
         {
             Ai = new MakeOthelloAi(cpu);
+
             for (var i = 0; i < DiscDataList.Length; i++)
             {
                 var discdata = new DiscViewModel(i, Height * 0.08);
@@ -244,7 +245,16 @@ namespace MakeOthello.ViewModel
                 }));
                 DiscDataList[i] = discdata;
             }
-            Update();
+           
+            if (playercolor == 1)
+            {
+                var points = Update();
+                await AiPutAsync(points);
+            }
+            else
+            {
+                Update();
+            }
         }
         private void Initplayer()
         {
