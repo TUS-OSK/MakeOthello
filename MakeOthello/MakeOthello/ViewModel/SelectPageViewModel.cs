@@ -60,13 +60,13 @@ namespace MakeOthello.ViewModel
         }
 
 
-
+        private Color _buttonColor = Colors.ForestGreen;
         public SelectPageViewModel(Frame frame)
         {
             
-            Level1Background = new SolidColorBrush(Colors.White);
-            Level2Background = new SolidColorBrush(Colors.DarkSeaGreen);
-            Level3Background = new SolidColorBrush(Colors.DarkSeaGreen);
+            Level1Background = new SolidColorBrush(_buttonColor);
+            Level2Background = new SolidColorBrush(_buttonColor);
+            Level3Background = new SolidColorBrush(_buttonColor);
             DiskBackground=new SolidColorBrush(Colors.White);
             this.Frame = frame;
             SetLevelCommand = new SimpleCommand(param =>
@@ -75,18 +75,18 @@ namespace MakeOthello.ViewModel
                 {
                     case "1":
                         Level1Background = new SolidColorBrush(Colors.White);
-                        Level2Background = new SolidColorBrush(Colors.DarkSeaGreen);
-                        Level3Background = new SolidColorBrush(Colors.DarkSeaGreen);
+                        Level2Background = new SolidColorBrush(_buttonColor);
+                        Level3Background = new SolidColorBrush(_buttonColor);
                         break;
                     case "2":
                         Level2Background = new SolidColorBrush(Colors.White);
-                        Level1Background = new SolidColorBrush(Colors.DarkSeaGreen);
-                        Level3Background = new SolidColorBrush(Colors.DarkSeaGreen);
+                        Level1Background = new SolidColorBrush(_buttonColor);
+                        Level3Background = new SolidColorBrush(_buttonColor);
                         break;
                     case "3":
                         Level3Background = new SolidColorBrush(Colors.White);
-                        Level2Background = new SolidColorBrush(Colors.DarkSeaGreen);
-                        Level1Background = new SolidColorBrush(Colors.DarkSeaGreen);
+                        Level2Background = new SolidColorBrush(_buttonColor);
+                        Level1Background = new SolidColorBrush(_buttonColor);
                         break;
                 }
             });
