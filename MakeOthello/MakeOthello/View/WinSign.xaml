@@ -8,8 +8,6 @@
    mc:Ignorable="d"
     d:DesignHeight ="180"
     d:DesignWidth ="360"
-    Height="{Binding Height}"
-    Width="{Binding Width}"
     Visibility="{Binding Visibility}">
 
     <Grid>

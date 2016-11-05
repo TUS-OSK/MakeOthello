@@ -72,7 +72,7 @@ namespace MakeOthello.ViewModel
             set
             {
                 base.Dispatcher = value;
-                
+                EndPopUpData.Dispatcher = value;
                 PopUpData.Dispatcher = value;
                 LosePopUpData.Dispatcher = value;
                 WinPopUpData.Dispatcher = value;
@@ -138,6 +138,7 @@ namespace MakeOthello.ViewModel
                 PopUpData.Visibility = Visibility.Collapsed;
                 Othello.Pass();
                 var points = Update();
+                if(cpu!=0)
                 await AiPutAsync(points);
 
             });
