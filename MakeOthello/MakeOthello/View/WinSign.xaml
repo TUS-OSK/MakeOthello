@@ -11,15 +11,15 @@
     Visibility="{Binding Visibility}">
 
     <Grid>
-        <Border CornerRadius="50" Background="Red"></Border>
+        <Border CornerRadius="50" Background="DarkRed"></Border>
         <StackPanel VerticalAlignment="Center">
             <TextBlock Margin="0,0,0,30" Foreground="White" FontSize="35" Height="50" Width="120" Text="Success" HorizontalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Style="{StaticResource NormalButton}" Background="White" Margin="7.5,0,35,0" Height="50" Width="150" Foreground="Red">
+                <Button Style="{StaticResource NormalButton}" Background="White" Margin="7.5,0,35,0" Height="50" Width="150" Foreground="DarkRed">
                     Play Again
                 </Button>
                 <Button Style="{StaticResource NormalButton}" Command="{Binding QuitCommand}"
-                        Background="White" Margin="0,0,7.5,0" Height="50" Width="150" Foreground="Red">
+                        Background="White" Margin="0,0,7.5,0" Height="50" Width="150" Foreground="DarkRed">
                     Quit
                 </Button>
             </StackPanel>
