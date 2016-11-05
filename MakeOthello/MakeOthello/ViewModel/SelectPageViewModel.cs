@@ -21,6 +21,7 @@ namespace MakeOthello.ViewModel
         public ICommand GoNextCommand { get; set; }
         public ICommand ChangeColorCommand { get; set; }
         public ICommand SetLevelCommand { get; set; }
+        private int CpuLevel;
 
         public SolidColorBrush Level1Background
         {
@@ -64,9 +65,10 @@ namespace MakeOthello.ViewModel
         public SelectPageViewModel(Frame frame)
         {
             
-            Level1Background = new SolidColorBrush(_buttonColor);
+            Level1Background = new SolidColorBrush(Colors.White);
             Level2Background = new SolidColorBrush(_buttonColor);
             Level3Background = new SolidColorBrush(_buttonColor);
+            CpuLevel = 1;
             DiskBackground=new SolidColorBrush(Colors.White);
             this.Frame = frame;
             SetLevelCommand = new SimpleCommand(param =>
@@ -77,16 +79,19 @@ namespace MakeOthello.ViewModel
                         Level1Background = new SolidColorBrush(Colors.White);
                         Level2Background = new SolidColorBrush(_buttonColor);
                         Level3Background = new SolidColorBrush(_buttonColor);
+                        CpuLevel = 1;
                         break;
                     case "2":
                         Level2Background = new SolidColorBrush(Colors.White);
                         Level1Background = new SolidColorBrush(_buttonColor);
                         Level3Background = new SolidColorBrush(_buttonColor);
+                        CpuLevel = 2;
                         break;
                     case "3":
                         Level3Background = new SolidColorBrush(Colors.White);
                         Level2Background = new SolidColorBrush(_buttonColor);
                         Level1Background = new SolidColorBrush(_buttonColor);
+                        CpuLevel = 3;
                         break;
                 }
             });
@@ -100,7 +105,7 @@ namespace MakeOthello.ViewModel
 
             GoNextCommand = new SimpleCommand(param =>
             {
-                var vm = new BoardViewModel(Frame);
+                var vm = new BoardViewModel(Frame,-1,CpuLevel);
                 vm.Dispatcher = Dispatcher;
                 this.Frame.Navigate(typeof(GamePage), vm);
             });

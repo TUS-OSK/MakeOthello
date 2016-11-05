@@ -76,7 +76,7 @@ namespace MakeOthello.ViewModel
             }
         }
 
-        public BoardViewModel(Frame frame, int playercolor = -1, int cpu = -1) : base(frame)
+        public BoardViewModel(Frame frame, int playercolor = -1, int cpu = 0) : base(frame)
         {
             double min = Math.Min(frame.ActualHeight, frame.ActualWidth);
             if (min < 720)
@@ -100,7 +100,7 @@ namespace MakeOthello.ViewModel
             LosePopUpData = new PopUpControleViewModel(frame.ActualWidth);
             PopUpData = new PopUpControleViewModel(frame.ActualWidth);
 
-            if (cpu == -1)
+            if (cpu == 0)
             {
                 PlayerLeft = "1P: ";
                 PlayerRight = "2P: ";
@@ -111,7 +111,7 @@ namespace MakeOthello.ViewModel
                 PlayerLeft = ":You";
             }
 
-            if (cpu == -1)
+            if (cpu == 0)
             {
                 DiscNumberLeft = Othello.GetDiscNumber(playercolor).ToString();
                 DiscNumberRight = Othello.GetDiscNumber(-1 * playercolor).ToString();
@@ -146,7 +146,7 @@ namespace MakeOthello.ViewModel
                 Navigate(typeof(MainPage));
             });
             DiscDataList = new DiscViewModel[64];
-            if (cpu!=-1)
+            if (cpu!=0)
             {
                 Initcpu(cpu);
             }
@@ -206,7 +206,7 @@ namespace MakeOthello.ViewModel
                     break;
             }
 
-            if (cpuLevel == -1)
+            if (cpuLevel == 0)
             {
                 DiscNumberLeft = Othello.GetDiscNumber(Othello.Turn).ToString();
                 DiscNumberRight = Othello.GetDiscNumber(-1 * Othello.Turn).ToString();
