@@ -21,10 +21,8 @@
                 Background="White" Height="60" Width="250" Foreground="Green" Margin="0,0,0,10">
             VS CPU
         </Button>
-
-        <Button Style="{StaticResource NormalButton}" Background="White" Foreground="Green"
-                Grid.Row="2" Grid.Column="0" Height="60" Width="250" Click="ButtonBase_OnClick2">
-
+        <Button Style="{StaticResource NormalButton}" Background="White" Foreground="DarkGreen"
+                Grid.Row="2" Grid.Column="0" Height="60" Width="250" Click="ButtonBase_OnClick2" Margin="0,10,0,0" >
             VS Friends
         </Button>
     </Grid>

@@ -15,11 +15,10 @@
         <Button HorizontalAlignment="Left" Command="{Binding ChangeColorCommand}"
                 Background="{Binding DiskBackground}"
                 Margin="30,0,0,40" CommandParameter="0"
-                Style="{StaticResource NormalButton}" Height="80" Width="80">
+                Height="70" Width="70" Style="{StaticResource NormalButton}">
         </Button>
-        
-        <Grid HorizontalAlignment="Stretch" MaxWidth="600" Grid.Row="1" Margin="15">
 
+        <Grid HorizontalAlignment="Stretch" MaxWidth="600" Grid.Row="1" Margin="15">
             <Button FontSize="35" Style="{StaticResource NormalButton}" 
                         HorizontalAlignment="Left"
                         Command="{Binding SetLevelCommand}" CommandParameter="1"

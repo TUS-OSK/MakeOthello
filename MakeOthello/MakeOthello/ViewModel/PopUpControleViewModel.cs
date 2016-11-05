@@ -13,10 +13,20 @@ namespace MakeOthello.ViewModel
     public class PopUpControleViewModel : ViewModelBase
     {
         private Visibility _visibility;
+        private string _endtext;
+        
         public ICommand OkCommand { get; set; }
         public ICommand QuitCommand { get; set; }
         public double Width { get; set; }
         public double Height { get; set; }
+        public string EndText {
+            get { return _endtext; }
+            set
+            {
+                _endtext = value;
+                OnPropertyChanged();
+            }
+        }
 
         public Visibility Visibility
         {

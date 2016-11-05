@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
+using Windows.Graphics.Printing.OptionDetails;
 using Windows.UI.Core;
 using Windows.UI.Notifications;
 using Windows.UI.ViewManagement;
@@ -21,6 +22,7 @@ namespace MakeOthello.ViewModel
         private string _DiscNumberLeft;
         private string _DiscNumberRight;
         private int cpuLevel;
+        private int playercolor;
         private ICommand _BackCommand;
 
         public double Height { get; set; }
@@ -33,8 +35,8 @@ namespace MakeOthello.ViewModel
         public PopUpControleViewModel WinPopUpData { get; private set; }
         public PopUpControleViewModel LosePopUpData { get; private set; }
         public string PlayerRight { get; private set; }
-        public string PlayerLeft { get; private set; }
-        public string EndText { get; private set; }
+        public string PlayerLeft { get; private set; }      
+
         public ICommand BackCommand
         {
             get { return _BackCommand; }
@@ -79,7 +81,7 @@ namespace MakeOthello.ViewModel
             }
         }
 
-        public BoardViewModel(Frame frame, int playercolor = -1, int cpu = 0) : base(frame)
+        public BoardViewModel(Frame frame, int player = -1, int cpu = 0) : base(frame)
         {
             double min = Math.Min(frame.ActualHeight, frame.ActualWidth);
             if (min < 720)
@@ -93,6 +95,7 @@ namespace MakeOthello.ViewModel
                 Width = 600;
             }
             cpuLevel = cpu;
+            playercolor = player;
             Othello = new Othello();
             Othello.Start();
             Othello.PassEvent += (othello, pass) =>
@@ -111,20 +114,21 @@ namespace MakeOthello.ViewModel
             }
             else
             {
-                PlayerRight = ":CPU Lv." + cpu;
-                PlayerLeft = ":You";
+                PlayerRight = "CPU Lv." + cpu+":";
+                PlayerLeft = "You:";
             }
 
             if (cpu == 0)
             {
-                DiscNumberLeft = Othello.GetDiscNumber(playercolor).ToString();
-                DiscNumberRight = Othello.GetDiscNumber(-1 * playercolor).ToString();
-            }
-            else
-            {
                 DiscNumberLeft = Othello.GetDiscNumber(-1).ToString();
                 DiscNumberRight = Othello.GetDiscNumber(1).ToString();
             }
+            else
+            {
+                DiscNumberLeft = Othello.GetDiscNumber(playercolor).ToString();
+                DiscNumberRight = Othello.GetDiscNumber(-1*playercolor).ToString();
+            }
+            
 
             BackCommand = new SimpleCommand(o =>
               {
@@ -183,12 +187,12 @@ namespace MakeOthello.ViewModel
                 {
                     if (playercolor==resulut)
                     {
-                        EndText = "2P Success";
+                        EndPopUpData.EndText = "2P Success";
                         EndPopUpData.Visibility=Visibility.Visible;
                     }
                     else
                     {
-                        EndText = "1P Success";
+                        EndPopUpData.EndText = "1P Success";
                         EndPopUpData.Visibility=Visibility.Visible;
                     }
                 }
@@ -232,13 +236,13 @@ namespace MakeOthello.ViewModel
 
             if (cpuLevel == 0)
             {
-                DiscNumberLeft = Othello.GetDiscNumber(Othello.Turn).ToString();
-                DiscNumberRight = Othello.GetDiscNumber(-1 * Othello.Turn).ToString();
+                DiscNumberLeft = Othello.GetDiscNumber(-1).ToString();
+                DiscNumberRight = Othello.GetDiscNumber(1).ToString();
             }
             else
             {
-                DiscNumberLeft = Othello.GetDiscNumber(-1).ToString();
-                DiscNumberRight = Othello.GetDiscNumber(1).ToString();
+                DiscNumberLeft = Othello.GetDiscNumber(playercolor).ToString();
+                DiscNumberRight = Othello.GetDiscNumber(-1*playercolor).ToString();
             }
             return points;
         }
