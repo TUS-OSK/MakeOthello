@@ -23,6 +23,5 @@ namespace MakeOthello.Model
         OthelloCondition Condition { get; }
         event OthelloEndEventHandler EndEvent;
         event OthelloPassEventHandler PassEvent;
-        
     }
 }
