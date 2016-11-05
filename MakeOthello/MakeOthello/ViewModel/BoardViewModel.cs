@@ -231,7 +231,7 @@ namespace MakeOthello.ViewModel
 
         private void Initcpu(int cpu)
         {
-            Ai = new SampleOthelloAi();
+            Ai = new MakeOthelloAi();
             for (var i = 0; i < DiscDataList.Length; i++)
             {
                 var discdata = new DiscViewModel(i, Height * 0.08);

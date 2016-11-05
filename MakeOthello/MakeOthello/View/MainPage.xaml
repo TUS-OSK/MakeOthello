@@ -9,16 +9,16 @@
     mc:Ignorable="d">
     <Page.Resources>
     </Page.Resources>
-    <Grid Background="Green" MaxWidth="720">
+    <Grid Background="#32b16c" MaxWidth="720">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="7*"></RowDefinition>
-            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Button Style="{StaticResource NormalButton}"  Grid.Row="1" Grid.Column="0" Click="ButtonBase_OnClick"
-                Background="White" Height="60" Width="250" Foreground="DarkGreen">
+                Background="White" Height="60" Width="250" Foreground="DarkGreen" Margin="0,0,0,10">
             VS CPU
         </Button>
         <Button Style="{StaticResource NormalButton}" Background="White" Foreground="DarkGreen"
