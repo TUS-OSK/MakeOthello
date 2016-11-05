@@ -22,6 +22,7 @@ namespace MakeOthello.ViewModel
         public ICommand ChangeColorCommand { get; set; }
         public ICommand SetLevelCommand { get; set; }
         private int CpuLevel;
+        private int DiscColor;
 
         public SolidColorBrush Level1Background
         {
@@ -69,7 +70,9 @@ namespace MakeOthello.ViewModel
             Level2Background = new SolidColorBrush(_buttonColor);
             Level3Background = new SolidColorBrush(_buttonColor);
             CpuLevel = 1;
-            DiskBackground=new SolidColorBrush(Colors.White);
+            DiskBackground =new SolidColorBrush(Colors.Black);
+            DiscColor = -1;
+            
             this.Frame = frame;
             SetLevelCommand = new SimpleCommand(param =>
             {
@@ -99,13 +102,23 @@ namespace MakeOthello.ViewModel
                 {
                     if (param.ToString()=="0")
                     {
+                        if (DiscColor==-1)
+                        {
+                            DiskBackground=new SolidColorBrush(Colors.White);
+                            DiscColor = 1;
+                        }
+                        else
+                        {
                             DiskBackground=new SolidColorBrush(Colors.Black);
+                            DiscColor = -1;
+                        }
+                            
                     }
                 });
 
             GoNextCommand = new SimpleCommand(param =>
             {
-                var vm = new BoardViewModel(Frame,-1,CpuLevel);
+                var vm = new BoardViewModel(Frame,DiscColor,CpuLevel);
                 vm.Dispatcher = Dispatcher;
                 this.Frame.Navigate(typeof(GamePage), vm);
             });

@@ -28,11 +28,13 @@ namespace MakeOthello.ViewModel
         public IOthello Othello { get; set; }
         public OthelloAiBase Ai { get; private set; }
         public DiscViewModel[] DiscDataList { get; private set; }
+        public PopUpControleViewModel EndPopUpData { get; private set; }
         public PopUpControleViewModel PopUpData { get; private set; }
         public PopUpControleViewModel WinPopUpData { get; private set; }
         public PopUpControleViewModel LosePopUpData { get; private set; }
         public string PlayerRight { get; private set; }
         public string PlayerLeft { get; private set; }
+        public string EndText { get; private set; }
         public ICommand BackCommand
         {
             get { return _BackCommand; }
@@ -70,6 +72,7 @@ namespace MakeOthello.ViewModel
             set
             {
                 base.Dispatcher = value;
+                EndPopUpData.Dispatcher = value;
                 PopUpData.Dispatcher = value;
                 LosePopUpData.Dispatcher = value;
                 WinPopUpData.Dispatcher = value;
@@ -99,6 +102,7 @@ namespace MakeOthello.ViewModel
             WinPopUpData = new PopUpControleViewModel(frame.ActualWidth);
             LosePopUpData = new PopUpControleViewModel(frame.ActualWidth);
             PopUpData = new PopUpControleViewModel(frame.ActualWidth);
+            EndPopUpData=new PopUpControleViewModel(frame.ActualWidth);
 
             if (cpu == 0)
             {
@@ -134,6 +138,7 @@ namespace MakeOthello.ViewModel
                 PopUpData.Visibility = Visibility.Collapsed;
                 Othello.Pass();
                 var points = Update();
+                if(cpu!=0)
                 await AiPutAsync(points);
 
             });
@@ -145,10 +150,14 @@ namespace MakeOthello.ViewModel
             {
                 Navigate(typeof(MainPage));
             });
+            EndPopUpData.QuitCommand = new SimpleCommand(o =>
+            {
+                Navigate(typeof(MainPage));
+            });
             DiscDataList = new DiscViewModel[64];
             if (cpu!=0)
             {
-                Initcpu(cpu);
+                Initcpu(cpu,playercolor);
             }
             else
             {
@@ -158,15 +167,30 @@ namespace MakeOthello.ViewModel
 
             Othello.EndEvent += (othello, resulut) =>
             {
-
-                if (playercolor == resulut)
+                if (cpu != 0)
                 {
-                    LosePopUpData.Visibility = Visibility.Visible;
+                    if (playercolor == resulut)
+                    {
+                        LosePopUpData.Visibility = Visibility.Visible;
+                    }
+                    else
+                    {
+                        WinPopUpData.Visibility = Visibility.Visible;
+
+                    }
                 }
                 else
                 {
-                    WinPopUpData.Visibility = Visibility.Visible;
-
+                    if (playercolor==resulut)
+                    {
+                        EndText = "2P Success";
+                        EndPopUpData.Visibility=Visibility.Visible;
+                    }
+                    else
+                    {
+                        EndText = "1P Success";
+                        EndPopUpData.Visibility=Visibility.Visible;
+                    }
                 }
             };
         }
@@ -229,9 +253,10 @@ namespace MakeOthello.ViewModel
             return point.x * 8 + point.y;
         }
 
-        private void Initcpu(int cpu)
+        private async void Initcpu(int cpu,int playercolor)
         {
-            Ai = new MakeOthelloAi();
+            Ai = new MakeOthelloAi(cpu);
+
             for (var i = 0; i < DiscDataList.Length; i++)
             {
                 var discdata = new DiscViewModel(i, Height * 0.08);
@@ -244,7 +269,16 @@ namespace MakeOthello.ViewModel
                 }));
                 DiscDataList[i] = discdata;
             }
-            Update();
+           
+            if (playercolor == 1)
+            {
+                var points = Update();
+                await AiPutAsync(points);
+            }
+            else
+            {
+                Update();
+            }
         }
         private void Initplayer()
         {
@@ -257,7 +291,6 @@ namespace MakeOthello.ViewModel
                     if (!Othello.Put(ConvertPoint(discdata.Number)))
                         return;
                     var points = Update();
-                    //await AiPutAsync(points);
                 }));
                 DiscDataList[i] = discdata;
             }
