@@ -64,7 +64,7 @@ namespace MakeOthello.ViewModel
         public SelectPageViewModel(Frame frame)
         {
             
-            Level1Background = new SolidColorBrush(_buttonColor);
+            Level1Background = new SolidColorBrush(Colors.White);
             Level2Background = new SolidColorBrush(_buttonColor);
             Level3Background = new SolidColorBrush(_buttonColor);
             DiskBackground=new SolidColorBrush(Colors.White);
