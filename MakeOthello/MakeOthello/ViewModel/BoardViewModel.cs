@@ -146,7 +146,15 @@ namespace MakeOthello.ViewModel
                 Navigate(typeof(MainPage));
             });
             DiscDataList = new DiscViewModel[64];
-            Initcpu(cpu);
+            if (cpu!=-1)
+            {
+                Initcpu(cpu);
+            }
+            else
+            {
+                Initplayer();
+            }
+            
 
             Othello.EndEvent += (othello, resulut) =>
             {
@@ -233,6 +241,23 @@ namespace MakeOthello.ViewModel
                         return;
                     var points = Update();
                     await AiPutAsync(points);
+                }));
+                DiscDataList[i] = discdata;
+            }
+            Update();
+        }
+        private void Initplayer()
+        {
+ 
+            for (var i = 0; i < DiscDataList.Length; i++)
+            {
+                var discdata = new DiscViewModel(i, Height * 0.08);
+                discdata.DiscTapedCommand = new SimpleCommand((o =>
+                {
+                    if (!Othello.Put(ConvertPoint(discdata.Number)))
+                        return;
+                    var points = Update();
+                    //await AiPutAsync(points);
                 }));
                 DiscDataList[i] = discdata;
             }

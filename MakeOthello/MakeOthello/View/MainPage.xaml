@@ -22,7 +22,7 @@
             VS CPU
         </Button>
         <Button Style="{StaticResource NormalButton}" Background="White" Foreground="DarkGreen"
-                Grid.Row="2" Grid.Column="0" Height="60" Width="250" Click="ButtonBase_OnClick">
+                Grid.Row="2" Grid.Column="0" Height="60" Width="250" Click="ButtonBase_OnClick2">
             VS Friends
         </Button>
     </Grid>
