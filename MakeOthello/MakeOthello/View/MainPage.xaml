@@ -18,10 +18,10 @@
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Button Style="{StaticResource NormalButton}"  Grid.Row="1" Grid.Column="0" Click="ButtonBase_OnClick"
-                Background="White" Height="60" Width="250" Foreground="DarkGreen">
+                Background="White" Height="60" Width="250" Foreground="Green">
             VS CPU
         </Button>
-        <Button Style="{StaticResource NormalButton}" Background="White" Foreground="DarkGreen"
+        <Button Style="{StaticResource NormalButton}" Background="White" Foreground="Green"
                 Grid.Row="2" Grid.Column="0" Height="60" Width="250" Click="ButtonBase_OnClick">
             VS Friends
         </Button>

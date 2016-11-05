@@ -22,25 +22,25 @@
             <Button FontSize="35" Style="{StaticResource NormalButton}" 
                         HorizontalAlignment="Left"
                         Command="{Binding SetLevelCommand}" CommandParameter="1"
-                        Background="{Binding Level1Background}" Height="80" Width="100" Foreground="DarkGreen">
+                        Background="{Binding Level1Background}" Height="80" Width="100" Foreground="Green">
                 Lv 1
             </Button>
             <Button FontSize="35" Style="{StaticResource NormalButton}" 
                         Command="{Binding SetLevelCommand}" CommandParameter="2"
-                       Background="{Binding Level2Background}"  Height="80" Width="100" Foreground="DarkGreen" >
+                       Background="{Binding Level2Background}"  Height="80" Width="100" Foreground="Green" >
                 Lv 2
             </Button>
             <Button FontSize="35" Style="{StaticResource NormalButton}" 
                         Command="{Binding SetLevelCommand}" CommandParameter="3"
                         HorizontalAlignment="Right"
-                        Background="{Binding Level3Background}"  Height="80" Width="100" Foreground="DarkGreen">
+                        Background="{Binding Level3Background}"  Height="80" Width="100" Foreground="Green">
                 Lv 3
             </Button>
         </Grid>
         <Button FontSize="50" Style="{StaticResource NormalButton}" 
                 Command="{Binding GoNextCommand}" 
                 Grid.Row="2"
-                Background="White" Height="80" Width="300" Foreground="DarkGreen">
+                Background="White" Height="80" Width="300" Foreground="Green">
             Start
         </Button>
     </Grid>
