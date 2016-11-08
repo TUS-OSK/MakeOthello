@@ -36,11 +36,11 @@ namespace MakeOthello.Model
             switch (i)
             {
                 case 1:
-                    lookNum = 2;
+                    lookNum = 1;
                     finalLookTurn = 63 - 8;
                     break;
                 case 2:
-                    lookNum = 3;
+                    lookNum = 2;
                     finalLookTurn = 63 - 10;
                     break;
                 case 3:
