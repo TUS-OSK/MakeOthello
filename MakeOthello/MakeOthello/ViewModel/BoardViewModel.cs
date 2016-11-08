@@ -178,7 +178,9 @@ namespace MakeOthello.ViewModel
             });
             WinPopUpData.OkCommand = new SimpleCommand(o =>
             {
-                
+                var vm = new BoardViewModel(Frame, playercolor, cpu);
+                vm.Dispatcher = Dispatcher;
+                this.Frame.Navigate(typeof(GamePage), vm);
             });
             EndPopUpData.OkCommand = new SimpleCommand(o =>
             {
