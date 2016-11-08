@@ -17,6 +17,7 @@
             <RowDefinition></RowDefinition>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
+<<<<<<< HEAD
         <Button Style="{StaticResource NormalButton}"  Grid.Row="1" Grid.Column="0" Click="ButtonBase_OnClick"
                 Background="White"  Foreground="DarkGreen" Margin="0,0,0,10">
             VS CPU
@@ -24,6 +25,16 @@
         <Button Style="{StaticResource NormalButton}" Background="White" Foreground="DarkGreen"
                 Grid.Row="2" Grid.Column="0"  Click="ButtonBase_OnClick2" Margin="0,10,0,0" >
             VS Friend
+=======
+        <Image Grid.Row="0" Source="/Assets/makeothelloロゴ.png" Margin="30"></Image>
+            <Button Style="{StaticResource NormalButton}"  Grid.Row="1" Grid.Column="0" Click="ButtonBase_OnClick"
+                Background="White" Height="60" Width="250" Foreground="#32b16c" Margin="0,0,0,10">
+            VS CPU
+        </Button>
+        <Button Style="{StaticResource NormalButton}" Background="White" Foreground="#32b16c"
+                Grid.Row="2" Grid.Column="0" Height="60" Width="250" Click="ButtonBase_OnClick2" Margin="0,10,0,0" >
+            VS Friends
+>>>>>>> 74add61b45910f7dad594ef529e1c8ebdfe5f26f
         </Button>
     </Grid>
 </Page>
