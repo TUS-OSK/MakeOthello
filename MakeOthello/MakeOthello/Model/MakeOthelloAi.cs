@@ -13,21 +13,7 @@ namespace MakeOthello.Model
 
         public MakeOthelloAi(int cpulevel)
         {
-            switch (cpulevel)
-            {
-                case 1:
-                    lookNum = 2;
-                    finalLookTurn = 63 - 8;
-                    break;
-                case 2:
-                    lookNum = 3;
-                    finalLookTurn = 63 - 10;
-                    break;
-                case 3:
-                    lookNum = 4;
-                    finalLookTurn = 63 - 12;
-                    break;
-            }
+          SetLevel(cpulevel);
             
         }
 
@@ -47,7 +33,21 @@ namespace MakeOthello.Model
 
         public override void SetLevel(int i)
         {
-            throw new NotImplementedException();
+            switch (i)
+            {
+                case 1:
+                    lookNum = 2;
+                    finalLookTurn = 63 - 8;
+                    break;
+                case 2:
+                    lookNum = 3;
+                    finalLookTurn = 63 - 10;
+                    break;
+                case 3:
+                    lookNum = 4;
+                    finalLookTurn = 63 - 12;
+                    break;
+            }
         }
     }
 }
