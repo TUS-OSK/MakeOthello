@@ -58,11 +58,11 @@ namespace MakeOthello.ViewModel
                         break;
                     case DiscCondition.AbleBlack:
                         DiscColorBrush = new SolidColorBrush(Colors.Black);
-                        DiscOpacity = 0.3;
+                        DiscOpacity = 0.15;
                         break;
                     case DiscCondition.AbleWhite:
                         DiscColorBrush = new SolidColorBrush(Colors.White);
-                        DiscOpacity = 0.3;
+                        DiscOpacity = 0.15;
                         break;
                     default:
                         throw new ArgumentOutOfRangeException(nameof(value), value, null);
