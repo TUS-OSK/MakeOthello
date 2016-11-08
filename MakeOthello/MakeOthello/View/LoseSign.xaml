@@ -15,7 +15,8 @@
         <StackPanel VerticalAlignment="Center">
             <TextBlock Margin="0,0,0,30" Foreground="White" FontSize="35" Height="50" Width="100" Text="Failure" HorizontalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Style="{StaticResource NormalButton}" Background="White" Margin="7.5,0,35,0" Height="50" Width="150" Foreground="DarkGreen" >
+                <Button Style="{StaticResource NormalButton}" Background="White" Margin="7.5,0,35,0" Height="50" Width="150" Foreground="DarkGreen"
+                        Command="{Binding OkCommand}">
                     Play Again
                 </Button>
                 <Button Style="{StaticResource NormalButton}" Background="White" Margin="0,0,7.5,0" Height="50" Width="150" Foreground="DarkGreen"

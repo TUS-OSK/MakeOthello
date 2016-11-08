@@ -170,6 +170,22 @@ namespace MakeOthello.ViewModel
             {
                 Navigate(typeof(MainPage));
             });
+            LosePopUpData.OkCommand=new SimpleCommand(o =>
+            {
+                var vm = new BoardViewModel(Frame, playercolor, cpu);
+                vm.Dispatcher = Dispatcher;
+                this.Frame.Navigate(typeof(GamePage), vm);
+            });
+            WinPopUpData.OkCommand = new SimpleCommand(o =>
+            {
+                
+            });
+            EndPopUpData.OkCommand = new SimpleCommand(o =>
+            {
+                var vm = new BoardViewModel(Frame, playercolor, cpu);
+                vm.Dispatcher = Dispatcher;
+                this.Frame.Navigate(typeof(GamePage), vm);
+            });
             DiscDataList = new DiscViewModel[64];
             if (cpu!=0)
             {
