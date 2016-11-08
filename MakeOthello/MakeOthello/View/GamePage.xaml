@@ -26,11 +26,11 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            <Button Height="60" Width="150" Style="{StaticResource NormalButton}"
+            <Button Height="60"  Width="150" Style="{StaticResource NormalButton}"
                      BorderThickness="2"
-                    Grid.Column="0" Grid.Row="1" Command="{Binding BackCommand}" Margin="0,3,0,0" VerticalAlignment="Top">back</Button>
+                    Grid.Column="0" Grid.Row="1" Command="{Binding BackCommand}" Margin="0,3,0,0" VerticalAlignment="Top" >back</Button>
             <Button Height="60" Width="150" Style="{StaticResource NormalButton}"
-                    Grid.Column="2" Grid.Row="1" Click="Button_Click">quit</Button>
+                    Grid.Column="2" Grid.Row="1" Click="Button_Click" >quit</Button>
             <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="90,0,0,0" 
                        Foreground="White" FontSize="30"
                        Text="{Binding DiscNumberLeft}"></TextBlock>
