@@ -24,6 +24,7 @@ namespace MakeOthello.ViewModel
         private int cpuLevel;
         private int playercolor;
         private ICommand _BackCommand;
+        private Visibility _waitingMaskVisibility;
 
         public double Height { get; set; }
         public double Width { get; set; }
@@ -35,7 +36,17 @@ namespace MakeOthello.ViewModel
         public PopUpControleViewModel WinPopUpData { get; private set; }
         public PopUpControleViewModel LosePopUpData { get; private set; }
         public string PlayerRight { get; private set; }
-        public string PlayerLeft { get; private set; }      
+        public string PlayerLeft { get; private set; }
+
+        public Visibility WaitingMaskVisibility
+        {
+            get { return _waitingMaskVisibility; }
+            private set
+            {
+                _waitingMaskVisibility = value; 
+                OnPropertyChanged();
+            }
+        }
 
         public ICommand BackCommand
         {
@@ -83,6 +94,7 @@ namespace MakeOthello.ViewModel
 
         public BoardViewModel(Frame frame, int player = -1, int cpu = 0) : base(frame)
         {
+            WaitingMaskVisibility = Visibility.Collapsed;
             double min = Math.Min(frame.ActualHeight, frame.ActualWidth);
             if (min < 720)
             {
@@ -319,11 +331,10 @@ namespace MakeOthello.ViewModel
 
         private async Task AiPutAsync(List<Point> points)
         {
-            // TODO ここでプレーヤーの入力を無効に
+            WaitingMaskVisibility = Visibility.Visible;
             await Ai.PutAsync(Othello, points);
             Update();
-
-            // TODO ここでプレーヤーの入力を有効に
+            WaitingMaskVisibility = Visibility.Collapsed;
         }
     }
 }
