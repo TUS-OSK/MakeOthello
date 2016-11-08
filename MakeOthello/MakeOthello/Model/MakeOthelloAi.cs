@@ -12,9 +12,23 @@ namespace MakeOthello.Model
         public int lookNum { get; set; }
 
         public MakeOthelloAi(int cpulevel)
-        {  
-            lookNum = 4;
-            finalLookTurn = 63 - 12;
+        {
+            switch (cpulevel)
+            {
+                case 1:
+                    lookNum = 2;
+                    finalLookTurn = 63 - 8;
+                    break;
+                case 2:
+                    lookNum = 3;
+                    finalLookTurn = 63 - 10;
+                    break;
+                case 3:
+                    lookNum = 4;
+                    finalLookTurn = 63 - 12;
+                    break;
+            }
+            
         }
 
         public override void Put(IOthello othello, List<Point> ablePoints)
