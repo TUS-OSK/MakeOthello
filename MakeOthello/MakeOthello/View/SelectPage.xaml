@@ -12,10 +12,10 @@
             <RowDefinition Height="*"></RowDefinition>
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Button HorizontalAlignment="Left" Command="{Binding ChangeColorCommand}"
-                Background="{Binding DiskBackground}"
+        <Ellipse HorizontalAlignment="Left" Height="70" Width="70" Margin="30,0,0,40" Fill="{Binding DiskBackground}"></Ellipse>
+        <Button HorizontalAlignment="Left" Command="{Binding ChangeColorCommand}"                
                 Margin="30,0,0,40" CommandParameter="0"
-                Height="70" Width="70" Style="{StaticResource NormalButton}">
+                Height="70" Width="70" Background="Transparent" >
         </Button>
 
         <Grid HorizontalAlignment="Stretch" MaxWidth="600" Grid.Row="1" Margin="50,0,50,0">
