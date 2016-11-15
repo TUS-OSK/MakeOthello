@@ -17,8 +17,10 @@
                 Margin="30,0,0,40" CommandParameter="0"
                 Height="70" Width="70" Background="Transparent" >
         </Button>
-
-        <Grid HorizontalAlignment="Stretch" MaxWidth="600" Grid.Row="1" Margin="50">
+        <TextBlock Height="100" Width="200" HorizontalAlignment="Right" Margin="0,0,30,40" FontFamily="メイリオ" FontSize="25" Text="{Binding StatusText}"></TextBlock>
+        
+        <TextBlock Grid.Row="1" Height="100" Width="260" VerticalAlignment="Top" FontFamily="メイリオ" FontSize="25">オセロルール説明</TextBlock>
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" MaxWidth="600" Grid.Row="1" Margin="50,0,50,0">
             <Button Style="{StaticResource SmallButton}" 
                         HorizontalAlignment="Left"
                         Command="{Binding SetLevelCommand}" CommandParameter="1"
