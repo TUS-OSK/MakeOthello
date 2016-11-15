@@ -3,10 +3,13 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Runtime.InteropServices.WindowsRuntime;
+using System.Threading.Tasks;
 using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.UI;
+using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Controls.Primitives;
@@ -47,7 +50,6 @@ namespace MakeOthello
             }
 #endif
             Frame rootFrame = Window.Current.Content as Frame;
-
             // Do not repeat app initialization when the Window already has content,
             // just ensure that the window is active
             if (rootFrame == null)
@@ -64,6 +66,7 @@ namespace MakeOthello
 
                 // Place the frame in the current Window
                 Window.Current.Content = rootFrame;
+                
             }
 
             if (e.PrelaunchActivated == false)
@@ -78,6 +81,23 @@ namespace MakeOthello
                 // Ensure the current window is active
                 Window.Current.Activate();
             }
+
+            var themeColor = Color.FromArgb(255, 50, 177, 108);
+            var themeColorDark = Color.FromArgb(255, 40, 142, 86);
+            var titleBar = ApplicationView.GetForCurrentView().TitleBar;
+            titleBar.BackgroundColor = themeColor;
+            titleBar.ForegroundColor = Colors.White;
+            titleBar.InactiveBackgroundColor = themeColor;
+            titleBar.InactiveForegroundColor = Color.FromArgb(0xff, 0x66, 0x66, 0x66);
+            titleBar.ButtonBackgroundColor = themeColor;
+            titleBar.ButtonForegroundColor = Colors.White;
+            titleBar.ButtonInactiveBackgroundColor = themeColor;
+            titleBar.ButtonInactiveForegroundColor = Color.FromArgb(0xff, 0x66, 0x66, 0x66);
+            titleBar.ButtonHoverBackgroundColor = themeColorDark;
+            titleBar.ButtonHoverForegroundColor = Colors.White;
+            titleBar.ButtonPressedBackgroundColor = Color.FromArgb(0xff, 0x34, 0x34, 0x34);
+            titleBar.ButtonPressedForegroundColor = Colors.White;
+            rootFrame.Background = new SolidColorBrush(themeColor);
         }
 
         /// <summary>
@@ -103,5 +123,7 @@ namespace MakeOthello
             //TODO: Save application state and stop any background activity
             deferral.Complete();
         }
+
+
     }
 }
