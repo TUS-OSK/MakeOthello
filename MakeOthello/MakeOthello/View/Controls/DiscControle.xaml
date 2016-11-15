@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="MakeOthello.View.DiscControle"
+    x:Class="MakeOthello.View.Controls.DiscControle"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MakeOthello.View"
@@ -10,7 +10,7 @@
     d:DesignWidth="60"
     Background="Transparent">
     <Grid>
-        <Border CornerRadius="7" Margin="1" Background="#288e56"></Border>
+        <Border CornerRadius="7" Margin="1" Background="{StaticResource ThemeColorDark}"></Border>
             <Ellipse  Height="{Binding Height}" Width="{Binding Width}"             
                  Fill="{Binding DiscColorBrush}" 
                  Opacity="{Binding DiscOpacity}"/>

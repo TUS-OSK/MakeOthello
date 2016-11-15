@@ -13,6 +13,8 @@ using Windows.UI.Xaml.Controls;
 using MakeOthello.Model;
 using MakeOthello.Utility;
 using MakeOthello.View;
+using MakeOthello.View.Controls;
+using MakeOthello.ViewModel.MessageBox;
 
 
 namespace MakeOthello.ViewModel
@@ -26,17 +28,28 @@ namespace MakeOthello.ViewModel
         private ICommand _BackCommand;
         private ICommand _QuitCommand;
         private Visibility _waitingMaskVisibility;
+        private MessageBoxViewModel _messageBoxData;
 
         public double Height { get; set; }
         public double Width { get; set; }
         public IOthello Othello { get; set; }
         public OthelloAiBase Ai { get; private set; }
         public DiscViewModel[] DiscDataList { get; private set; }
-        public PopUpControleViewModel EndPopUpData { get; private set; }
-        public PopUpControleViewModel PopUpData { get; private set; }
-        public PopUpControleViewModel WinPopUpData { get; private set; }
-        public PopUpControleViewModel LosePopUpData { get; private set; }
-        public PopUpControleViewModel ConfirmPopUpData { get; private set; }
+
+        public MessageBoxViewModel MessageBoxData
+        {
+            get
+            {
+                return _messageBoxData;
+            }
+            private set
+            {
+                OnPropertyChanged();
+                _messageBoxData = value;
+            }
+        }
+
+        public PassControlViewModel PassControlData { get; private set; }
         public string PlayerRight { get; private set; }
         public string PlayerLeft { get; private set; }
 
@@ -45,7 +58,7 @@ namespace MakeOthello.ViewModel
             get { return _waitingMaskVisibility; }
             private set
             {
-                _waitingMaskVisibility = value; 
+                _waitingMaskVisibility = value;
                 OnPropertyChanged();
             }
         }
@@ -91,23 +104,15 @@ namespace MakeOthello.ViewModel
         }
 
 
-        public new Windows.UI.Core.CoreDispatcher Dispatcher
-        {
-            get { return base.Dispatcher; }
-            set
-            {
-                base.Dispatcher = value;
-                EndPopUpData.Dispatcher = value;
-                PopUpData.Dispatcher = value;
-                LosePopUpData.Dispatcher = value;
-                WinPopUpData.Dispatcher = value;
-            }
-        }
-
-        public BoardViewModel(Frame frame, int player = -1, int cpu = 0) : base(frame)
+        public BoardViewModel(int player = -1, int cpu = 0)
         {
             WaitingMaskVisibility = Visibility.Collapsed;
-            double min = Math.Min(frame.ActualHeight, frame.ActualWidth);
+            MessageBoxData = MessageBoxViewModel.Empty;
+            PassControlData = new PassControlViewModel();
+            DiscDataList = new DiscViewModel[64];
+
+
+            double min = Math.Min(Frame.ActualHeight, Frame.ActualWidth);
             if (min < 720)
             {
                 Height = min * 600 / 720;
@@ -122,145 +127,92 @@ namespace MakeOthello.ViewModel
             playercolor = player;
             Othello = new Othello();
             Othello.Start();
-            Othello.PassEvent += (othello, pass) =>
+            QuitCommand = new SimpleCommand(o =>
             {
-                PopUpData.Visibility = Visibility.Visible;
-            };
-            WinPopUpData = new PopUpControleViewModel(frame.ActualWidth);
-            LosePopUpData = new PopUpControleViewModel(frame.ActualWidth);
-            PopUpData = new PopUpControleViewModel(frame.ActualWidth);
-            EndPopUpData=new PopUpControleViewModel(frame.ActualWidth);
-            ConfirmPopUpData=new PopUpControleViewModel(frame.ActualWidth);
+                MessageBoxData = new ConfirmMessageBoxViewModel();
+            });
+
 
             if (cpu == 0)
             {
                 PlayerLeft = "1P: ";
                 PlayerRight = "2P: ";
-            }
-            else
-            {
-                PlayerRight = "CPU Lv." + cpu+":";
-                PlayerLeft = "You:";
-            }
-
-            if (cpu == 0)
-            {
                 DiscNumberLeft = Othello.GetDiscNumber(-1).ToString();
                 DiscNumberRight = Othello.GetDiscNumber(1).ToString();
-            }
-            else
-            {
-                DiscNumberLeft = Othello.GetDiscNumber(playercolor).ToString();
-                DiscNumberRight = Othello.GetDiscNumber(-1*playercolor).ToString();
-            }
-            
-
-            BackCommand = new SimpleCommand(o =>
-              {
-                  Othello.Back();
-                  Othello.Back();
-                  Update();
-              });
-            QuitCommand=new SimpleCommand(o =>
-            {
-                ConfirmPopUpData.Visibility=Visibility.Visible;
-            });
-
-            PopUpData.OkCommand = new SimpleCommand(async o =>
-            {
-                PopUpData.Visibility = Visibility.Collapsed;
-                Othello.Pass();
-                var points = Update();
-                if(cpu!=0)
-                await AiPutAsync(points);
-
-            });
-            LosePopUpData.QuitCommand = new SimpleCommand(o =>
-            {
-                this.Frame.Navigate(typeof(MainPage));
-            });
-            WinPopUpData.QuitCommand = new SimpleCommand(o =>
-            {
-                this.Frame.Navigate(typeof(MainPage));
-            });
-            EndPopUpData.QuitCommand = new SimpleCommand(o =>
-            {
-                this.Frame.Navigate(typeof(MainPage));
-            });
-            ConfirmPopUpData.QuitCommand=new SimpleCommand(o =>
-            {
-                this.Frame.Navigate(typeof(MainPage));
-            });
-            LosePopUpData.OkCommand=new SimpleCommand(o =>
-            {
-                var vm = new BoardViewModel(Frame, playercolor, cpu);
-                vm.Dispatcher = Dispatcher;
-                this.Frame.Navigate(typeof(GamePage), vm);
-            });
-            WinPopUpData.OkCommand = new SimpleCommand(o =>
-            {
-                var vm = new BoardViewModel(Frame, playercolor, cpu);
-                vm.Dispatcher = Dispatcher;
-                this.Frame.Navigate(typeof(GamePage), vm);
-            });
-            EndPopUpData.OkCommand = new SimpleCommand(o =>
-            {
-                var vm = new BoardViewModel(Frame, playercolor, cpu);
-                vm.Dispatcher = Dispatcher;
-                this.Frame.Navigate(typeof(GamePage), vm);
-            });
-            ConfirmPopUpData.OkCommand=new SimpleCommand(o =>
-            {
-                 ConfirmPopUpData.Visibility=Visibility.Collapsed;
-            });
-            DiscDataList = new DiscViewModel[64];
-            if (cpu!=0)
-            {
-                Initcpu(cpu,playercolor);
-            }
-            else
-            {
-                Initplayer();
-            }
-            
-
-            Othello.EndEvent += (othello, resulut) =>
-            {
-                if (cpu != 0)
+                BackCommand = new SimpleCommand(o =>
+                {
+                    Othello.Back();
+                    Update();
+                });
+                Othello.EndEvent += (othello, resulut) =>
                 {
                     if (resulut == 0)
                     {
-                        EndPopUpData.EndText = "Draw !";
-                        EndPopUpData.Visibility = Visibility.Visible;
+                        MessageBoxData = new EndMessageBoxViewModel(player, cpu, "Draw !");
                     }
                     else if (playercolor == resulut)
                     {
-                        LosePopUpData.Visibility = Visibility.Visible;
+                        MessageBoxData = new EndMessageBoxViewModel(player, cpu, "2P Success");
                     }
                     else
                     {
-                        WinPopUpData.Visibility = Visibility.Visible;
+                        MessageBoxData = new EndMessageBoxViewModel(player, cpu, "2P Success");
                     }
-                }
-                else
+                };
+                PassControlData.OkCommand = new SimpleCommand(o =>
+                {
+                    PassControlData.Visibility = Visibility.Collapsed;
+                    Othello.Pass();
+                    Update();
+                });
+                Othello.PassEvent += (othello, pass) =>
+                {
+                    PassControlData.Visibility = Visibility.Visible;
+                };
+                Initplayer();
+            }
+            else
+            {
+                PlayerRight = "CPU Lv." + cpu + ":";
+                PlayerLeft = "You:";
+                DiscNumberLeft = Othello.GetDiscNumber(playercolor).ToString();
+                DiscNumberRight = Othello.GetDiscNumber(-1 * playercolor).ToString();
+                BackCommand = new SimpleCommand(o =>
+                {
+                    PassControlData.Visibility = Visibility.Collapsed;
+                    Othello.Back();
+                    Othello.Back();
+                    Update();
+                });
+                Othello.EndEvent += (othello, resulut) =>
                 {
                     if (resulut == 0)
                     {
-                        EndPopUpData.EndText = "Draw !";
-                        EndPopUpData.Visibility = Visibility.Visible;
+                        MessageBoxData = new EndMessageBoxViewModel(player, cpu, "Draw !");
                     }
-                    else if (playercolor==resulut)
+                    else if (playercolor == resulut)
                     {
-                        EndPopUpData.EndText = "2P Success";
-                        EndPopUpData.Visibility=Visibility.Visible;
+                        MessageBoxData = new LoseMessageBoxViewModel(player, cpu);
                     }
                     else
                     {
-                        EndPopUpData.EndText = "1P Success";
-                        EndPopUpData.Visibility=Visibility.Visible;
+                        MessageBoxData = new WinMessageBoxViewModel(player, cpu);
                     }
-                }
-            };
+                };
+                PassControlData.OkCommand = new SimpleCommand(async o =>
+                {
+                    PassControlData.Visibility = Visibility.Collapsed;
+                    Othello.Pass();
+                    var points = Update();
+                    await AiPutAsync(points);
+                });
+                Othello.PassEvent += (othello, pass) =>
+                {
+                    if (pass == player)
+                        PassControlData.Visibility = Visibility.Visible;
+                };
+                Initcpu(cpu, playercolor);
+            }
         }
 
         private List<Point> Update()
@@ -306,7 +258,7 @@ namespace MakeOthello.ViewModel
             else
             {
                 DiscNumberLeft = Othello.GetDiscNumber(playercolor).ToString();
-                DiscNumberRight = Othello.GetDiscNumber(-1*playercolor).ToString();
+                DiscNumberRight = Othello.GetDiscNumber(-1 * playercolor).ToString();
             }
             return points;
         }
@@ -321,7 +273,7 @@ namespace MakeOthello.ViewModel
             return point.x * 8 + point.y;
         }
 
-        private async void Initcpu(int cpu,int playercolor)
+        private async void Initcpu(int cpu, int playercolor)
         {
             Ai = new MakeOthelloAi(cpu);
 
@@ -337,7 +289,7 @@ namespace MakeOthello.ViewModel
                 }));
                 DiscDataList[i] = discdata;
             }
-           
+
             if (playercolor == 1)
             {
                 var points = Update();
@@ -348,9 +300,9 @@ namespace MakeOthello.ViewModel
                 Update();
             }
         }
+
         private void Initplayer()
         {
- 
             for (var i = 0; i < DiscDataList.Length; i++)
             {
                 var discdata = new DiscViewModel(i, Height * 0.08);
@@ -358,7 +310,7 @@ namespace MakeOthello.ViewModel
                 {
                     if (!Othello.Put(ConvertPoint(discdata.Number)))
                         return;
-                    var points = Update();
+                    Update();
                 }));
                 DiscDataList[i] = discdata;
             }

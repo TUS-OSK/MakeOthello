@@ -6,44 +6,69 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
-    <Grid Background="#32b16c" MaxWidth="720">
+    <Grid Background="{StaticResource ThemeColor}" MaxWidth="720">
         <Grid.RowDefinitions>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
-            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="3*"></RowDefinition>
+            <RowDefinition Height="4*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Ellipse HorizontalAlignment="Left" Height="70" Width="70" Margin="30,0,0,40" Fill="{Binding DiskBackground}"></Ellipse>
-        <Button HorizontalAlignment="Left" Command="{Binding ChangeColorCommand}"                
-                Margin="30,0,0,40" CommandParameter="0"
-                Height="70" Width="70" Background="Transparent" >
-        </Button>
+        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center">
+            <StackPanel>
+                <Grid Height="50" Width="50">
+                    <Ellipse Fill="{Binding DiskBackground}"></Ellipse>
+                </Grid>
+                <TextBlock Foreground="{Binding DiskBackground}" 
+                       Margin="20" FontFamily="メイリオ"
+                       FontSize="12" VerticalAlignment="Center">Tap and change your color</TextBlock>
 
- <TextBlock Height="100" Width="200" HorizontalAlignment="Right" Margin="0,0,30,40" FontFamily="メイリオ" FontSize="25" Text="{Binding StatusText}"></TextBlock>
-        
-        <TextBlock Grid.Row="1" Height="100" Width="260" VerticalAlignment="Top" FontFamily="メイリオ" FontSize="25">オセロルール説明</TextBlock>
-        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" MaxWidth="600" Grid.Row="1" Margin="50,0,50,0">
-            
-                <Button Style="{StaticResource SmallButton}" 
-                        HorizontalAlignment="Left" Width="70"
-                        Command="{Binding SetLevelCommand}" CommandParameter="1"
-                        Background="{Binding Level1Background}">
+            </StackPanel>
+            <Button  Command="{Binding ChangeColorCommand}"  
+                         HorizontalAlignment="Stretch"
+                         VerticalAlignment="Stretch"
+                         CommandParameter="0" Background="Transparent" >
+            </Button>
+        </Grid>
+
+        <TextBlock Grid.Row="1" VerticalAlignment="Center" FontFamily="メイリオ" FontSize="20" 
+                   MaxWidth="600" Margin="25,0" Foreground="White"
+                   TextWrapping="Wrap">
+            逆オセロとは「最後に自分の色の石が少い」プレーヤーが勝つあべこべなオセロゲームです。上手く打って自分の石を減らし、ゲームに勝利しましょう。
+        </TextBlock>
+        <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxWidth="600" Grid.Row="2" Margin="50,0,50,0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+                <ColumnDefinition></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button Style="{StaticResource SmallButton}" 
+                    Grid.Column="0"
+                    Margin="5,0"
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding SetLevelCommand}" CommandParameter="1"
+                    Background="{Binding Level1Background}">
                 Lv 1
             </Button>
-            <Button FontSize="18" Style="{StaticResource SmallButton}" Width="70"
-                        Command="{Binding SetLevelCommand}" CommandParameter="2"
-                       Background="{Binding Level2Background}">
+            <Button FontSize="18" Style="{StaticResource SmallButton}"
+                    Grid.Column="1"
+                    Margin="5,0"
+                    HorizontalAlignment="Stretch"
+                    Command="{Binding SetLevelCommand}" CommandParameter="2"
+                    Background="{Binding Level2Background}">
                 Lv 2
             </Button>
-            <Button FontSize="18" Style="{StaticResource SmallButton}" Width="70"
-                        Command="{Binding SetLevelCommand}" CommandParameter="3"
-                        HorizontalAlignment="Right"
-                        Background="{Binding Level3Background}">
+            <Button FontSize="18" Style="{StaticResource SmallButton}"
+                    Grid.Column="2"
+                    HorizontalAlignment="Stretch"
+                    Margin="5,0"
+                    Command="{Binding SetLevelCommand}" CommandParameter="3"
+                    Background="{Binding Level3Background}">
                 Lv 3
             </Button>
         </Grid>
         <Button  FontSize="25" Style="{StaticResource NormalButton}" 
                 Command="{Binding GoNextCommand}" 
-                Grid.Row="2">
+                Grid.Row="3">
             Start
         </Button>
     </Grid>

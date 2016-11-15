@@ -9,7 +9,7 @@
     mc:Ignorable="d">
     <Page.Resources>
     </Page.Resources>
-    <Grid Background="#32b16c" MaxWidth="720">
+    <Grid Background="{StaticResource ThemeColor}" MaxWidth="720">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="7*"></RowDefinition>

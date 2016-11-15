@@ -6,10 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:view="using:MakeOthello.View"
+    xmlns:controls="using:MakeOthello.View.Controls"
     d:DesignHeight="640"
     d:DesignWidth="360"
     mc:Ignorable="d" >
-    <Grid Background="#32b16c" MaxWidth="720">
+    <Grid Background="{StaticResource ThemeColor}" MaxWidth="720">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"></RowDefinition>
             <RowDefinition Height="17*"></RowDefinition>
@@ -25,11 +26,16 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
+            
             <Button  Style="{StaticResource SmallButton}"
+                     HorizontalAlignment="Stretch"
                      BorderThickness="2"
-                    Grid.Column="0" Grid.Row="1" Command="{Binding BackCommand}" Margin="0,3,0,0">undo</Button>
+                     MaxWidth="250"
+                    Grid.Column="0" Grid.Row="1" Command="{Binding BackCommand}" Margin="15,0">undo</Button>
             <Button  Style="{StaticResource SmallButton}" Command="{Binding QuitCommand}"
-                    Grid.Column="2" Grid.Row="1">quit</Button>
+                     MaxWidth="250"
+                     HorizontalAlignment="Stretch"
+                     Grid.Column="1" Grid.Row="1" Margin="15,0">quit</Button>
 
             <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="85,20,0,0" 
                        Foreground="White" FontSize="25"
@@ -44,14 +50,11 @@
                        Foreground="White" FontSize="25"
                        Text="{Binding PlayerRight}"></TextBlock>
         </Grid>
-        <view:BoardControle x:Name="BoardControle" Grid.Row="1" Grid.RowSpan="2"
+        <controls:BoardControle x:Name="BoardControle" Grid.Row="1" Grid.RowSpan="2"
                             MaxWidth="700" MaxHeight="700"                          
                             DataContext="{Binding}"/>
         <Rectangle  Grid.Row="1" Grid.RowSpan="2" Fill="Transparent" Visibility="{Binding WaitingMaskVisibility}"></Rectangle>
-        <local:PopUpControl  Grid.Row="0" Grid.RowSpan="3" DataContext="{Binding PopUpData}"></local:PopUpControl>
-        <local:WinSign Grid.Row="1" DataContext="{Binding WinPopUpData}" d:IsHidden="True"></local:WinSign>
-        <local:LoseSign Grid.Row="1" DataContext="{Binding LosePopUpData}" d:IsHidden="True"></local:LoseSign>
-        <local:EndSign Grid.Row="1" DataContext="{Binding EndPopUpData}" d:IsHidden="True"></local:EndSign>
-        <local:Confirm Grid.Row="1" DataContext="{Binding ConfirmPopUpData}" d:IsHidden="True"></local:Confirm>
+        <controls:MessageBox Grid.Row="0" Grid.RowSpan="3" DataContext="{Binding MessageBoxData}" d:IsHidden="True"></controls:MessageBox>
+        <controls:PassControl  Grid.Row="1" Grid.RowSpan="2" DataContext="{Binding PassControlData}"></controls:PassControl>
     </Grid>
 </Page>

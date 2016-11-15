@@ -31,15 +31,11 @@ namespace MakeOthello.View
 
         private void ButtonBase_OnClick(object sender, RoutedEventArgs e)
         {
-            var vm = new SelectPageViewModel(Frame);
-            vm.Dispatcher = Dispatcher;
-            this.Frame.Navigate(typeof(SelectPage),vm);
+            this.Frame.Navigate(typeof(SelectPage), new SelectPageViewModel());
         }
         private void ButtonBase_OnClick2(object sender, RoutedEventArgs e)
         {
-            var vm = new BoardViewModel(Frame);
-            vm.Dispatcher = Dispatcher;
-            this.Frame.Navigate(typeof(GamePage), vm);
+            this.Frame.Navigate(typeof(GamePage), new BoardViewModel());
         }
     }
 }

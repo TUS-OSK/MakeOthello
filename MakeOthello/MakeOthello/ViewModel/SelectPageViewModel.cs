@@ -61,10 +61,9 @@ namespace MakeOthello.ViewModel
             }
         }
 
-
-        
         private Color _nonActiveColor = Color.FromArgb(255, 40, 142, 86);
-        public SelectPageViewModel(Frame frame)
+
+        public SelectPageViewModel()
         {
             
             Level1Background = new SolidColorBrush(Colors.White);
@@ -74,7 +73,6 @@ namespace MakeOthello.ViewModel
             DiskBackground =new SolidColorBrush(Colors.Black);
             DiscColor = -1;
             
-            this.Frame = frame;
             SetLevelCommand = new SimpleCommand(param =>
             {
                 switch (param.ToString())
@@ -119,9 +117,7 @@ namespace MakeOthello.ViewModel
 
             GoNextCommand = new SimpleCommand(param =>
             {
-                var vm = new BoardViewModel(Frame,DiscColor,CpuLevel);
-                vm.Dispatcher = Dispatcher;
-                this.Frame.Navigate(typeof(GamePage), vm);
+                Navigate(typeof(GamePage), new BoardViewModel(DiscColor, CpuLevel));
             });
         }
     }
