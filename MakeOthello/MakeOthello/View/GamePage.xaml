@@ -29,7 +29,7 @@
                      BorderThickness="2" 
                     Grid.Column="0" Grid.Row="1" Command="{Binding BackCommand}" >undo</Button>
             <Button Height="60" Width="150" Style="{StaticResource NormalButton}"
-                    Grid.Column="1" Grid.Row="1" Click="Button_Click">quit</Button>
+                    Grid.Column="1" Grid.Row="1" Command="{Binding QuitCommand}">quit</Button>
             <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="85,20,0,0" 
                        Foreground="White" FontSize="25"
                        Text="{Binding DiscNumberLeft}"></TextBlock>
@@ -51,5 +51,6 @@
         <local:WinSign Grid.Row="1" DataContext="{Binding WinPopUpData}" d:IsHidden="True"></local:WinSign>
         <local:LoseSign Grid.Row="1" DataContext="{Binding LosePopUpData}" d:IsHidden="True"></local:LoseSign>
         <local:EndSign Grid.Row="1" DataContext="{Binding EndPopUpData}" d:IsHidden="True"></local:EndSign>
+        <local:Confirm Grid.Row="1" DataContext="{Binding ConfirmPopUpData}" d:IsHidden="True"></local:Confirm>
     </Grid>
 </Page>

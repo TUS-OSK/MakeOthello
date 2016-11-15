@@ -24,6 +24,7 @@ namespace MakeOthello.ViewModel
         private int cpuLevel;
         private int playercolor;
         private ICommand _BackCommand;
+        private ICommand _QuitCommand;
         private Visibility _waitingMaskVisibility;
 
         public double Height { get; set; }
@@ -35,6 +36,7 @@ namespace MakeOthello.ViewModel
         public PopUpControleViewModel PopUpData { get; private set; }
         public PopUpControleViewModel WinPopUpData { get; private set; }
         public PopUpControleViewModel LosePopUpData { get; private set; }
+        public PopUpControleViewModel ConfirmPopUpData { get; private set; }
         public string PlayerRight { get; private set; }
         public string PlayerLeft { get; private set; }
 
@@ -54,6 +56,16 @@ namespace MakeOthello.ViewModel
             set
             {
                 _BackCommand = value;
+                OnPropertyChanged();
+            }
+        }
+
+        public ICommand QuitCommand
+        {
+            get { return _QuitCommand; }
+            set
+            {
+                _QuitCommand = value;
                 OnPropertyChanged();
             }
         }
@@ -118,6 +130,7 @@ namespace MakeOthello.ViewModel
             LosePopUpData = new PopUpControleViewModel(frame.ActualWidth);
             PopUpData = new PopUpControleViewModel(frame.ActualWidth);
             EndPopUpData=new PopUpControleViewModel(frame.ActualWidth);
+            ConfirmPopUpData=new PopUpControleViewModel(frame.ActualWidth);
 
             if (cpu == 0)
             {
@@ -148,6 +161,10 @@ namespace MakeOthello.ViewModel
                   Othello.Back();
                   Update();
               });
+            QuitCommand=new SimpleCommand(o =>
+            {
+                ConfirmPopUpData.Visibility=Visibility.Visible;
+            });
 
             PopUpData.OkCommand = new SimpleCommand(async o =>
             {
@@ -159,16 +176,20 @@ namespace MakeOthello.ViewModel
 
             });
             LosePopUpData.QuitCommand = new SimpleCommand(o =>
-              {
-                  Navigate(typeof(MainPage));
-              });
+            {
+                this.Frame.Navigate(typeof(MainPage));
+            });
             WinPopUpData.QuitCommand = new SimpleCommand(o =>
             {
-                Navigate(typeof(MainPage));
+                this.Frame.Navigate(typeof(MainPage));
             });
             EndPopUpData.QuitCommand = new SimpleCommand(o =>
             {
-                Navigate(typeof(MainPage));
+                this.Frame.Navigate(typeof(MainPage));
+            });
+            ConfirmPopUpData.QuitCommand=new SimpleCommand(o =>
+            {
+                this.Frame.Navigate(typeof(MainPage));
             });
             LosePopUpData.OkCommand=new SimpleCommand(o =>
             {
@@ -187,6 +208,10 @@ namespace MakeOthello.ViewModel
                 var vm = new BoardViewModel(Frame, playercolor, cpu);
                 vm.Dispatcher = Dispatcher;
                 this.Frame.Navigate(typeof(GamePage), vm);
+            });
+            ConfirmPopUpData.OkCommand=new SimpleCommand(o =>
+            {
+                 ConfirmPopUpData.Visibility=Visibility.Collapsed;
             });
             DiscDataList = new DiscViewModel[64];
             if (cpu!=0)
