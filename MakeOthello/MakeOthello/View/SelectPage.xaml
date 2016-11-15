@@ -18,26 +18,27 @@
                 Height="70" Width="70" Style="{StaticResource NormalButton}">
         </Button>
 
-        <Grid HorizontalAlignment="Stretch" MaxWidth="600" Grid.Row="1" Margin="50">
-            <Button Style="{StaticResource SmallButton}" 
-                        HorizontalAlignment="Left"
+        <Grid HorizontalAlignment="Stretch" MaxWidth="600" Grid.Row="1" Margin="50,0,50,0">
+            
+                <Button Style="{StaticResource SmallButton}" 
+                        HorizontalAlignment="Left" Width="70"
                         Command="{Binding SetLevelCommand}" CommandParameter="1"
                         Background="{Binding Level1Background}">
                 Lv 1
             </Button>
-            <Button FontSize="18" Style="{StaticResource SmallButton}" 
+            <Button FontSize="18" Style="{StaticResource SmallButton}" Width="70"
                         Command="{Binding SetLevelCommand}" CommandParameter="2"
                        Background="{Binding Level2Background}">
                 Lv 2
             </Button>
-            <Button FontSize="18" Style="{StaticResource SmallButton}" 
+            <Button FontSize="18" Style="{StaticResource SmallButton}" Width="70"
                         Command="{Binding SetLevelCommand}" CommandParameter="3"
                         HorizontalAlignment="Right"
                         Background="{Binding Level3Background}">
                 Lv 3
             </Button>
         </Grid>
-        <Button  FontSize="30" Style="{StaticResource NormalButton}" 
+        <Button  FontSize="25" Style="{StaticResource NormalButton}" 
                 Command="{Binding GoNextCommand}" 
                 Grid.Row="2">
             Start
