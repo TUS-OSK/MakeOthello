@@ -26,7 +26,6 @@
         <Button Style="{StaticResource NormalButton}"
                 Grid.Row="2" Grid.Column="0"  Click="ButtonBase_OnClick2" Margin="0,10,0,0" >
             VS Friend
-
         </Button>
     </Grid>
 </Page>

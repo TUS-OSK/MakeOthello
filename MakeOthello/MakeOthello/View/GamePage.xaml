@@ -28,18 +28,19 @@
             <Button  Style="{StaticResource SmallButton}"
                      BorderThickness="2"
                     Grid.Column="0" Grid.Row="1" Command="{Binding BackCommand}" Margin="0,3,0,0" VerticalAlignment="Top">undo</Button>
-            <Button  Style="{StaticResource SmallButton}"
+            <Button  Style="{StaticResource SmallButton}" Command="{Binding QuitCommand}"
                     Grid.Column="2" Grid.Row="1" Click="Button_Click">quit</Button>
+
             <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="85,20,0,0" 
                        Foreground="White" FontSize="25"
                        Text="{Binding DiscNumberLeft}"></TextBlock>
-            <TextBlock Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" Margin="0,20,30,0"
+            <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,20,30,0"
                        Foreground="White" FontSize="25"
                        Text="{Binding DiscNumberRight}"></TextBlock>
             <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="30,20,0,0"
                        Foreground="White" FontSize="25"
                        Text="{Binding PlayerLeft}"></TextBlock>
-            <TextBlock Grid.Column="2" Grid.Row="2" HorizontalAlignment="Right" Margin="0,20,60,0"
+            <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,20,60,0"
                        Foreground="White" FontSize="25"
                        Text="{Binding PlayerRight}"></TextBlock>
         </Grid>
@@ -51,5 +52,6 @@
         <local:WinSign Grid.Row="1" DataContext="{Binding WinPopUpData}" d:IsHidden="True"></local:WinSign>
         <local:LoseSign Grid.Row="1" DataContext="{Binding LosePopUpData}" d:IsHidden="True"></local:LoseSign>
         <local:EndSign Grid.Row="1" DataContext="{Binding EndPopUpData}" d:IsHidden="True"></local:EndSign>
+        <local:Confirm Grid.Row="1" DataContext="{Binding ConfirmPopUpData}" d:IsHidden="True"></local:Confirm>
     </Grid>
 </Page>
