@@ -18,29 +18,28 @@
                 Height="70" Width="70" Style="{StaticResource NormalButton}">
         </Button>
 
-        <Grid HorizontalAlignment="Stretch" MaxWidth="600" Grid.Row="1" Margin="15">
-            <Button FontSize="35" Style="{StaticResource NormalButton}" 
+        <Grid HorizontalAlignment="Stretch" MaxWidth="600" Grid.Row="1" Margin="50">
+            <Button Style="{StaticResource SmallButton}" 
                         HorizontalAlignment="Left"
                         Command="{Binding SetLevelCommand}" CommandParameter="1"
-                        Background="{Binding Level1Background}" Height="80" Width="100" Foreground="Green">
+                        Background="{Binding Level1Background}">
                 Lv 1
             </Button>
-            <Button FontSize="35" Style="{StaticResource NormalButton}" 
+            <Button FontSize="18" Style="{StaticResource SmallButton}" 
                         Command="{Binding SetLevelCommand}" CommandParameter="2"
-                       Background="{Binding Level2Background}"  Height="80" Width="100" Foreground="Green" >
+                       Background="{Binding Level2Background}">
                 Lv 2
             </Button>
-            <Button FontSize="35" Style="{StaticResource NormalButton}" 
+            <Button FontSize="18" Style="{StaticResource SmallButton}" 
                         Command="{Binding SetLevelCommand}" CommandParameter="3"
                         HorizontalAlignment="Right"
-                        Background="{Binding Level3Background}"  Height="80" Width="100" Foreground="Green">
+                        Background="{Binding Level3Background}">
                 Lv 3
             </Button>
         </Grid>
-        <Button Height="60" Width="240" FontSize="35" Style="{StaticResource NormalButton}" 
+        <Button  FontSize="30" Style="{StaticResource NormalButton}" 
                 Command="{Binding GoNextCommand}" 
-                Grid.Row="2"
-                Background="White" Foreground="Green">
+                Grid.Row="2">
             Start
         </Button>
     </Grid>

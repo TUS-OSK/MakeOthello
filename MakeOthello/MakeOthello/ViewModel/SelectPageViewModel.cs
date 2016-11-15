@@ -62,13 +62,14 @@ namespace MakeOthello.ViewModel
         }
 
 
-        private Color _buttonColor = Colors.DarkSeaGreen;
+        private Color _buttonColor = Color.FromArgb(255,40,142,86);
+        private Color _nonActiveColor = Color.FromArgb(70, 40, 142, 86);
         public SelectPageViewModel(Frame frame)
         {
             
-            Level1Background = new SolidColorBrush(Colors.White);
-            Level2Background = new SolidColorBrush(_buttonColor);
-            Level3Background = new SolidColorBrush(_buttonColor);
+            Level1Background = new SolidColorBrush(_buttonColor);
+            Level2Background = new SolidColorBrush(_nonActiveColor);
+            Level3Background = new SolidColorBrush(_nonActiveColor);
             CpuLevel = 1;
             DiskBackground =new SolidColorBrush(Colors.Black);
             DiscColor = -1;
@@ -79,21 +80,21 @@ namespace MakeOthello.ViewModel
                 switch (param.ToString())
                 {
                     case "1":
-                        Level1Background = new SolidColorBrush(Colors.White);
-                        Level2Background = new SolidColorBrush(_buttonColor);
-                        Level3Background = new SolidColorBrush(_buttonColor);
+                        Level1Background = new SolidColorBrush(_buttonColor);
+                        Level2Background = new SolidColorBrush(_nonActiveColor);
+                        Level3Background = new SolidColorBrush(_nonActiveColor);
                         CpuLevel = 1;
                         break;
                     case "2":
-                        Level2Background = new SolidColorBrush(Colors.White);
-                        Level1Background = new SolidColorBrush(_buttonColor);
-                        Level3Background = new SolidColorBrush(_buttonColor);
+                        Level2Background = new SolidColorBrush(_buttonColor);
+                        Level1Background = new SolidColorBrush(_nonActiveColor);
+                        Level3Background = new SolidColorBrush(_nonActiveColor);
                         CpuLevel = 2;
                         break;
                     case "3":
-                        Level3Background = new SolidColorBrush(Colors.White);
-                        Level2Background = new SolidColorBrush(_buttonColor);
-                        Level1Background = new SolidColorBrush(_buttonColor);
+                        Level3Background = new SolidColorBrush(_buttonColor);
+                        Level2Background = new SolidColorBrush(_nonActiveColor);
+                        Level1Background = new SolidColorBrush(_nonActiveColor);
                         CpuLevel = 3;
                         break;
                 }
