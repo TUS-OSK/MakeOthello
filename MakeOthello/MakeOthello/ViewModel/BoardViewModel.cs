@@ -203,19 +203,28 @@ namespace MakeOthello.ViewModel
             {
                 if (cpu != 0)
                 {
-                    if (playercolor == resulut)
+                    if (resulut == 0)
+                    {
+                        EndPopUpData.EndText = "Draw !";
+                        EndPopUpData.Visibility = Visibility.Visible;
+                    }
+                    else if (playercolor == resulut)
                     {
                         LosePopUpData.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         WinPopUpData.Visibility = Visibility.Visible;
-
                     }
                 }
                 else
                 {
-                    if (playercolor==resulut)
+                    if (resulut == 0)
+                    {
+                        EndPopUpData.EndText = "Draw !";
+                        EndPopUpData.Visibility = Visibility.Visible;
+                    }
+                    else if (playercolor==resulut)
                     {
                         EndPopUpData.EndText = "2P Success";
                         EndPopUpData.Visibility=Visibility.Visible;

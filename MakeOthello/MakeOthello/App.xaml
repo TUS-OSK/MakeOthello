@@ -7,7 +7,9 @@
     RequestedTheme="Light">
     <Application.Resources>
         <Style x:Key="NormalButton" TargetType="Button">
-            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="Foreground" Value="White" />
+            <Setter Property="Height" Value="60" />
+            <Setter Property="Width" Value="200" />
             <Setter Property="BorderBrush" Value="{ThemeResource SystemControlForegroundTransparentBrush}" />
             <Setter Property="BorderThickness" Value="{ThemeResource ButtonBorderThemeThickness}" />
             <Setter Property="Padding" Value="8,4,8,4" />
@@ -20,7 +22,7 @@
             <Setter Property="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
-                        <Border x:Name="RootGrid" Background="{TemplateBinding Background}" CornerRadius="35">
+                        <Border x:Name="RootGrid" Background="{TemplateBinding Background}" CornerRadius="40">
                             <VisualStateManager.VisualStateGroups>
                                 <VisualStateGroup x:Name="CommonStates">
                                     <VisualState x:Name="Normal">

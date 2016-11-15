@@ -37,10 +37,10 @@
                 Lv 3
             </Button>
         </Grid>
-        <Button FontSize="50" Style="{StaticResource NormalButton}" 
+        <Button Height="60" Width="240" FontSize="35" Style="{StaticResource NormalButton}" 
                 Command="{Binding GoNextCommand}" 
                 Grid.Row="2"
-                Background="White" Height="80" Width="300" Foreground="Green">
+                Background="White" Foreground="Green">
             Start
         </Button>
     </Grid>
