@@ -17,29 +17,31 @@
                 Margin="30,0,0,40" CommandParameter="0"
                 Height="70" Width="70" Background="Transparent" >
         </Button>
-        <TextBlock Height="100" Width="200" HorizontalAlignment="Right" Margin="0,0,30,40" FontFamily="メイリオ" FontSize="25" Text="{Binding StatusText}"></TextBlock>
+
+ <TextBlock Height="100" Width="200" HorizontalAlignment="Right" Margin="0,0,30,40" FontFamily="メイリオ" FontSize="25" Text="{Binding StatusText}"></TextBlock>
         
         <TextBlock Grid.Row="1" Height="100" Width="260" VerticalAlignment="Top" FontFamily="メイリオ" FontSize="25">オセロルール説明</TextBlock>
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Bottom" MaxWidth="600" Grid.Row="1" Margin="50,0,50,0">
-            <Button Style="{StaticResource SmallButton}" 
-                        HorizontalAlignment="Left"
+            
+                <Button Style="{StaticResource SmallButton}" 
+                        HorizontalAlignment="Left" Width="70"
                         Command="{Binding SetLevelCommand}" CommandParameter="1"
                         Background="{Binding Level1Background}">
                 Lv 1
             </Button>
-            <Button FontSize="18" Style="{StaticResource SmallButton}" 
+            <Button FontSize="18" Style="{StaticResource SmallButton}" Width="70"
                         Command="{Binding SetLevelCommand}" CommandParameter="2"
                        Background="{Binding Level2Background}">
                 Lv 2
             </Button>
-            <Button FontSize="18" Style="{StaticResource SmallButton}" 
+            <Button FontSize="18" Style="{StaticResource SmallButton}" Width="70"
                         Command="{Binding SetLevelCommand}" CommandParameter="3"
                         HorizontalAlignment="Right"
                         Background="{Binding Level3Background}">
                 Lv 3
             </Button>
         </Grid>
-        <Button  FontSize="30" Style="{StaticResource NormalButton}" 
+        <Button  FontSize="25" Style="{StaticResource NormalButton}" 
                 Command="{Binding GoNextCommand}" 
                 Grid.Row="2">
             Start

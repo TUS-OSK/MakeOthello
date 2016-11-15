@@ -53,7 +53,7 @@
         </Style>
         <Style x:Name="SmallButton" TargetType="Button" BasedOn="{StaticResource NormalButton}">
             <Setter Property="Height" Value="60" />
-            <Setter Property="Width" Value="130" />
+            <Setter Property="Width" Value="100" />
             <Setter Property ="Template">
                 <Setter.Value>
                     <ControlTemplate TargetType="Button">
