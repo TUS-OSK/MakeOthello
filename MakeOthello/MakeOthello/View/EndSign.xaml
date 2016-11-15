@@ -14,13 +14,13 @@
         <Border CornerRadius="50" Background="CadetBlue"></Border>
         <StackPanel VerticalAlignment="Center">
             <TextBlock Margin="90,0,100,30" Foreground="White" FontSize="20" Height="50" Width="170" Text="{Binding EndText}" HorizontalAlignment="Center"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">      
-                <Button Style="{StaticResource NormalButton}" Background="White" Margin="7.5,0,35,0" Height="60" Width="150" Foreground="Red"
+            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                <Button Style="{StaticResource SmallButton}" Margin="10" Height="45" Width="125" Foreground="Red"
                         Command="{Binding OkCommand}">
                     Play Again
                 </Button>
-                <Button Style="{StaticResource NormalButton}" Command="{Binding QuitCommand}"
-                        Background="White" Margin="0,0,7.5,0" Height="60" Width="150" Foreground="CadetBlue">
+                <Button Style="{StaticResource SmallButton}" Command="{Binding QuitCommand}"
+                        Margin="0,0,7.5,0" Height="45" Width="125" Foreground="CadetBlue">
                     Quit
                 </Button>
             </StackPanel>

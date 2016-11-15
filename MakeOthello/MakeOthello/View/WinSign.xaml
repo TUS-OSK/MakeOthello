@@ -6,24 +6,30 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
    mc:Ignorable="d"
-    d:DesignHeight ="180"
+    d:DesignHeight ="640"
     d:DesignWidth ="360"
     Visibility="{Binding Visibility}">
 
     <Grid>
-        <Border CornerRadius="50" Background="DarkGreen"></Border>
-        <StackPanel VerticalAlignment="Center">
-            <TextBlock Margin="0,0,0,30" Foreground="White" FontSize="35" Height="50" Width="120" Text="Success" HorizontalAlignment="Center"/>
-            <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Style="{StaticResource SmallButton}"  Margin="7.5,0,35,0" 
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+            <RowDefinition Height="*"></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="1">
+            <Border CornerRadius="50" Background="#FF3824" Margin="5"></Border>
+            <StackPanel VerticalAlignment="Center">
+                <TextBlock Margin="0,0,0,30" Foreground="White" FontSize="35" Height="50" Width="120" Text="Success" HorizontalAlignment="Center"/>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
+                    <Button Style="{StaticResource SmallButton}"  Margin="0,0,35,0" Height="45" Width="130" Foreground="#FF3824"
                         Command="{Binding OkCommand}">
-                    Play Again
-                </Button>
-                <Button Style="{StaticResource SmallButton}" Command="{Binding QuitCommand}"
-                        Margin="7,5,0.35,0" >
-                    Quit
-                </Button>
+                        Play Again
+                    </Button>
+                    <Button Style="{StaticResource SmallButton}" Height="45" Width="130" Foreground="#FF3824" Command="{Binding QuitCommand}">
+                        Quit
+                    </Button>
+                </StackPanel>
             </StackPanel>
-        </StackPanel>
+        </Grid>
     </Grid>
 </UserControl>
