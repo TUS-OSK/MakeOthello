@@ -24,6 +24,7 @@ namespace MakeOthello.ViewModel
         private int cpuLevel;
         private int playercolor;
         private ICommand _BackCommand;
+        private Visibility _waitingMaskVisibility;
 
         public double Height { get; set; }
         public double Width { get; set; }
@@ -35,7 +36,17 @@ namespace MakeOthello.ViewModel
         public PopUpControleViewModel WinPopUpData { get; private set; }
         public PopUpControleViewModel LosePopUpData { get; private set; }
         public string PlayerRight { get; private set; }
-        public string PlayerLeft { get; private set; }      
+        public string PlayerLeft { get; private set; }
+
+        public Visibility WaitingMaskVisibility
+        {
+            get { return _waitingMaskVisibility; }
+            private set
+            {
+                _waitingMaskVisibility = value; 
+                OnPropertyChanged();
+            }
+        }
 
         public ICommand BackCommand
         {
@@ -83,6 +94,7 @@ namespace MakeOthello.ViewModel
 
         public BoardViewModel(Frame frame, int player = -1, int cpu = 0) : base(frame)
         {
+            WaitingMaskVisibility = Visibility.Collapsed;
             double min = Math.Min(frame.ActualHeight, frame.ActualWidth);
             if (min < 720)
             {
@@ -158,6 +170,24 @@ namespace MakeOthello.ViewModel
             {
                 Navigate(typeof(MainPage));
             });
+            LosePopUpData.OkCommand=new SimpleCommand(o =>
+            {
+                var vm = new BoardViewModel(Frame, playercolor, cpu);
+                vm.Dispatcher = Dispatcher;
+                this.Frame.Navigate(typeof(GamePage), vm);
+            });
+            WinPopUpData.OkCommand = new SimpleCommand(o =>
+            {
+                var vm = new BoardViewModel(Frame, playercolor, cpu);
+                vm.Dispatcher = Dispatcher;
+                this.Frame.Navigate(typeof(GamePage), vm);
+            });
+            EndPopUpData.OkCommand = new SimpleCommand(o =>
+            {
+                var vm = new BoardViewModel(Frame, playercolor, cpu);
+                vm.Dispatcher = Dispatcher;
+                this.Frame.Navigate(typeof(GamePage), vm);
+            });
             DiscDataList = new DiscViewModel[64];
             if (cpu!=0)
             {
@@ -173,19 +203,28 @@ namespace MakeOthello.ViewModel
             {
                 if (cpu != 0)
                 {
-                    if (playercolor == resulut)
+                    if (resulut == 0)
+                    {
+                        EndPopUpData.EndText = "Draw !";
+                        EndPopUpData.Visibility = Visibility.Visible;
+                    }
+                    else if (playercolor == resulut)
                     {
                         LosePopUpData.Visibility = Visibility.Visible;
                     }
                     else
                     {
                         WinPopUpData.Visibility = Visibility.Visible;
-
                     }
                 }
                 else
                 {
-                    if (playercolor==resulut)
+                    if (resulut == 0)
+                    {
+                        EndPopUpData.EndText = "Draw !";
+                        EndPopUpData.Visibility = Visibility.Visible;
+                    }
+                    else if (playercolor==resulut)
                     {
                         EndPopUpData.EndText = "2P Success";
                         EndPopUpData.Visibility=Visibility.Visible;
@@ -303,11 +342,10 @@ namespace MakeOthello.ViewModel
 
         private async Task AiPutAsync(List<Point> points)
         {
-            // TODO ここでプレーヤーの入力を無効に
+            WaitingMaskVisibility = Visibility.Visible;
             await Ai.PutAsync(Othello, points);
             Update();
-
-            // TODO ここでプレーヤーの入力を有効に
+            WaitingMaskVisibility = Visibility.Collapsed;
         }
     }
 }

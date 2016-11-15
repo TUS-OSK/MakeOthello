@@ -10,7 +10,7 @@
     d:DesignWidth="400"
     Visibility="{Binding Visibility}">
     <Grid>
-        <Button Style="{StaticResource NormalButton}" Background="Violet" HorizontalAlignment="Center" Height="120" Width="200" Command="{Binding OkCommand}">Pass
+        <Button Style="{StaticResource NormalButton}" Background="DarkRed" HorizontalAlignment="Center" Height="120" Width="200" Command="{Binding OkCommand}">Pass
             </Button>
     </Grid>
 </UserControl>

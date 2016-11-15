@@ -10,7 +10,7 @@
     d:DesignWidth="60"
     Background="Transparent">
     <Grid>
-        <Border CornerRadius="7" Background="Green" Margin="1"></Border>
+        <Border CornerRadius="7" Margin="1" Background="#288e56"></Border>
             <Ellipse  Height="{Binding Height}" Width="{Binding Width}"             
                  Fill="{Binding DiscColorBrush}" 
                  Opacity="{Binding DiscOpacity}"/>

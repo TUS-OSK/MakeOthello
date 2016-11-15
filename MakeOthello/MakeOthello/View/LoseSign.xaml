@@ -13,12 +13,17 @@
     <Grid>
         <Border CornerRadius="50" Background="DarkGreen"></Border>
         <StackPanel VerticalAlignment="Center">
-            <TextBlock Margin="0,0,0,30" Foreground="White" FontSize="35" Height="50" Width="100" Text="Failure" HorizontalAlignment="Center"/>
+            <TextBlock Margin="0,0,0,30" Foreground="White" FontSize="45" Height="60" Width="130" Text="Failure" HorizontalAlignment="Center"/>
             <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
-                <Button Style="{StaticResource NormalButton}" Background="White" Margin="7.5,0,35,0" Height="50" Width="150" Foreground="DarkGreen" >
+<<<<<<< HEAD
+                <Button Style="{StaticResource NormalButton}" Height="60" Width="150" Background="White" Margin="7.5,0,35,0"  Foreground="DarkGreen" >
+=======
+                <Button Style="{StaticResource NormalButton}" Background="White" Margin="7.5,0,35,0" Height="50" Width="150" Foreground="DarkGreen"
+                        Command="{Binding OkCommand}">
+>>>>>>> 74add61b45910f7dad594ef529e1c8ebdfe5f26f
                     Play Again
                 </Button>
-                <Button Style="{StaticResource NormalButton}" Background="White" Margin="0,0,7.5,0" Height="50" Width="150" Foreground="DarkGreen"
+                <Button Style="{StaticResource NormalButton}" Height="60" Width="150" Background="White" Margin="0,0,7.5,0"  Foreground="DarkGreen"
                         Command="{Binding QuitCommand}">
                     Quit
                 </Button>
