@@ -12,7 +12,7 @@
         <SolidColorBrush x:Name="ThemeColor" Color="#32b16c"></SolidColorBrush>
         <SolidColorBrush x:Name="ThemeColorDark" Color="#288e56"></SolidColorBrush>
         <SolidColorBrush x:Name="ThemeColorRed" Color="#ff3824"></SolidColorBrush>
-        <SolidColorBrush x:Name="ThemeColorPurple" Color="#5d317a"></SolidColorBrush>
+        <SolidColorBrush x:Name="ThemeColorPurple" Color="#a349a4"></SolidColorBrush>
         <Style x:Name="NormalButton" TargetType="Button">
             <Setter Property="Height" Value="55" />
             <Setter Property="Width" Value="250" />
