@@ -6,6 +6,11 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     mc:Ignorable="d">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="ms-appx:/Assets/font/TitilliumWeb-Regular.ttf#Titillium Web" ></Setter>
+        </Style>
+    </Page.Resources>
     <Grid Background="{StaticResource ThemeColor}" MaxWidth="720">
         <Grid.RowDefinitions>
             <RowDefinition Height="3*"></RowDefinition>
@@ -19,18 +24,19 @@
                     <Ellipse Fill="{Binding DiskBackground}"></Ellipse>
                 </Grid>
                 <TextBlock Foreground="{Binding DiskBackground}" 
-                       Margin="20" FontFamily="メイリオ"
-                       FontSize="12" VerticalAlignment="Center">Tap and change your color</TextBlock>
-
+                       Margin="20" 
+                       TextAlignment="Center"
+                       FontSize="16" VerticalAlignment="Center">Tap and change your color</TextBlock>
             </StackPanel>
             <Button  Command="{Binding ChangeColorCommand}"  
+                     Style="{StaticResource NormalButton}"
                          HorizontalAlignment="Stretch"
                          VerticalAlignment="Stretch"
                          CommandParameter="0" Background="Transparent" >
             </Button>
         </Grid>
 
-        <TextBlock Grid.Row="1" VerticalAlignment="Center" FontFamily="メイリオ" FontSize="20" 
+        <TextBlock Grid.Row="1" VerticalAlignment="Center" FontSize="20" 
                    MaxWidth="600" Margin="25,0" Foreground="White"
                    TextWrapping="Wrap">
             逆オセロとは「最後に自分の色の石が少い」プレーヤーが勝つあべこべなオセロゲームです。上手く打って自分の石を減らし、ゲームに勝利しましょう。

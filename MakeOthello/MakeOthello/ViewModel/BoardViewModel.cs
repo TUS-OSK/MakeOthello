@@ -21,8 +21,8 @@ namespace MakeOthello.ViewModel
 {
     public class BoardViewModel : ViewModelBase
     {
-        private string _DiscNumberLeft;
-        private string _DiscNumberRight;
+        private string _blackNumberText;
+        private string _whiteNumberText;
         private int cpuLevel;
         private int playercolor;
         private ICommand _BackCommand;
@@ -50,8 +50,6 @@ namespace MakeOthello.ViewModel
         }
 
         public PassControlViewModel PassControlData { get; private set; }
-        public string PlayerRight { get; private set; }
-        public string PlayerLeft { get; private set; }
 
         public Visibility WaitingMaskVisibility
         {
@@ -83,22 +81,25 @@ namespace MakeOthello.ViewModel
             }
         }
 
-        public string DiscNumberLeft
+        public string BlackPlayerText { get; private set; }
+        public string WhitePlayerText { get; private set; }
+
+        public string BlackNumberText
         {
-            get { return _DiscNumberLeft; }
+            get { return _blackNumberText; }
             set
             {
-                _DiscNumberLeft = value;
+                _blackNumberText = value;
                 OnPropertyChanged();
             }
         }
 
-        public string DiscNumberRight
+        public string WhiteNumberText
         {
-            get { return _DiscNumberRight; }
+            get { return _whiteNumberText; }
             set
             {
-                _DiscNumberRight = value;
+                _whiteNumberText = value;
                 OnPropertyChanged();
             }
         }
@@ -113,15 +114,15 @@ namespace MakeOthello.ViewModel
 
 
             double min = Math.Min(Frame.ActualHeight, Frame.ActualWidth);
-            if (min < 720)
+            if (min < 600)
             {
-                Height = min * 600 / 720;
-                Width = min * 600 / 720;
+                Height = min * 5 / 6;
+                Width = min * 5 / 6;
             }
             else
             {
-                Height = 600;
-                Width = 600;
+                Height = 500;
+                Width = 500;
             }
             cpuLevel = cpu;
             playercolor = player;
@@ -133,12 +134,12 @@ namespace MakeOthello.ViewModel
             });
 
 
+            BlackNumberText = Othello.GetDiscNumber(-1).ToString();
+            WhiteNumberText = Othello.GetDiscNumber(1).ToString();
             if (cpu == 0)
             {
-                PlayerLeft = "1P: ";
-                PlayerRight = "2P: ";
-                DiscNumberLeft = Othello.GetDiscNumber(-1).ToString();
-                DiscNumberRight = Othello.GetDiscNumber(1).ToString();
+                BlackPlayerText = "1P: ";
+                WhitePlayerText = "2P: ";
                 BackCommand = new SimpleCommand(o =>
                 {
                     Othello.Back();
@@ -173,10 +174,17 @@ namespace MakeOthello.ViewModel
             }
             else
             {
-                PlayerRight = "CPU Lv." + cpu + ":";
-                PlayerLeft = "You:";
-                DiscNumberLeft = Othello.GetDiscNumber(playercolor).ToString();
-                DiscNumberRight = Othello.GetDiscNumber(-1 * playercolor).ToString();
+                if (player == 1)
+                {
+                    BlackPlayerText = "CPU Lv." + cpu + ":";
+                    WhitePlayerText = "You:";
+                }
+                else
+                {
+                    WhitePlayerText = "CPU Lv." + cpu + ":";
+                    BlackPlayerText = "You:";
+                }
+               
                 BackCommand = new SimpleCommand(o =>
                 {
                     PassControlData.Visibility = Visibility.Collapsed;
@@ -249,17 +257,8 @@ namespace MakeOthello.ViewModel
                     }
                     break;
             }
-
-            if (cpuLevel == 0)
-            {
-                DiscNumberLeft = Othello.GetDiscNumber(-1).ToString();
-                DiscNumberRight = Othello.GetDiscNumber(1).ToString();
-            }
-            else
-            {
-                DiscNumberLeft = Othello.GetDiscNumber(playercolor).ToString();
-                DiscNumberRight = Othello.GetDiscNumber(-1 * playercolor).ToString();
-            }
+            BlackNumberText = Othello.GetDiscNumber(-1).ToString();
+            WhiteNumberText = Othello.GetDiscNumber(1).ToString();
             return points;
         }
 

@@ -1,4 +1,5 @@
 ﻿using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 using MakeOthello.View;
 
@@ -13,13 +14,13 @@ namespace MakeOthello.ViewModel.MessageBox
         {
             get
             {
-                return new SolidColorBrush(Color.FromArgb(255, 255, 56, 36));
+                return Application.Current.Resources["ThemeColorPurple"] as SolidColorBrush;
             }
         }
 
         public override string OkButtonText
         {
-            get { return "Play Agan"; }
+            get { return "Play Again"; }
         }
 
         public override string QuitButtonText

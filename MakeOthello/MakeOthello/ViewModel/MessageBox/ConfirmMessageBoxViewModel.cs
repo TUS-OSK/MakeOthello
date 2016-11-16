@@ -17,7 +17,7 @@ namespace MakeOthello.ViewModel.MessageBox
         {
             get
             {
-                return new SolidColorBrush(Color.FromArgb(255, 93, 49, 122));
+                return Application.Current.Resources["ThemeColorPurple"] as SolidColorBrush;
             }
         }
 

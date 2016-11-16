@@ -7,8 +7,6 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:view="using:MakeOthello.View"
     mc:Ignorable="d">
-    <Page.Resources>
-    </Page.Resources>
     <Grid Background="{StaticResource ThemeColor}" MaxWidth="720">
 
         <Grid.RowDefinitions>
@@ -23,8 +21,12 @@
                 Margin="0,0,0,10">
             VS CPU
         </Button>
-        <Button Style="{StaticResource NormalButton}"
+        <!--<Button Style="{StaticResource NormalButton}"
                 Grid.Row="2" Grid.Column="0"  Click="ButtonBase_OnClick2" Margin="0,10,0,0" >
+            VS Friend
+        </Button>-->
+        <Button Style="{StaticResource NormalButton}" Background="{StaticResource ThemeColorDark}"
+                Grid.Row="2" Grid.Column="0" Margin="0,10,0,0" >
             VS Friend
         </Button>
     </Grid>

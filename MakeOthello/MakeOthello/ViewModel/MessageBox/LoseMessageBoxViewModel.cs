@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Media;
 
 namespace MakeOthello.ViewModel.MessageBox
@@ -18,7 +19,7 @@ namespace MakeOthello.ViewModel.MessageBox
         {
             get
             {
-                return new SolidColorBrush(Color.FromArgb(255, 93, 49, 122));
+                return Application.Current.Resources["ThemeColorPurple"] as SolidColorBrush;
             }
         }
     }

@@ -2,19 +2,19 @@
     x:Class="MakeOthello.View.GamePage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:local="using:MakeOthello.View"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-    xmlns:view="using:MakeOthello.View"
     xmlns:controls="using:MakeOthello.View.Controls"
-    d:DesignHeight="640"
-    d:DesignWidth="360"
     mc:Ignorable="d" >
-    <Grid Background="{StaticResource ThemeColor}" MaxWidth="720">
+    <Page.Resources>
+        <Style TargetType="TextBlock">
+            <Setter Property="FontFamily" Value="ms-appx:/Assets/font/TitilliumWeb-Regular.ttf#Titillium Web" ></Setter>
+        </Style>
+    </Page.Resources>
+    <Grid Background="{StaticResource ThemeColor}" MaxWidth="600">
         <Grid.RowDefinitions>
             <RowDefinition Height="10*"></RowDefinition>
-            <RowDefinition Height="17*"></RowDefinition>
-            <RowDefinition Height="5*"></RowDefinition>
+            <RowDefinition Height="19*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="0" >
             <Grid.ColumnDefinitions>
@@ -26,35 +26,39 @@
                 <RowDefinition></RowDefinition>
                 <RowDefinition></RowDefinition>
             </Grid.RowDefinitions>
-            
             <Button  Style="{StaticResource SmallButton}"
                      HorizontalAlignment="Stretch"
                      BorderThickness="2"
-                     MaxWidth="250"
-                    Grid.Column="0" Grid.Row="1" Command="{Binding BackCommand}" Margin="15,0">undo</Button>
+                     BorderBrush="{Binding }"
+                     Grid.Column="0" Grid.Row="1" Command="{Binding BackCommand}" Margin="15,0">undo</Button>
             <Button  Style="{StaticResource SmallButton}" Command="{Binding QuitCommand}"
-                     MaxWidth="250"
                      HorizontalAlignment="Stretch"
                      Grid.Column="1" Grid.Row="1" Margin="15,0">quit</Button>
 
-            <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="85,20,0,0" 
+            <StackPanel Grid.Column="0" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock
+                       Margin="0,0,10,0"
+                       Foreground="Black" FontSize="25"
+                       Text="{Binding BlackPlayerText}"></TextBlock>
+                <TextBlock
+                       Foreground="Black" FontSize="25"
+                       Text="{Binding BlackNumberText}"></TextBlock>
+            </StackPanel>
+            <StackPanel Grid.Column="1" Grid.Row="2" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock
+                       Margin="0,0,10,0"
                        Foreground="White" FontSize="25"
-                       Text="{Binding DiscNumberLeft}"></TextBlock>
-            <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,20,30,0"
+                       Text="{Binding WhitePlayerText}"></TextBlock>
+                <TextBlock
                        Foreground="White" FontSize="25"
-                       Text="{Binding DiscNumberRight}"></TextBlock>
-            <TextBlock Grid.Column="0" Grid.Row="2" HorizontalAlignment="Left" Margin="30,20,0,0"
-                       Foreground="White" FontSize="25"
-                       Text="{Binding PlayerLeft}"></TextBlock>
-            <TextBlock Grid.Column="1" Grid.Row="2" HorizontalAlignment="Right" Margin="0,20,60,0"
-                       Foreground="White" FontSize="25"
-                       Text="{Binding PlayerRight}"></TextBlock>
+                       Text="{Binding WhiteNumberText}"></TextBlock>
+            </StackPanel>
         </Grid>
-        <controls:BoardControle x:Name="BoardControle" Grid.Row="1" Grid.RowSpan="2"
-                            MaxWidth="700" MaxHeight="700"                          
+        <controls:BoardControle x:Name="BoardControle" Grid.Row="1"
+                            MaxWidth="500" MaxHeight="500"                          
                             DataContext="{Binding}"/>
-        <Rectangle  Grid.Row="1" Grid.RowSpan="2" Fill="Transparent" Visibility="{Binding WaitingMaskVisibility}"></Rectangle>
-        <controls:MessageBox Grid.Row="0" Grid.RowSpan="3" DataContext="{Binding MessageBoxData}" d:IsHidden="True"></controls:MessageBox>
-        <controls:PassControl  Grid.Row="1" Grid.RowSpan="2" DataContext="{Binding PassControlData}"></controls:PassControl>
+        <Rectangle  Grid.Row="1" Fill="Transparent" Visibility="{Binding WaitingMaskVisibility}"></Rectangle>
+        <controls:MessageBox Grid.Row="0" Grid.RowSpan="2" DataContext="{Binding MessageBoxData}" d:IsHidden="True"></controls:MessageBox>
+        <controls:PassControl  Grid.Row="1" DataContext="{Binding PassControlData}"></controls:PassControl>
     </Grid>
 </Page>
