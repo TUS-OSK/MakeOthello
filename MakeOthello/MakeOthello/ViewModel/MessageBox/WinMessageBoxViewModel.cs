@@ -6,7 +6,7 @@ namespace MakeOthello.ViewModel.MessageBox
 {
     class WinMessageBoxViewModel : EndMessageBoxViewModel
     {
-        public WinMessageBoxViewModel(int player, int cpu) : base(player, cpu, "Succeed !")
+        public WinMessageBoxViewModel(int player, int cpu) : base(player, cpu, "Succeeded !")
         {
         }
 

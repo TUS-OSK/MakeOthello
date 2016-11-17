@@ -11,7 +11,7 @@ namespace MakeOthello.ViewModel.MessageBox
 {
     class LoseMessageBoxViewModel:EndMessageBoxViewModel
     {
-        public LoseMessageBoxViewModel(int player, int cpu) : base(player, cpu, "Faild")
+        public LoseMessageBoxViewModel(int player, int cpu) : base(player, cpu, "Failed")
         {
         }
 
