@@ -48,7 +48,7 @@
                             MaxWidth="700" MaxHeight="700"                          
                             DataContext="{Binding}"/>
         <Rectangle  Grid.Row="1" Grid.RowSpan="2" Fill="Transparent" Visibility="{Binding WaitingMaskVisibility}"></Rectangle>
-        <local:PopUpControl  Grid.Row="0" Grid.RowSpan="3" DataContext="{Binding PopUpData}"></local:PopUpControl>
+        <local:PopUpControl  Grid.Row="1" Grid.RowSpan="2" DataContext="{Binding PopUpData}"></local:PopUpControl>
         <local:WinSign Grid.Row="1" DataContext="{Binding WinPopUpData}" d:IsHidden="True"></local:WinSign>
         <local:LoseSign Grid.Row="1" DataContext="{Binding LosePopUpData}" d:IsHidden="True"></local:LoseSign>
         <local:EndSign Grid.Row="1" DataContext="{Binding EndPopUpData}" d:IsHidden="True"></local:EndSign>
