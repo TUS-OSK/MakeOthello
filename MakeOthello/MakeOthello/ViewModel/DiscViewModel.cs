@@ -8,6 +8,7 @@ using Windows.UI;
 using Windows.UI.Xaml.Media;
 using MakeOthello.Utility;
 using MakeOthello.View;
+using MakeOthello.View.Controls;
 
 namespace MakeOthello.ViewModel
 {

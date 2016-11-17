@@ -110,27 +110,21 @@
     <Compile Include="Model\SampleOthelloAi.cs" />
     <Compile Include="ViewModel\BoardViewModel.cs" />
     <Compile Include="ViewModel\DiscViewModel.cs" />
-    <Compile Include="ViewModel\GameViewModel.cs" />
-    <Compile Include="ViewModel\MainViewModel.cs" />
-    <Compile Include="ViewModel\PopUpControleViewModel.cs" />
+    <Compile Include="ViewModel\MessageBox\MessageBoxViewModel.cs" />
+    <Compile Include="ViewModel\MessageBox\ConfirmMessageBoxViewModel.cs" />
+    <Compile Include="ViewModel\MessageBox\EndMessageBoxViewModel.cs" />
+    <Compile Include="ViewModel\MessageBox\LoseMessageBoxViewModel.cs" />
+    <Compile Include="ViewModel\MessageBox\PassControleViewModel.cs" />
     <Compile Include="ViewModel\SelectPageViewModel.cs" />
-    <Compile Include="View\BoardControle.xaml.cs">
+    <Compile Include="ViewModel\MessageBox\WinMessageBoxViewModel.cs" />
+    <Compile Include="View\Controls\BoardControle.xaml.cs">
       <DependentUpon>BoardControle.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\Confirm.xaml.cs">
-      <DependentUpon>Confirm.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\DiscControle.xaml.cs">
+    <Compile Include="View\Controls\DiscControle.xaml.cs">
       <DependentUpon>DiscControle.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\EndSign.xaml.cs">
-      <DependentUpon>EndSign.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\GamePage.xaml.cs">
       <DependentUpon>GamePage.xaml</DependentUpon>
-    </Compile>
-    <Compile Include="View\LoseSign.xaml.cs">
-      <DependentUpon>LoseSign.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\MainPage.xaml.cs">
       <DependentUpon>MainPage.xaml</DependentUpon>
@@ -138,14 +132,14 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Utility\SimpleCommand.cs" />
     <Compile Include="Utility\ViewModelBase.cs" />
-    <Compile Include="View\PopUpControl.xaml.cs">
-      <DependentUpon>PopUpControl.xaml</DependentUpon>
+    <Compile Include="View\Controls\PassControl.xaml.cs">
+      <DependentUpon>PassControl.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\SelectPage.xaml.cs">
       <DependentUpon>SelectPage.xaml</DependentUpon>
     </Compile>
-    <Compile Include="View\WinSign.xaml.cs">
-      <DependentUpon>WinSign.xaml</DependentUpon>
+    <Compile Include="View\Controls\MessageBox.xaml.cs">
+      <DependentUpon>MessageBox.xaml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -169,19 +163,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\BoardControle.xaml">
+    <Page Include="View\Controls\BoardControle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\Confirm.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\DiscControle.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
-    <Page Include="View\EndSign.xaml">
+    <Page Include="View\Controls\DiscControle.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -189,15 +175,11 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\LoseSign.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\MainPage.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </Page>
-    <Page Include="View\PopUpControl.xaml">
+    <Page Include="View\Controls\PassControl.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -205,7 +187,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="View\WinSign.xaml">
+    <Page Include="View\Controls\MessageBox.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

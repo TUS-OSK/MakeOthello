@@ -1,19 +1,28 @@
 using System;
 using System.ComponentModel;
 using System.Runtime.CompilerServices;
+using Windows.ApplicationModel.Core;
+using Windows.UI.Core;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 
 namespace MakeOthello.Utility
 {
     public class ViewModelBase : INotifyPropertyChanged
     {
-        public Windows.UI.Core.CoreDispatcher Dispatcher { get; set; }
         public event PropertyChangedEventHandler PropertyChanged;
-        public Frame Frame { get; set; }
-
-        public ViewModelBase(Frame frame = null)
+        public Frame Frame
         {
-            Frame = frame;
+            get
+            {
+                Frame rootFrame = Window.Current.Content as Frame;
+                return rootFrame;
+            }
+        }
+
+        public CoreDispatcher Dispatcher
+        {
+            get { return CoreApplication.MainView.CoreWindow.Dispatcher; }
         }
 
         /// <summary>
@@ -36,7 +45,7 @@ namespace MakeOthello.Utility
             }
         }
 
-        protected async void Navigate(Type page,object param = null)
+        protected async void Navigate(Type page, object param = null)
         {
             if (Dispatcher != null)
             {
