@@ -17,7 +17,7 @@
             <RowDefinition Height="*"></RowDefinition>
         </Grid.RowDefinitions>
         <Grid Grid.Row="1">
-            <Border CornerRadius="50" Background="#FF3824" Margin="5"></Border>
+            <Border CornerRadius="50" Background="#FF3824" Margin="10"></Border>
             <StackPanel VerticalAlignment="Center">
                 <TextBlock Margin="0,0,0,30" Foreground="White" FontSize="35" Height="50" Width="120" Text="Success" HorizontalAlignment="Center"/>
                 <StackPanel Orientation="Horizontal" HorizontalAlignment="Center">
