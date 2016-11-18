@@ -8,6 +8,7 @@ using Windows.ApplicationModel;
 using Windows.ApplicationModel.Activation;
 using Windows.Foundation;
 using Windows.Foundation.Collections;
+using Windows.System.Display;
 using Windows.UI;
 using Windows.UI.ViewManagement;
 using Windows.UI.Xaml;
@@ -61,7 +62,7 @@ namespace MakeOthello
 
                 if (e.PreviousExecutionState == ApplicationExecutionState.Terminated)
                 {
-                    //TODO: Load state from previously suspended application
+                   
                 }
 
                 // Place the frame in the current Window
@@ -98,7 +99,10 @@ namespace MakeOthello
             titleBar.ButtonPressedBackgroundColor = Color.FromArgb(0xff, 0x34, 0x34, 0x34);
             titleBar.ButtonPressedForegroundColor = Colors.White;
             rootFrame.Background = new SolidColorBrush(themeColor);
+            displayRequest.RequestActive(); //to request keep display on
         }
+
+        DisplayRequest displayRequest = new DisplayRequest();
 
         /// <summary>
         /// Invoked when Navigation to a certain page fails
@@ -120,7 +124,7 @@ namespace MakeOthello
         private void OnSuspending(object sender, SuspendingEventArgs e)
         {
             var deferral = e.SuspendingOperation.GetDeferral();
-            //TODO: Save application state and stop any background activity
+            displayRequest.RequestRelease(); //to release request of keep display on
             deferral.Complete();
         }
 

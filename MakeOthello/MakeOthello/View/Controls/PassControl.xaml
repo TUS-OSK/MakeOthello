@@ -1,5 +1,5 @@
 ﻿<UserControl
-    x:Class="MakeOthello.View.PopUpControl"
+    x:Class="MakeOthello.View.Controls.PassControl"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:local="using:MakeOthello.View"
@@ -13,7 +13,7 @@
     Visibility="{Binding Visibility}">
     <Grid HorizontalAlignment="Stretch" VerticalAlignment="Stretch">
         <Rectangle Fill="Transparent"></Rectangle>
-        <Button Style="{StaticResource NormalButton}" Background="DarkRed" Foreground="White" Width="150" Command="{Binding OkCommand}">Pass
+        <Button Style="{StaticResource NormalButton}" Background="{StaticResource ThemeColorPurple}" Foreground="White" Width="150" Command="{Binding OkCommand}">Pass
             </Button>
     </Grid>
 </UserControl>

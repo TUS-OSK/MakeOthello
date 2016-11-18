@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 using Windows.UI;
+using Windows.UI.Xaml;
 using Windows.UI.Xaml.Controls;
 using Windows.UI.Xaml.Media;
 using MakeOthello.Utility;
@@ -61,40 +62,38 @@ namespace MakeOthello.ViewModel
             }
         }
 
+        private SolidColorBrush _nonActiveColor = Application.Current.Resources["ThemeColorDark"] as SolidColorBrush;
 
-        
-        private Color _nonActiveColor = Color.FromArgb(255, 40, 142, 86);
-        public SelectPageViewModel(Frame frame)
+        public SelectPageViewModel()
         {
             
             Level1Background = new SolidColorBrush(Colors.White);
-            Level2Background = new SolidColorBrush(_nonActiveColor);
-            Level3Background = new SolidColorBrush(_nonActiveColor);
+            Level2Background = _nonActiveColor;
+            Level3Background = _nonActiveColor;
             CpuLevel = 1;
             DiskBackground =new SolidColorBrush(Colors.Black);
             DiscColor = -1;
             
-            this.Frame = frame;
             SetLevelCommand = new SimpleCommand(param =>
             {
                 switch (param.ToString())
                 {
                     case "1":
                         Level1Background = new SolidColorBrush(Colors.White);
-                        Level2Background = new SolidColorBrush(_nonActiveColor);
-                        Level3Background = new SolidColorBrush(_nonActiveColor);
+                        Level2Background = _nonActiveColor;
+                        Level3Background = _nonActiveColor;
                         CpuLevel = 1;
                         break;
                     case "2":
                         Level2Background = new SolidColorBrush(Colors.White);
-                        Level1Background = new SolidColorBrush(_nonActiveColor);
-                        Level3Background = new SolidColorBrush(_nonActiveColor);
+                        Level1Background = _nonActiveColor;
+                        Level3Background = _nonActiveColor;
                         CpuLevel = 2;
                         break;
                     case "3":
                         Level3Background = new SolidColorBrush(Colors.White);
-                        Level2Background = new SolidColorBrush(_nonActiveColor);
-                        Level1Background = new SolidColorBrush(_nonActiveColor);
+                        Level2Background = _nonActiveColor;
+                        Level1Background = _nonActiveColor;
                         CpuLevel = 3;
                         break;
                 }
@@ -119,9 +118,7 @@ namespace MakeOthello.ViewModel
 
             GoNextCommand = new SimpleCommand(param =>
             {
-                var vm = new BoardViewModel(Frame,DiscColor,CpuLevel);
-                vm.Dispatcher = Dispatcher;
-                this.Frame.Navigate(typeof(GamePage), vm);
+                Navigate(typeof(GamePage), new BoardViewModel(DiscColor, CpuLevel));
             });
         }
     }
