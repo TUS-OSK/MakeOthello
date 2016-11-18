@@ -57,8 +57,10 @@
         <controls:BoardControle x:Name="BoardControle" Grid.Row="1"
                             MaxWidth="500" MaxHeight="500"                          
                             DataContext="{Binding}"/>
+
         <Rectangle  Grid.Row="1" Fill="Transparent" Visibility="{Binding WaitingMaskVisibility}"></Rectangle>
         <controls:MessageBox Grid.Row="0" Grid.RowSpan="2" DataContext="{Binding MessageBoxData}" d:IsHidden="True"></controls:MessageBox>
         <controls:PassControl  Grid.Row="1" DataContext="{Binding PassControlData}"></controls:PassControl>
+
     </Grid>
 </Page>
