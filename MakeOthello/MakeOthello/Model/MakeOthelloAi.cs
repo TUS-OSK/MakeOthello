@@ -44,7 +44,7 @@ namespace MakeOthello.Model
                     finalLookTurn = 63 - 10;
                     break;
                 case 3:
-                    lookNum = 4;
+                    lookNum = 5;
                     finalLookTurn = 63 - 12;
                     break;
             }

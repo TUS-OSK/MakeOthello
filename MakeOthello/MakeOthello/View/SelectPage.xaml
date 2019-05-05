@@ -13,12 +13,17 @@
     </Page.Resources>
     <Grid Background="{StaticResource ThemeColor}" MaxWidth="720">
         <Grid.RowDefinitions>
-            <RowDefinition Height="3*"></RowDefinition>
             <RowDefinition Height="4*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
             <RowDefinition Height="2*"></RowDefinition>
+            <RowDefinition Height="2*"></RowDefinition>
         </Grid.RowDefinitions>
-        <Grid VerticalAlignment="Bottom" HorizontalAlignment="Center">
+        <TextBlock VerticalAlignment="Center" FontSize="20" 
+                   MaxWidth="600" Margin="25,0" Foreground="White"
+                   TextWrapping="Wrap">
+            逆オセロとは「最後に自分の色の石が少い」プレーヤーが勝つあべこべなオセロゲームです。上手く打って自分の石を減らし、ゲームに勝利しましょう。
+        </TextBlock>
+        <Grid Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center">
             <StackPanel>
                 <Grid Height="50" Width="50">
                     <Ellipse Fill="{Binding DiskBackground}"></Ellipse>
@@ -26,7 +31,8 @@
                 <TextBlock Foreground="{Binding DiskBackground}" 
                        Margin="20" 
                        TextAlignment="Center"
-                       FontSize="16" VerticalAlignment="Center">Tap and change your color</TextBlock>
+                       FontSize="16" VerticalAlignment="Center"
+                       Text="{Binding ColorText}"></TextBlock>
             </StackPanel>
             <Button  Command="{Binding ChangeColorCommand}"  
                      Style="{StaticResource NormalButton}"
@@ -35,12 +41,6 @@
                          CommandParameter="0" Background="Transparent" >
             </Button>
         </Grid>
-
-        <TextBlock Grid.Row="1" VerticalAlignment="Center" FontSize="20" 
-                   MaxWidth="600" Margin="25,0" Foreground="White"
-                   TextWrapping="Wrap">
-            逆オセロとは「最後に自分の色の石が少い」プレーヤーが勝つあべこべなオセロゲームです。上手く打って自分の石を減らし、ゲームに勝利しましょう。
-        </TextBlock>
         <Grid HorizontalAlignment="Stretch" VerticalAlignment="Center" MaxWidth="600" Grid.Row="2" Margin="50,0,50,0">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition></ColumnDefinition>

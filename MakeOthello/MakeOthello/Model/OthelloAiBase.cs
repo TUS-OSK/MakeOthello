@@ -14,6 +14,9 @@ namespace MakeOthello.Model
 
         public async Task PutAsync(IOthello othello, List<Point> ablePoints = null)
         {
+            var sw = new System.Diagnostics.Stopwatch();
+            sw.Start();
+
             if (ablePoints == null)
                 ablePoints = othello.GetPossiblePoints(othello.Turn);
             if (ablePoints.Count == 0)
@@ -21,7 +24,16 @@ namespace MakeOthello.Model
                 othello.Pass();
                 return;
             }
-            await Task.Run((() => Put(othello, ablePoints)));
+
+            await Task.Run(() => Put(othello, ablePoints));
+
+            sw.Stop();
+
+            TimeSpan ts = TimeSpan.FromMilliseconds(1000) - sw.Elapsed;
+            if (ts > TimeSpan.FromMilliseconds(0))
+            {
+                await Task.Delay(ts);
+            }
         }
     }
 }

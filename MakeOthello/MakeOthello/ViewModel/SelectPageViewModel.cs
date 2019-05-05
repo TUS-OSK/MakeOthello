@@ -25,6 +25,22 @@ namespace MakeOthello.ViewModel
         private int CpuLevel;
         private int DiscColor;
 
+        public string ColorText
+        {
+            get
+            {
+                switch (DiscColor)
+                {
+                    case 1:
+                        return "AI goes first (Tap to change)";
+                    case -1:
+                        return "You go first (Tap to change)";
+                    default:
+                        return string.Empty;
+                }
+            }
+        }
+
         public SolidColorBrush Level1Background
         {
             get { return _level1Background; }
@@ -59,10 +75,13 @@ namespace MakeOthello.ViewModel
             {
                 _discBackground = value;
                 OnPropertyChanged();
+                OnPropertyChanged(nameof(ColorText));
             }
         }
 
+
         private SolidColorBrush _nonActiveColor = Application.Current.Resources["ThemeColorDark"] as SolidColorBrush;
+
 
         public SelectPageViewModel()
         {
